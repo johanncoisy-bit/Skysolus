@@ -1,0 +1,268 @@
+---
+import Base from '../layouts/Base.astro';
+import Plane from '../components/Plane.astro';
+import Drone from '../components/Drone.astro';
+import { SITE } from '../config';
+import { prestations, clients, methode, typesMission, APPAREILS } from '../data';
+
+const tel = SITE.contact.telephone.replace(/\s/g, '');
+const rings = [
+  { r: 62, label: 'Var' },
+  { r: 132, label: 'Région PACA' },
+  { r: 202, label: 'France entière' },
+  { r: 272, label: 'Outre-mer et international' },
+];
+---
+<Base
+  title="Skysolus · Drone et ULM à Hyères (Var) : prises de vues, inspection, surveillance aérienne"
+  description="Skysolus, basé à Hyères (Var) : photo et vidéo aériennes, inspection de toitures et d'ouvrages, thermographie, cartographie 3D et surveillance aérienne en ULM, dans le Var, en PACA et partout en France."
+>
+  <section class="hero" aria-label="Film de présentation">
+    <video id="film" autoplay muted loop playsinline preload="metadata" poster="/video/poster.jpg">
+      <source src="/video/skysolus-intro.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-bar">
+      <button class="hero-play" id="film-btn" type="button" aria-controls="film">Mettre en pause</button>
+      <a class="hero-down" href="#intro">Découvrir <span aria-hidden="true"></span></a>
+    </div>
+  </section>
+
+  <section class="intro wrap" id="intro">
+    <h1>Images, inspections et surveillance depuis le ciel du Var</h1>
+    <p class="lead">Skysolus réalise des prises de vues, des inspections et des missions de surveillance avec deux drones DJI et un avion ULM Bristell XL8. Particuliers, entreprises et collectivités : chaque mission est étudiée selon votre besoin, le site et la réglementation.</p>
+    <div class="intro-actions">
+      <a class="btn" href="#contact">Demander un devis</a>
+      <a class="btn btn-ghost" href="#prestations">Voir les prestations</a>
+    </div>
+    <ul class="facts">
+      <li><strong>Basé à Hyères</strong>Interventions dans le Var, en région PACA et partout en France.</li>
+      <li><strong>Drone et ULM</strong>Le détail au plus près avec le drone, les grandes distances avec l’avion.</li>
+      <li><strong>Des livrables exploitables</strong>Photos, films, rapports thermiques, orthophotos et modèles 3D.</li>
+    </ul>
+  </section>
+
+  <section class="section flotte" id="flotte">
+    <div class="wrap">
+      <div class="flotte-head">
+        <h2>Trois appareils, chacun à sa hauteur</h2>
+        <p class="lead">Les drones travaillent au plus près des bâtiments et des sites. Au-dessus, l’ULM couvre en une sortie ce qu’un drone mettrait des jours à parcourir.</p>
+      </div>
+
+      <div class="ulm appareil">
+        <Plane />
+        <div>
+          <p class="type">Avion ultraléger (ULM)</p>
+          <h3>Bristell XL8</h3>
+          <p>Un biplace à aile basse et grande verrière, pensé pour la visibilité. Il emmène l’observateur et la caméra au-dessus de vastes territoires.</p>
+          <ul>
+            <li>Surveillance aérienne de grands sites</li>
+            <li>Reconnaissance du littoral et des massifs forestiers</li>
+            <li>Prises de vues sur de longues distances</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plafond" role="presentation"><p>120 m : hauteur maximale d’un drone en catégorie Ouverte</p></div>
+
+      <div class="drones">
+        <div class="appareil">
+          <Drone model="M4T" />
+          <p class="type">Drone d’inspection</p>
+          <h3>DJI Matrice 4T</h3>
+          <p>Un drone professionnel équipé d’une caméra thermique, d’un zoom et d’un télémètre laser, pour examiner à distance ce qui est difficile d’accès.</p>
+          <ul>
+            <li>Thermographie de toitures et de centrales photovoltaïques</li>
+            <li>Inspection d’ouvrages et d’installations</li>
+            <li>Suivi de chantier et relevés</li>
+          </ul>
+        </div>
+        <div class="appareil">
+          <Drone model="Mini" />
+          <p class="type">Drone photo et vidéo</p>
+          <h3>DJI Mini 5 Pro</h3>
+          <p>Compact et discret, il produit des images de grande qualité pour présenter un bien, un lieu ou une activité.</p>
+          <ul>
+            <li>Immobilier, domaines et terrains</li>
+            <li>Tourisme, hôtellerie, communication</li>
+            <li>Événements et nautisme</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="prestations">
+    <div class="presta-head">
+      <div>
+        <h2>Ce que nous faisons pour vous</h2>
+        <p class="lead">Chaque prestation indique les appareils utilisés. Si votre besoin n’apparaît pas ici, décrivez-le : nous étudions sa faisabilité.</p>
+      </div>
+      <div class="legend" aria-hidden="true">
+        {Object.entries(APPAREILS).map(([k, v]) => <span class={`tag tag-${k}`}>{v}</span>)}
+      </div>
+    </div>
+    <ul class="presta">
+      {prestations.map((p) => (
+        <li id={p.id}>
+          <h3>{p.titre}</h3>
+          <div>
+            <p>{p.texte}</p>
+            <p class="ex">{p.exemples.join(' ; ')}.</p>
+          </div>
+          <div class="tags" aria-label="Appareils utilisés">
+            {p.avec.map((a) => <span class={`tag tag-${a}`}>{APPAREILS[a]}</span>)}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section clients">
+    <div class="wrap">
+      <h2>Pour qui</h2>
+      <dl>
+        {clients.map(([qui, quoi]) => <div><dt>{qui}</dt><dd>{quoi}</dd></div>)}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section wrap" id="zone">
+    <div class="zone-grid">
+      <div>
+        <h2>Depuis Hyères, jusqu’où il faut</h2>
+        <p class="lead" style="margin-top:20px">La base est à Hyères, entre la presqu’île de Giens et les îles d’Or. Les missions se déplacent selon le besoin.</p>
+        <ul>
+          <li><b>Var</b><span>Toulon, Hyères, Saint-Tropez, la Provence verte et l’arrière-pays.</span></li>
+          <li><b>PACA</b><span>Bouches-du-Rhône, Alpes-Maritimes, Vaucluse, Alpes.</span></li>
+          <li><b>France</b><span>Partout sur le territoire, sur devis.</span></li>
+          <li><b>Au-delà</b><span>Outre-mer et international, selon la faisabilité réglementaire.</span></li>
+        </ul>
+      </div>
+      <svg class="rings" viewBox="0 0 600 600" role="img" aria-label="Zone d'intervention en cercles autour d'Hyères : Var, région PACA, France entière, outre-mer et international">
+        <defs>
+          <radialGradient id="zg" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#4CA9D4" stop-opacity=".35" /><stop offset="1" stop-color="#4CA9D4" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <circle cx="300" cy="300" r="290" fill="url(#zg)" />
+        {rings.map((g, i) => (
+          <g>
+            <circle cx="300" cy="300" r={g.r} fill="none" stroke="#9BD6F2" stroke-opacity={0.55 - i * 0.1} stroke-width="1.5" stroke-dasharray={i === 3 ? '6 8' : undefined} />
+            <text x="300" y={300 - g.r - 9} font-size="17" text-anchor="middle">{g.label}</text>
+          </g>
+        ))}
+        <circle cx="300" cy="300" r="7" fill="#F2B66D" />
+        <circle cx="300" cy="300" r="16" fill="none" stroke="#F2B66D" stroke-opacity=".6" />
+        <text x="300" y="338" font-size="20" text-anchor="middle">Hyères</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section methode" id="methode">
+    <div class="wrap">
+      <h2>Comment se déroule une mission</h2>
+      <ol class="steps">
+        {methode.map(([t, d]) => <li><h3>{t}</h3><p>{d}</p></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="cadre-grid">
+      <div>
+        <h2>Voler dans les règles</h2>
+        <p class="lead" style="margin-top:20px">Chaque mission est classée selon son niveau de risque et réalisée dans le cadre réglementaire qui s’applique.</p>
+      </div>
+      <ul>
+        <li>Missions drone en catégorie Ouverte ou Spécifique selon le site et la nature du vol, avec les déclarations ou autorisations nécessaires.</li>
+        <li>Vérification préalable de l’espace aérien, des zones réglementées et des restrictions de prise de vues.</li>
+        <li>Respect de la vie privée, du droit à l’image et de la protection des données.</li>
+        <li>Pulvérisation, largage, vol de nuit ou hors vue : étudiés au cas par cas avant toute proposition.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <h2>Parlons de votre projet</h2>
+      <p class="lead" style="margin-top:20px">Décrivez votre besoin : nous revenons vers vous avec une proposition adaptée au site, au matériel et à la réglementation.</p>
+      <div class="contact-grid">
+        <div class="direct">
+          <a href={`tel:${tel}`}><small>Appeler</small><strong>{SITE.contact.telephone}</strong></a>
+          <a href={`mailto:${SITE.contact.email}`}><small>Écrire</small><strong>{SITE.contact.email}</strong></a>
+          <a href={`https://wa.me/${SITE.contact.whatsapp}`} target="_blank" rel="noopener"><small>WhatsApp</small><strong>Envoyer un message</strong></a>
+          <p class="muted" style="margin-top:10px">{SITE.contact.nom}, {SITE.ville}, {SITE.departement}</p>
+        </div>
+
+        <form class="form" id="devis" data-endpoint={SITE.formEndpoint} data-email={SITE.contact.email} novalidate>
+          <div class="field"><label for="f-nom">Nom</label><input id="f-nom" name="nom" autocomplete="name" required /></div>
+          <div class="field"><label for="f-societe">Société (facultatif)</label><input id="f-societe" name="societe" autocomplete="organization" /></div>
+          <div class="field"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required /></div>
+          <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" /></div>
+          <div class="field"><label for="f-type">Type de mission</label>
+            <select id="f-type" name="mission" required>
+              <option value="">Choisir…</option>
+              {typesMission.map((t) => <option>{t}</option>)}
+            </select>
+          </div>
+          <div class="field"><label for="f-lieu">Lieu de la mission</label><input id="f-lieu" name="lieu" placeholder="Commune ou adresse" /></div>
+          <div class="field full"><label for="f-date">Date souhaitée (facultatif)</label><input id="f-date" name="date" placeholder="Ex. : avant fin mars, un week-end…" /></div>
+          <div class="field full"><label for="f-msg">Votre besoin</label><textarea id="f-msg" name="message" required placeholder="Ce que vous voulez voir, mesurer ou montrer, et ce que vous attendez comme livrable."></textarea></div>
+          <label class="check"><input type="checkbox" name="consentement" required /> J’accepte que ces informations soient utilisées pour répondre à ma demande.</label>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+          <div class="form-foot">
+            <button class="btn" type="submit">Envoyer la demande</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Film d'ouverture : pause / lecture, et respect de « réduire les animations »
+    const film = document.getElementById('film') as HTMLVideoElement | null;
+    const btn = document.getElementById('film-btn');
+    const setLabel = () => { if (btn && film) btn.textContent = film.paused ? 'Lire le film' : 'Mettre en pause'; };
+    if (film && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { film.removeAttribute('autoplay'); film.pause(); }
+    film?.addEventListener('play', setLabel); film?.addEventListener('pause', setLabel); setLabel();
+    btn?.addEventListener('click', () => { if (!film) return; film.paused ? film.play() : film.pause(); });
+
+    // Formulaire de devis
+    const form = document.getElementById('devis') as HTMLFormElement | null;
+    const status = form?.querySelector('.form-status') as HTMLElement | null;
+    const say = (msg: string, kind: 'ok' | 'err') => { if (status) { status.textContent = msg; status.className = `form-status ${kind}`; } };
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        const first = form.querySelector(':invalid') as HTMLElement | null;
+        first?.focus();
+        say('Remplissez le nom, l’e-mail, le type de mission et votre besoin, puis cochez l’accord.', 'err');
+        return;
+      }
+      const data = new FormData(form);
+      if (data.get('_gotcha')) return;
+      const endpoint = form.dataset.endpoint;
+      if (endpoint) {
+        try {
+          const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+          if (!res.ok) throw new Error(String(res.status));
+          form.reset();
+          say('Demande envoyée. Nous vous répondons rapidement.', 'ok');
+        } catch {
+          say('L’envoi n’a pas abouti. Réessayez, ou écrivez-nous directement par e-mail.', 'err');
+        }
+        return;
+      }
+      // Sans service de formulaire : ouverture de la messagerie avec la demande pré-remplie
+      const lignes = [
+        `Nom : ${data.get('nom')}`, `Société : ${data.get('societe') || '-'}`, `E-mail : ${data.get('email')}`,
+        `Téléphone : ${data.get('telephone') || '-'}`, `Mission : ${data.get('mission')}`, `Lieu : ${data.get('lieu') || '-'}`,
+        `Date souhaitée : ${data.get('date') || '-'}`, '', String(data.get('message')),
+      ];
+      const sujet = `Demande de devis : ${data.get('mission')}`;
+      window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(lignes.join('\n'))}`;
+      say('Votre messagerie s’ouvre avec la demande pré-remplie : il ne reste qu’à l’envoyer.', 'ok');
+    });
+  </script>
+</Base>

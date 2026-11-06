@@ -1,0 +1,85 @@
+---
+import '@fontsource-variable/saira/wdth.css';
+import '@fontsource-variable/source-sans-3';
+import '../styles/global.css';
+import { SITE } from '../config';
+
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="theme-color" content="#0A1322" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL('/video/poster.jpg', SITE.url).href} />
+  <meta property="og:locale" content="fr_FR" />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: SITE.name,
+    description,
+    url: SITE.url,
+    telephone: SITE.contact.telephone,
+    email: SITE.contact.email,
+    address: { '@type': 'PostalAddress', addressLocality: SITE.ville, postalCode: '83400', addressCountry: 'FR' },
+    areaServed: ['Var', 'Provence-Alpes-Côte d’Azur', 'France'],
+  })} />
+</head>
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+  <header class="nav" data-nav>
+    <a class="nav-logo" href="/" aria-label="Skysolus, accueil"><img src="/img/logo-light.png" alt="Skysolus" width="600" height="165" /></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="menu" data-toggle>Menu</button>
+    <nav id="menu" aria-label="Navigation principale">
+      <a href="/#prestations">Prestations</a>
+      <a href="/#flotte">Flotte</a>
+      <a href="/#zone">Zone d’intervention</a>
+      <a href="/#methode">Méthode</a>
+      <a class="btn btn-small" href="/#contact">Demander un devis</a>
+    </nav>
+  </header>
+
+  <main id="contenu"><slot /></main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img src="/img/logo-light.png" alt="Skysolus" width="600" height="165" class="footer-logo" />
+        <p>Prises de vues, inspections et surveillance aériennes par drone et ULM, depuis {SITE.ville}, dans le {SITE.departement}.</p>
+      </div>
+      <div>
+        <p><a href={`tel:${SITE.contact.telephone.replace(/\s/g, '')}`}>{SITE.contact.telephone}</a><br />
+        <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a></p>
+        <p><a href="/mentions-legales">Mentions légales</a></p>
+      </div>
+    </div>
+    <p class="wrap footer-copy">© {year} {SITE.name}</p>
+  </footer>
+
+  <script>
+    const nav = document.querySelector('[data-nav]');
+    const btn = document.querySelector('[data-toggle]');
+    btn?.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      nav?.classList.toggle('open', !open);
+    });
+    document.querySelectorAll('#menu a').forEach(a => a.addEventListener('click', () => {
+      btn?.setAttribute('aria-expanded', 'false'); nav?.classList.remove('open');
+    }));
+    const onScroll = () => nav?.classList.toggle('solid', window.scrollY > 40);
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+const L = SITE.legal;
+---
+<Base title="Mentions légales · Skysolus" description="Mentions légales du site Skysolus.">
+  <section class="wrap page">
+    <h1>Mentions légales</h1>
+    <h2>Éditeur du site</h2>
+    <p>{L.raisonSociale}<br />Statut : {L.statut}<br />SIRET : {L.siret}<br />Adresse : {L.adresse}<br />
+      Contact : <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a>, {SITE.contact.telephone}</p>
+    <p>Directeur de la publication : {SITE.contact.nom}</p>
+    <h2>Exploitation aérienne</h2>
+    <p>Exploitant UAS : {L.exploitantUAS}</p>
+    <h2>Hébergement</h2>
+    <p>{L.hebergeur}</p>
+    <h2>Données personnelles</h2>
+    <p>Les informations transmises par le formulaire de contact servent uniquement à répondre à votre demande. Elles ne sont ni cédées ni revendues. Vous pouvez demander leur consultation, leur rectification ou leur suppression en écrivant à <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a>.</p>
+    <h2>Images</h2>
+    <p>Les illustrations et la vidéo d’ouverture sont des créations provisoires. Les images de missions seront ajoutées au fil des réalisations.</p>
+    <p><a href="/">Retour à l’accueil</a></p>
+  </section>
+</Base>
