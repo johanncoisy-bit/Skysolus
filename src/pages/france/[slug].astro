@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { regions } from '../../regions';
+import { prestations } from '../../data';
+import { pagesSeo } from '../../seo';
+import { SITE } from '../../config';
+export function getStaticPaths() { return regions.map((r) => ({ params: { slug: r.slug }, props: { r } })); }
+const { r } = Astro.props;
+const focus = r.focus.map((id) => prestations.find((p) => p.id === id)!);
+const url = `${SITE.url}/france/${r.slug}`;
+const jsonld = [
+  {
+    '@context': 'https://schema.org', '@type': 'Service', name: `Drone et ULM en ${r.nom}`,
+    serviceType: 'Inspection, thermographie, cartographie et prises de vues aériennes', url,
+    provider: { '@id': `${SITE.url}/#entreprise` },
+    areaServed: { '@type': 'AdministrativeArea', name: r.nom },
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Partout en France', item: `${SITE.url}/france` },
+      { '@type': 'ListItem', position: 3, name: r.nom, item: url },
+    ],
+  },
+];
+---
+<Base title={`Drone et ULM en ${r.nom} : inspection, thermographie, prises de vues · Skysolus`} description={`Drone et ULM en ${r.nom} (${r.villes.slice(0, 2).join(', ')}…) : inspection, thermographie, cartographie 3D, prises de vues et surveillance aérienne.`} jsonld={jsonld}>
+  <PageHead crumbs={[['Accueil', '/'], ['Partout en France', '/france'], [r.nom]]} title={`Drone et ULM en ${r.nom}`} lead={r.intro} />
+  <section class="wrap" style="padding-bottom:110px">
+    <div class="svc-grid">
+      <div>
+        <h2 style="font-size:1.6rem;margin-bottom:14px">Les besoins que nous rencontrons</h2>
+        <p class="lead">{r.besoins}</p>
+        <h2 style="font-size:1.6rem;margin:40px 0 14px">À prendre en compte</h2>
+        <p class="lead">{r.contraintes}</p>
+        <h2 style="font-size:1.6rem;margin:44px 0 6px">Prestations proposées en {r.nom}</h2>
+        <ul class="presta" style="margin-top:10px">
+          {focus.map((p) => (
+            <li style="grid-template-columns:1fr 1.4fr">
+              <h3><a class="presta-link" href={`/prestations/${pagesSeo[p.id].slug}`}>{p.titre}</a></h3>
+              <p>{p.texte}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <aside class="svc-aside">
+        <h2>Intervention en {r.nom}</h2>
+        <p style="color:#cfdbe9">{r.villes.join(', ')} et toute la région.</p>
+        <p style="color:#cfdbe9">Déplacement depuis Hyères, chiffré dans le devis. Missions regroupées quand c’est possible.</p>
+        <a class="btn" href="/contact">Demander un devis</a>
+      </aside>
+    </div>
+    <div class="other">
+      <h2 style="font-size:1.5rem">Autres régions</h2>
+      <ul>{regions.filter((x) => x.slug !== r.slug).map((x) => <li><a href={`/france/${x.slug}`}>{x.nom}</a></li>)}</ul>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

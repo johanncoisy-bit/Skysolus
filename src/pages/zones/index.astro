@@ -7,9 +7,13 @@ import { zones } from '../../content';
 <Base title="Zones d’intervention : Var, PACA, France · Skysolus" description="Skysolus intervient depuis Hyères dans tout le Var (Toulon, Saint-Tropez, Fréjus, Provence verte…), en région PACA et partout en France.">
   <PageHead crumbs={[['Accueil', '/'], ['Zones d’intervention']]} title="Où nous intervenons" lead="Basé à Hyères, Skysolus intervient dans tout le Var, en région PACA, partout en France et, selon la faisabilité réglementaire, en outre-mer et à l’international." />
   <section class="wrap" style="padding-bottom:110px">
+    <h2 style="margin-bottom:24px">Dans le Var</h2>
     <ul class="zone-list">
       {zones.map((z) => <li><a href={`/zones/${z.slug}`}><strong>{z.ville}</strong><span>{z.intro}</span></a></li>)}
     </ul>
+    <h2 style="margin:70px 0 14px">Ailleurs en France</h2>
+    <p class="lead">Nous intervenons dans toutes les régions, en Corse et en outre-mer.</p>
+    <a class="btn btn-ghost" href="/france" style="margin-top:22px">Voir les régions</a>
   </section>
   <CtaBand />
 </Base>

@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import { SITE } from '../../config';
 import { prestations, APPAREILS } from '../../data';
 import { pagesSeo } from '../../seo';
+import { regions } from '../../regions';
 
 export function getStaticPaths() {
   return prestations.map((p) => ({ params: { slug: pagesSeo[p.id].slug }, props: { id: p.id } }));
@@ -55,6 +56,11 @@ const autres = prestations.filter((x) => x.id !== id);
     <div class="faq">
       <h2 style="font-size:2rem;margin-bottom:20px">Questions fréquentes</h2>
       {seo.faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
+    </div>
+    <div class="other">
+      <h2 style="font-size:1.5rem">{p.titre} partout en France</h2>
+      <p class="lead" style="margin-top:12px">Basé à Hyères, Skysolus réalise cette prestation dans le Var, en région PACA et dans toute la France, sur devis.</p>
+      <ul>{regions.map((r) => <li><a href={`/france/${r.slug}`}>{r.nom}</a></li>)}</ul>
     </div>
     <div class="other">
       <h2 style="font-size:1.5rem">Autres prestations</h2>

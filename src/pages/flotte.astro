@@ -9,7 +9,7 @@ import { prestations } from '../data';
 import { pagesSeo } from '../seo';
 const titreDe = (id: string) => prestations.find((p) => p.id === id)!.titre;
 ---
-<Base title="Notre flotte : ULM Bristell XL8, DJI Matrice 4T, DJI Mini 5 Pro · Skysolus" description="La flotte Skysolus : l’ULM Bristell XL8 pour la surveillance aérienne, le drone DJI Matrice 4T pour l’inspection et la thermographie, le DJI Mini 5 Pro pour la photo et la vidéo.">
+<Base title="Notre flotte : ULM Bristell XL8, DJI Matrice 4T, DJI Mini 5 Pro · Skysolus" description="L’ULM Bristell XL8 pour la surveillance aérienne, le DJI Matrice 4T pour l’inspection et la thermographie, le DJI Mini 5 Pro pour la photo et la vidéo.">
   <PageHead crumbs={[['Accueil', '/'], ['Flotte']]} title="Un avion, deux drones" lead="Chaque appareil a son rôle. Pour chaque mission, nous choisissons celui qui donnera le meilleur résultat dans le cadre réglementaire applicable." />
   <section class="wrap" style="padding-bottom:110px">
     {flotte.map((a, i) => (

@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { regions, outreMer } from '../../regions';
+import { zones } from '../../content';
+import { SITE } from '../../config';
+const jsonld = [{
+  '@context': 'https://schema.org', '@type': 'ItemList', name: 'Régions d’intervention Skysolus',
+  itemListElement: regions.map((r, i) => ({ '@type': 'ListItem', position: i + 1, name: r.nom, url: `${SITE.url}/france/${r.slug}` })),
+}];
+---
+<Base title="Drone et ULM partout en France : inspection, thermographie, prises de vues · Skysolus" description="Skysolus intervient dans toute la France, en Corse et en outre-mer : inspection et thermographie par drone, cartographie 3D, surveillance en ULM." jsonld={jsonld}>
+  <PageHead crumbs={[['Accueil', '/'], ['Partout en France']]} title="Drone et ULM, partout en France" lead="Basé à Hyères, Skysolus se déplace dans toutes les régions pour des missions planifiées : thermographie de centrales solaires, inspection de sites industriels, cartographie, prises de vues, surveillance aérienne." />
+  <section class="wrap" style="padding-bottom:40px">
+    <div class="svc-grid">
+      <div>
+        <h2 style="font-size:1.7rem;margin-bottom:14px">Comment se passe une mission hors du Var</h2>
+        <p class="lead">Nous étudions la faisabilité à distance : adresse, espace aérien, autorisations, livrables attendus. Le déplacement est chiffré dans le devis, et les interventions d’une même région sont regroupées quand c’est possible pour en réduire le coût.</p>
+        <p class="lead" style="margin-top:18px">Sur place, le déroulé est le même que dans le Var : préparation, vol dans le cadre autorisé, puis livraison des images ou des données traitées.</p>
+      </div>
+      <aside class="svc-aside">
+        <h2>Déjà sur place dans le Var</h2>
+        <ul>{zones.map((z) => <li><a href={`/zones/${z.slug}`}>{z.ville}</a></li>)}</ul>
+        <a class="btn" href="/contact">Demander un devis</a>
+      </aside>
+    </div>
+  </section>
+  <section class="wrap" style="padding-bottom:110px">
+    <h2 style="margin:50px 0 24px">Régions</h2>
+    <ul class="zone-list">
+      {regions.map((r) => <li><a href={`/france/${r.slug}`}><strong>{r.nom}</strong><span>{r.villes.slice(0, 4).join(', ')}…</span></a></li>)}
+      <li><a href="/france#outre-mer"><strong>Outre-mer et international</strong><span>Selon la faisabilité réglementaire locale</span></a></li>
+    </ul>
+    <div id="outre-mer" style="margin-top:70px;max-width:760px">
+      <h2 style="font-size:1.7rem;margin-bottom:14px">Outre-mer et international</h2>
+      <p class="lead">{outreMer.intro}</p>
+      <p class="lead" style="margin-top:16px">{outreMer.texte}</p>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

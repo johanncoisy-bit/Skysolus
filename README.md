@@ -46,3 +46,9 @@ Après la mise en ligne :
 2. Créer la fiche Google Business Profile « Skysolus » (Hyères), catégorie « Service de photographie aérienne » ou équivalent, avec le lien du site.
 3. Inscrire la société sur Pages Jaunes et les annuaires de télépilotes, avec exactement le même nom, la même adresse et le même téléphone.
 4. Ajouter des photos de missions réelles au fil de l'eau : c'est ce qui fera la différence.
+
+### Référencement national
+
+- 13 pages régionales (`/france/...`) et une page « Partout en France », générées depuis `src/regions.ts`.
+- 9 articles de conseil dans `src/pages/actualites/` : en publier un nouveau par mois aide à remonter durablement.
+- Clé IndexNow (Bing, Yandex) : `public/4f888b60fcbfc098716017bc34f10a17.txt`. Dans Bing Webmaster Tools, importer le site depuis Google Search Console.
