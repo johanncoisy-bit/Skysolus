@@ -22,7 +22,10 @@ const rings = [
       <source src="/video/skysolus-intro.mp4" type="video/mp4" />
     </video>
     <div class="hero-bar">
-      <button class="hero-play" id="film-btn" type="button" aria-controls="film">Mettre en pause</button>
+      <div class="hero-ctrl">
+        <button class="hero-play" id="film-btn" type="button" aria-controls="film">Mettre en pause</button>
+        <button class="hero-play" id="film-son" type="button" aria-controls="film" aria-pressed="false">Activer le son</button>
+      </div>
       <a class="hero-down" href="#intro">Découvrir <span aria-hidden="true"></span></a>
     </div>
   </section>
@@ -227,6 +230,14 @@ const rings = [
     if (film && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { film.removeAttribute('autoplay'); film.pause(); }
     film?.addEventListener('play', setLabel); film?.addEventListener('pause', setLabel); setLabel();
     btn?.addEventListener('click', () => { if (!film) return; film.paused ? film.play() : film.pause(); });
+    const son = document.getElementById('film-son');
+    son?.addEventListener('click', () => {
+      if (!film) return;
+      film.muted = !film.muted;
+      son.textContent = film.muted ? 'Activer le son' : 'Couper le son';
+      son.setAttribute('aria-pressed', String(!film.muted));
+      if (!film.muted && film.paused) film.play();
+    });
 
     // Formulaire de devis
     const form = document.getElementById('devis') as HTMLFormElement | null;
