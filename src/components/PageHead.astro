@@ -1,0 +1,13 @@
+---
+interface Props { crumbs: [string, string?][]; title: string; lead?: string }
+const { crumbs, title, lead } = Astro.props;
+---
+<section class="wrap svc-hero">
+  <nav class="crumbs" aria-label="Fil d’Ariane">
+    {crumbs.map(([label, href], i) => (
+      <>{i > 0 && ' / '}{href ? <a href={href}>{label}</a> : <span>{label}</span>}</>
+    ))}
+  </nav>
+  <h1>{title}</h1>
+  {lead && <p class="lead" style="margin-top:24px">{lead}</p>}
+</section>

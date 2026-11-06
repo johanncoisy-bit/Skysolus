@@ -1,0 +1,22 @@
+---
+import Base from './Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE } from '../config';
+const { frontmatter } = Astro.props;
+const url = new URL(Astro.url.pathname, SITE.url).href;
+const jsonld = [{
+  '@context': 'https://schema.org', '@type': 'Article', headline: frontmatter.title, description: frontmatter.description,
+  datePublished: frontmatter.date, author: { '@type': 'Person', name: SITE.legal.president },
+  publisher: { '@id': `${SITE.url}/#entreprise` }, mainEntityOfPage: url, image: new URL('/og.jpg', SITE.url).href,
+}];
+const date = new Date(frontmatter.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title={`${frontmatter.title} · Skysolus`} description={frontmatter.description} jsonld={jsonld}>
+  <PageHead crumbs={[['Accueil', '/'], ['Actualités', '/actualites'], [frontmatter.short ?? frontmatter.title]]} title={frontmatter.title} />
+  <article class="wrap prose">
+    <p class="muted">Publié le {date}, par {SITE.legal.president}</p>
+    <slot />
+  </article>
+  <CtaBand />
+</Base>

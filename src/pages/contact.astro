@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+<Base title="Contact et demande de devis · Skysolus, drone et ULM à Hyères" description="Demandez un devis pour une mission par drone ou ULM dans le Var et en PACA : photo, inspection, thermographie, cartographie, surveillance aérienne.">
+  <PageHead crumbs={[['Accueil', '/'], ['Contact']]} title="Demander un devis" lead="Décrivez votre besoin : lieu, ce que vous voulez voir ou mesurer, et le livrable attendu. Nous revenons vers vous avec une proposition adaptée." />
+  <section class="contact" style="padding:20px 0 120px">
+    <div class="wrap"><ContactForm /></div>
+  </section>
+</Base>

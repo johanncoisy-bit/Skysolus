@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { aPropos } from '../content';
+import { SITE } from '../config';
+---
+<Base title="À propos de Skysolus : drone et ULM à Hyères" description="Skysolus, société fondée en 2026 à Hyères par Johann Coisy, pilote d’ULM et télépilote : images, inspections et surveillance aériennes dans le Var.">
+  <PageHead crumbs={[['Accueil', '/'], ['À propos']]} title="Voir grand, voir de près" />
+  <section class="wrap" style="padding-bottom:100px">
+    <div class="svc-grid">
+      <div>{aPropos.paragraphes.map((t) => <p class="lead">{t}</p>)}</div>
+      <aside class="svc-aside">
+        <h2>Skysolus en bref</h2>
+        <ul>
+          <li>{SITE.legal.forme}, créée le {SITE.legal.dateCreation}</li>
+          <li>Siège à {SITE.ville} ({SITE.departement})</li>
+          <li>Président : {SITE.legal.president}</li>
+          <li>Un ULM Bristell XL8, un DJI Matrice 4T, un DJI Mini 5 Pro</li>
+        </ul>
+        <a class="btn" href="/contact">Contacter Johann</a>
+      </aside>
+    </div>
+    <h2 style="margin-top:90px">Nos engagements</h2>
+    <dl class="engage">
+      {aPropos.engagements.map(([t, d]) => <div><dt>{t}</dt><dd>{d}</dd></div>)}
+    </dl>
+  </section>
+  <CtaBand />
+</Base>

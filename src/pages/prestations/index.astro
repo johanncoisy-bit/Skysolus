@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { prestations, APPAREILS } from '../../data';
+import { pagesSeo } from '../../seo';
+---
+<Base title="Prestations par drone et ULM dans le Var · Skysolus" description="Toutes les prestations Skysolus : photo et vidéo aériennes, inspection de toitures, thermographie, cartographie 3D, surveillance en ULM, littoral, agriculture, nautisme.">
+  <PageHead crumbs={[['Accueil', '/'], ['Prestations']]} title="Nos prestations" lead="Chaque prestation indique les appareils utilisés. Si votre besoin n’apparaît pas ici, décrivez-le : nous étudions sa faisabilité." />
+  <section class="wrap" style="padding-bottom:110px">
+    <ul class="presta" style="margin-top:20px">
+      {prestations.map((p) => (
+        <li>
+          <h2 style="font-size:clamp(1.35rem,2.2vw,1.7rem)"><a class="presta-link" href={`/prestations/${pagesSeo[p.id].slug}`}>{p.titre}</a></h2>
+          <div><p>{p.texte}</p><p class="ex">{p.exemples.join(' ; ')}.</p></div>
+          <div class="tags">{p.avec.map((a) => <span class={`tag tag-${a}`}>{APPAREILS[a]}</span>)}</div>
+        </li>
+      ))}
+    </ul>
+  </section>
+  <CtaBand />
+</Base>

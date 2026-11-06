@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Plane from '../components/Plane.astro';
 import Drone from '../components/Drone.astro';
+import ContactForm from '../components/ContactForm.astro';
 import { SITE } from '../config';
 import { prestations, clients, methode, typesMission, APPAREILS } from '../data';
 import { pagesSeo } from '../seo';
@@ -36,7 +37,7 @@ const rings = [
     <p class="lead">Skysolus réalise des prises de vues, des inspections et des missions de surveillance avec deux drones DJI et un avion ULM Bristell XL8. Particuliers, entreprises et collectivités : chaque mission est étudiée selon votre besoin, le site et la réglementation.</p>
     <div class="intro-actions">
       <a class="btn" href="#contact">Demander un devis</a>
-      <a class="btn btn-ghost" href="#prestations">Voir les prestations</a>
+      <a class="btn btn-ghost" href="/prestations">Voir les prestations</a>
     </div>
     <ul class="facts">
       <li><strong>Basé à Hyères</strong>Interventions dans le Var, en région PACA et partout en France.</li>
@@ -141,6 +142,7 @@ const rings = [
           <li><b>France</b><span>Partout sur le territoire, sur devis.</span></li>
           <li><b>Au-delà</b><span>Outre-mer et international, selon la faisabilité réglementaire.</span></li>
         </ul>
+        <a class="btn btn-ghost" href="/zones" style="margin-top:28px">Voir les zones d’intervention</a>
       </div>
       <svg class="rings" viewBox="0 0 600 600" role="img" aria-label="Zone d'intervention en cercles autour d'Hyères : Var, région PACA, France entière, outre-mer et international">
         <defs>
@@ -190,36 +192,7 @@ const rings = [
     <div class="wrap">
       <h2>Parlons de votre projet</h2>
       <p class="lead" style="margin-top:20px">Décrivez votre besoin : nous revenons vers vous avec une proposition adaptée au site, au matériel et à la réglementation.</p>
-      <div class="contact-grid">
-        <div class="direct">
-          <a href={`tel:${tel}`}><small>Appeler</small><strong>{SITE.contact.telephone}</strong></a>
-          <a href={`mailto:${SITE.contact.email}`}><small>Écrire</small><strong>{SITE.contact.email}</strong></a>
-          <a href={`https://wa.me/${SITE.contact.whatsapp}`} target="_blank" rel="noopener"><small>WhatsApp</small><strong>Envoyer un message</strong></a>
-          <p class="muted" style="margin-top:10px">{SITE.contact.nom}, {SITE.ville}, {SITE.departement}</p>
-        </div>
-
-        <form class="form" id="devis" data-endpoint={SITE.formEndpoint} data-email={SITE.contact.email} novalidate>
-          <div class="field"><label for="f-nom">Nom</label><input id="f-nom" name="nom" autocomplete="name" required /></div>
-          <div class="field"><label for="f-societe">Société (facultatif)</label><input id="f-societe" name="societe" autocomplete="organization" /></div>
-          <div class="field"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required /></div>
-          <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" /></div>
-          <div class="field"><label for="f-type">Type de mission</label>
-            <select id="f-type" name="mission" required>
-              <option value="">Choisir…</option>
-              {typesMission.map((t) => <option>{t}</option>)}
-            </select>
-          </div>
-          <div class="field"><label for="f-lieu">Lieu de la mission</label><input id="f-lieu" name="lieu" placeholder="Commune ou adresse" /></div>
-          <div class="field full"><label for="f-date">Date souhaitée (facultatif)</label><input id="f-date" name="date" placeholder="Ex. : avant fin mars, un week-end…" /></div>
-          <div class="field full"><label for="f-msg">Votre besoin</label><textarea id="f-msg" name="message" required placeholder="Ce que vous voulez voir, mesurer ou montrer, et ce que vous attendez comme livrable."></textarea></div>
-          <label class="check"><input type="checkbox" name="consentement" required /> J’accepte que ces informations soient utilisées pour répondre à ma demande.</label>
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
-          <div class="form-foot">
-            <button class="btn" type="submit">Envoyer la demande</button>
-            <p class="form-status" role="status" aria-live="polite"></p>
-          </div>
-        </form>
-      </div>
+      <ContactForm />
     </div>
   </section>
 
@@ -240,41 +213,5 @@ const rings = [
       if (!film.muted && film.paused) film.play();
     });
 
-    // Formulaire de devis
-    const form = document.getElementById('devis') as HTMLFormElement | null;
-    const status = form?.querySelector('.form-status') as HTMLElement | null;
-    const say = (msg: string, kind: 'ok' | 'err') => { if (status) { status.textContent = msg; status.className = `form-status ${kind}`; } };
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!form.checkValidity()) {
-        const first = form.querySelector(':invalid') as HTMLElement | null;
-        first?.focus();
-        say('Remplissez le nom, l’e-mail, le type de mission et votre besoin, puis cochez l’accord.', 'err');
-        return;
-      }
-      const data = new FormData(form);
-      if (data.get('_gotcha')) return;
-      const endpoint = form.dataset.endpoint;
-      if (endpoint) {
-        try {
-          const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-          if (!res.ok) throw new Error(String(res.status));
-          form.reset();
-          say('Demande envoyée. Nous vous répondons rapidement.', 'ok');
-        } catch {
-          say('L’envoi n’a pas abouti. Réessayez, ou écrivez-nous directement par e-mail.', 'err');
-        }
-        return;
-      }
-      // Sans service de formulaire : ouverture de la messagerie avec la demande pré-remplie
-      const lignes = [
-        `Nom : ${data.get('nom')}`, `Société : ${data.get('societe') || '-'}`, `E-mail : ${data.get('email')}`,
-        `Téléphone : ${data.get('telephone') || '-'}`, `Mission : ${data.get('mission')}`, `Lieu : ${data.get('lieu') || '-'}`,
-        `Date souhaitée : ${data.get('date') || '-'}`, '', String(data.get('message')),
-      ];
-      const sujet = `Demande de devis : ${data.get('mission')}`;
-      window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(lignes.join('\n'))}`;
-      say('Votre messagerie s’ouvre avec la demande pré-remplie : il ne reste qu’à l’envoyer.', 'ok');
-    });
   </script>
 </Base>

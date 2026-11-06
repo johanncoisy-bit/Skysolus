@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { zones } from '../../content';
+import { prestations } from '../../data';
+import { pagesSeo } from '../../seo';
+import { SITE } from '../../config';
+export function getStaticPaths() { return zones.map((z) => ({ params: { slug: z.slug }, props: { z } })); }
+const { z } = Astro.props;
+const focus = z.focus.map((id) => prestations.find((p) => p.id === id)!);
+const jsonld = [{
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Zones d’intervention', item: `${SITE.url}/zones` },
+    { '@type': 'ListItem', position: 3, name: z.ville, item: `${SITE.url}/zones/${z.slug}` },
+  ],
+}];
+---
+<Base title={z.title} description={z.description} jsonld={jsonld}>
+  <PageHead crumbs={[['Accueil', '/'], ['Zones', '/zones'], [z.ville]]} title={`Drone et ULM à ${z.ville}`} lead={z.intro} />
+  <section class="wrap" style="padding-bottom:110px">
+    <div class="svc-grid">
+      <div>
+        <h2 style="font-size:1.6rem;margin-bottom:14px">Ce qu’il faut savoir</h2>
+        <p class="lead">{z.local}</p>
+        <h2 style="font-size:1.6rem;margin:44px 0 6px">Prestations les plus demandées</h2>
+        <ul class="presta" style="margin-top:10px">
+          {focus.map((p) => (
+            <li style="grid-template-columns:1fr 1.4fr">
+              <h3><a class="presta-link" href={`/prestations/${pagesSeo[p.id].slug}`}>{p.titre}</a></h3>
+              <p>{p.texte}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <aside class="svc-aside">
+        <h2>Intervention à {z.ville}</h2>
+        <p style="color:#cfdbe9">Départ depuis Hyères. Le déplacement est indiqué dans le devis.</p>
+        <a class="btn" href="/contact">Demander un devis</a>
+      </aside>
+    </div>
+    <div class="other">
+      <h2 style="font-size:1.5rem">Autres zones</h2>
+      <ul>{zones.filter((x) => x.slug !== z.slug).map((x) => <li><a href={`/zones/${x.slug}`}>{x.ville}</a></li>)}</ul>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
