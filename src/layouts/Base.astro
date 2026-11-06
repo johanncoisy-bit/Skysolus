@@ -4,9 +4,33 @@ import '@fontsource-variable/source-sans-3';
 import '../styles/global.css';
 import { SITE } from '../config';
 
-interface Props { title: string; description: string; }
-const { title, description } = Astro.props;
+interface Props { title: string; description: string; jsonld?: object[]; noindex?: boolean; }
+const { title, description, jsonld = [], noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const ogImage = new URL('/og.jpg', SITE.url).href;
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE.url}/#entreprise`,
+  name: SITE.name,
+  legalName: `${SITE.legal.denomination} SAS`,
+  description: 'Prises de vues, inspections, thermographie, cartographie et surveillance aériennes par drone et ULM, depuis Hyères (Var).',
+  url: SITE.url,
+  logo: new URL('/img/logo-dark.png', SITE.url).href,
+  image: ogImage,
+  telephone: SITE.contact.telephone,
+  email: SITE.contact.email,
+  taxID: SITE.legal.siren.replace(/\s/g, ''),
+  address: { '@type': 'PostalAddress', streetAddress: '112 chemin de Beauvallon Bas', addressLocality: 'Hyères', postalCode: '83400', addressRegion: 'Provence-Alpes-Côte d’Azur', addressCountry: 'FR' },
+  geo: { '@type': 'GeoCoordinates', latitude: 43.12, longitude: 6.13 },
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Var' },
+    { '@type': 'AdministrativeArea', name: 'Provence-Alpes-Côte d’Azur' },
+    { '@type': 'Country', name: 'France' },
+  ],
+  founder: { '@type': 'Person', name: SITE.legal.president },
+  foundingDate: '2026-09-15',
+};
 const year = new Date().getFullYear();
 ---
 <!doctype html>
@@ -19,22 +43,22 @@ const year = new Date().getFullYear();
   <link rel="canonical" href={canonical} />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <meta name="theme-color" content="#0A1322" />
+  {noindex && <meta name="robots" content="noindex" />}
+  <link rel="sitemap" href="/sitemap-index.xml" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={new URL('/video/poster.jpg', SITE.url).href} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:site_name" content="Skysolus" />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="fr_FR" />
-  <script type="application/ld+json" set:html={JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: SITE.name,
-    description,
-    url: SITE.url,
-    telephone: SITE.contact.telephone,
-    email: SITE.contact.email,
-    address: { '@type': 'PostalAddress', addressLocality: SITE.ville, postalCode: '83400', addressCountry: 'FR' },
-    areaServed: ['Var', 'Provence-Alpes-Côte d’Azur', 'France'],
-  })} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="geo.region" content="FR-83" />
+  <meta name="geo.placename" content="Hyères" />
+  <script type="application/ld+json" set:html={JSON.stringify(business)} />
+  {jsonld.map((j) => <script type="application/ld+json" set:html={JSON.stringify(j)} />)}
 </head>
 <body>
   <a class="skip" href="#contenu">Aller au contenu</a>

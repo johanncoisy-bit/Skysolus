@@ -4,6 +4,7 @@ import Plane from '../components/Plane.astro';
 import Drone from '../components/Drone.astro';
 import { SITE } from '../config';
 import { prestations, clients, methode, typesMission, APPAREILS } from '../data';
+import { pagesSeo } from '../seo';
 
 const tel = SITE.contact.telephone.replace(/\s/g, '');
 const rings = [
@@ -14,7 +15,7 @@ const rings = [
 ];
 ---
 <Base
-  title="Skysolus · Drone et ULM à Hyères (Var) : prises de vues, inspection, surveillance aérienne"
+  title="Drone et ULM à Hyères (Var) : prises de vues, inspection, thermographie · Skysolus"
   description="Skysolus, basé à Hyères (Var) : photo et vidéo aériennes, inspection de toitures et d'ouvrages, thermographie, cartographie 3D et surveillance aérienne en ULM, dans le Var, en PACA et partout en France."
 >
   <section class="hero" aria-label="Film de présentation">
@@ -107,7 +108,7 @@ const rings = [
     <ul class="presta">
       {prestations.map((p) => (
         <li id={p.id}>
-          <h3>{p.titre}</h3>
+          <h3><a class="presta-link" href={`/prestations/${pagesSeo[p.id].slug}`}>{p.titre}</a></h3>
           <div>
             <p>{p.texte}</p>
             <p class="ex">{p.exemples.join(' ; ')}.</p>

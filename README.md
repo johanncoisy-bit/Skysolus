@@ -34,3 +34,15 @@ npm run build    # génère dist/
 ## Mise en ligne sur Vercel
 
 Sur vercel.com : *Add New → Project*, importer le dépôt `johanncoisy-bit/skysolus`. Vercel détecte Astro automatiquement : chaque push sur `main` met le site à jour.
+
+## SEO
+
+- Une page par prestation (`/prestations/...`), générée depuis `src/data.ts` et `src/seo.ts` (titre, description, FAQ).
+- Données structurées : entreprise (ProfessionalService), service, FAQ, fil d'Ariane.
+- `sitemap-index.xml` généré au build, `robots.txt`, image de partage `public/og.jpg`.
+
+Après la mise en ligne :
+1. Google Search Console : ajouter le domaine et soumettre `https://<domaine>/sitemap-index.xml`.
+2. Créer la fiche Google Business Profile « Skysolus » (Hyères), catégorie « Service de photographie aérienne » ou équivalent, avec le lien du site.
+3. Inscrire la société sur Pages Jaunes et les annuaires de télépilotes, avec exactement le même nom, la même adresse et le même téléphone.
+4. Ajouter des photos de missions réelles au fil de l'eau : c'est ce qui fera la différence.

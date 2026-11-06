@@ -20,13 +20,21 @@ export const SITE = {
   // - ou collez l'URL d'un service de formulaire (ex. Formspree : https://formspree.io/f/xxxxxx).
   formEndpoint: '',
 
-  // Mentions légales — À COMPLÉTER
+  // Informations légales (source : Registre national des entreprises / INSEE, consulté le 06/11/2026)
   legal: {
-    raisonSociale: 'Skysolus — Johann Coisy',
-    statut: 'À COMPLÉTER (EI, SASU…)',
-    siret: 'À COMPLÉTER',
-    adresse: 'À COMPLÉTER, 83400 Hyères',
-    exploitantUAS: 'À COMPLÉTER (n° d’enregistrement exploitant drone)',
-    hebergeur: 'Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis',
+    denomination: 'SKYSOLUS',
+    forme: 'Société par actions simplifiée (SAS)',
+    capital: 'À COMPLÉTER', // montant du capital social indiqué dans les statuts
+    siren: '130 316 011',
+    siret: '130 316 011 00019',
+    rcs: 'RCS Toulon 130 316 011', // greffe compétent pour Hyères : à vérifier sur le Kbis
+    tva: 'FR21 130 316 011', // numéro calculé à partir du SIREN : à confirmer sur le Kbis ou l’avis d’imposition
+    ape: '71.20B : analyses, essais et inspections techniques',
+    adresse: '112 chemin de Beauvallon Bas, 83400 Hyères',
+    president: 'Johann Coisy',
+    dateCreation: '15 septembre 2026',
+    exploitantUAS: 'À COMPLÉTER', // n° d’enregistrement exploitant UAS (AlphaTango)
+    mediateur: 'À COMPLÉTER', // médiateur de la consommation (obligatoire pour la clientèle de particuliers)
+    hebergeur: 'Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis : vercel.com',
   },
 };

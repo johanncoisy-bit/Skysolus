@@ -2,22 +2,51 @@
 import Base from '../layouts/Base.astro';
 import { SITE } from '../config';
 const L = SITE.legal;
+const mail = SITE.contact.email;
 ---
-<Base title="Mentions légales · Skysolus" description="Mentions légales du site Skysolus.">
+<Base title="Mentions légales et confidentialité · Skysolus" description="Mentions légales, données personnelles et crédits du site Skysolus, société de services aériens par drone et ULM à Hyères (Var).">
   <section class="wrap page">
     <h1>Mentions légales</h1>
+    <p class="muted">Conformément à l’article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l’économie numérique.</p>
+
     <h2>Éditeur du site</h2>
-    <p>{L.raisonSociale}<br />Statut : {L.statut}<br />SIRET : {L.siret}<br />Adresse : {L.adresse}<br />
-      Contact : <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a>, {SITE.contact.telephone}</p>
-    <p>Directeur de la publication : {SITE.contact.nom}</p>
-    <h2>Exploitation aérienne</h2>
-    <p>Exploitant UAS : {L.exploitantUAS}</p>
+    <p>
+      <strong>{L.denomination}</strong>, {L.forme} au capital de {L.capital}<br />
+      Siège social : {L.adresse}<br />
+      SIREN : {L.siren}, {L.rcs}<br />
+      SIRET du siège : {L.siret}<br />
+      N° de TVA intracommunautaire : {L.tva}<br />
+      Code APE : {L.ape}<br />
+      Téléphone : {SITE.contact.telephone}<br />
+      E-mail : <a href={`mailto:${mail}`}>{mail}</a>
+    </p>
+    <p>Directeur de la publication : {L.president}, président.</p>
+
+    <h2>Activité aérienne</h2>
+    <p>Exploitant d’aéronefs sans équipage à bord (UAS), n° d’enregistrement : {L.exploitantUAS}.<br />
+    Les missions sont réalisées dans le cadre réglementaire applicable à chaque opération (catégorie Ouverte ou Spécifique pour les drones, réglementation ULM pour l’avion), après vérification de l’espace aérien et des autorisations nécessaires.</p>
+
     <h2>Hébergement</h2>
     <p>{L.hebergeur}</p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>Les textes, le logo, la charte graphique et la structure du site sont la propriété de {L.denomination}. Toute reproduction sans autorisation écrite est interdite.</p>
+
+    <h2>Crédits</h2>
+    <p>Le film d’ouverture est un montage d’illustration réalisé à partir d’images libres de droits (Pexels) et d’une musique originale. Ces images ne montrent ni les appareils ni les missions de Skysolus. Les illustrations des appareils sont des dessins stylisés.</p>
+
     <h2>Données personnelles</h2>
-    <p>Les informations transmises par le formulaire de contact servent uniquement à répondre à votre demande. Elles ne sont ni cédées ni revendues. Vous pouvez demander leur consultation, leur rectification ou leur suppression en écrivant à <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a>.</p>
-    <h2>Images</h2>
-    <p>Le film d’ouverture est un montage d’illustration réalisé à partir d’images libres de droits (Pexels) ; il ne montre pas les appareils ni les missions de Skysolus. Musique originale. Les images de missions seront ajoutées au fil des réalisations.</p>
-    <p><a href="/">Retour à l’accueil</a></p>
+    <p>Responsable du traitement : {L.denomination}, représentée par {L.president}.</p>
+    <p>Le formulaire de demande de devis collecte les informations que vous saisissez (nom, société, e-mail, téléphone, lieu, description de la mission). Elles servent uniquement à répondre à votre demande et à établir un devis. La base légale est la prise de mesures précontractuelles à votre demande.</p>
+    <p>Ces données ne sont ni cédées ni revendues. Elles sont conservées le temps nécessaire au traitement de la demande, puis au plus trois ans après le dernier contact si aucun contrat n’est conclu.</p>
+    <p>Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité. Pour l’exercer, écrivez à <a href={`mailto:${mail}`}>{mail}</a>. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</p>
+
+    <h2>Cookies</h2>
+    <p>Ce site ne dépose aucun cookie publicitaire ni de mesure d’audience nécessitant votre consentement.</p>
+
+    <h2>Médiation de la consommation</h2>
+    <p>Conformément aux articles L.612-1 et suivants du Code de la consommation, le client particulier peut recourir gratuitement au médiateur de la consommation suivant : {L.mediateur}.</p>
+
+    <p style="margin-top:40px"><a href="/">Retour à l’accueil</a></p>
   </section>
 </Base>
