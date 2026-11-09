@@ -10,7 +10,7 @@ import { typesMission } from '../data';
           <p class="muted" style="margin-top:10px">{SITE.contact.nom}, {SITE.ville}, {SITE.departement}</p>
         </div>
 
-        <form class="form" id="devis" data-endpoint={SITE.formEndpoint} data-email={SITE.contact.email} novalidate>
+        <form class="form" id="devis" data-endpoint={SITE.formEndpoint} data-email={SITE.contact.email} data-tel={SITE.contact.telephone} novalidate>
           <div class="field"><label for="f-nom">Nom</label><input id="f-nom" name="nom" autocomplete="name" required /></div>
           <div class="field"><label for="f-societe">Société (facultatif)</label><input id="f-societe" name="societe" autocomplete="organization" /></div>
           <div class="field"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required /></div>
@@ -34,10 +34,12 @@ import { typesMission } from '../data';
       </div>
 
 <script>
-    // Formulaire de devis
+    // Formulaire de devis : envoi à la fonction /api/contact (voir api/contact.js)
     const form = document.getElementById('devis') as HTMLFormElement | null;
     const status = form?.querySelector('.form-status') as HTMLElement | null;
-    const say = (msg: string, kind: 'ok' | 'err') => { if (status) { status.textContent = msg; status.className = `form-status ${kind}`; } };
+    const bouton = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    const debut = Date.now();
+    const say = (msg: string, kind: 'ok' | 'err' | '') => { if (status) { status.textContent = msg; status.className = `form-status ${kind}`; } };
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
@@ -46,28 +48,33 @@ import { typesMission } from '../data';
         say('Remplissez le nom, l’e-mail, le type de mission et votre besoin, puis cochez l’accord.', 'err');
         return;
       }
-      const data = new FormData(form);
-      if (data.get('_gotcha')) return;
-      const endpoint = form.dataset.endpoint;
-      if (endpoint) {
-        try {
-          const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-          if (!res.ok) throw new Error(String(res.status));
-          form.reset();
-          say('Demande envoyée. Nous vous répondons rapidement.', 'ok');
-        } catch {
-          say('L’envoi n’a pas abouti. Réessayez, ou écrivez-nous directement par e-mail.', 'err');
-        }
-        return;
+      const data = Object.fromEntries(new FormData(form));
+      if (data._gotcha) return;
+      if (bouton) { bouton.disabled = true; bouton.textContent = 'Envoi en cours…'; }
+      say('', '');
+      try {
+        const res = await fetch(form.dataset.endpoint || '/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ ...data, _t: debut }),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (res.status === 400 || res.status === 429) { say(json.error || 'Vérifiez le formulaire.', 'err'); return; }
+        if (!res.ok || !json.ok) throw new Error(String(res.status));
+        form.reset();
+        say('Merci, votre demande est bien envoyée. Nous vous répondons rapidement.', 'ok');
+      } catch {
+        // Service d'envoi indisponible : on ouvre la messagerie du visiteur avec la demande pré-remplie
+        const lignes = [
+          `Nom : ${data.nom}`, `Société : ${data.societe || '-'}`, `E-mail : ${data.email}`,
+          `Téléphone : ${data.telephone || '-'}`, `Mission : ${data.mission}`, `Lieu : ${data.lieu || '-'}`,
+          `Date souhaitée : ${data.date || '-'}`, '', String(data.message),
+        ];
+        const sujet = `Demande de devis : ${data.mission}`;
+        window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(lignes.join('\n'))}`;
+        say(`L’envoi automatique n’a pas abouti : votre messagerie s’ouvre avec la demande pré-remplie. Vous pouvez aussi appeler le ${form.dataset.tel}.`, 'err');
+      } finally {
+        if (bouton) { bouton.disabled = false; bouton.textContent = 'Envoyer la demande'; }
       }
-      // Sans service de formulaire : ouverture de la messagerie avec la demande pré-remplie
-      const lignes = [
-        `Nom : ${data.get('nom')}`, `Société : ${data.get('societe') || '-'}`, `E-mail : ${data.get('email')}`,
-        `Téléphone : ${data.get('telephone') || '-'}`, `Mission : ${data.get('mission')}`, `Lieu : ${data.get('lieu') || '-'}`,
-        `Date souhaitée : ${data.get('date') || '-'}`, '', String(data.get('message')),
-      ];
-      const sujet = `Demande de devis : ${data.get('mission')}`;
-      window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(lignes.join('\n'))}`;
-      say('Votre messagerie s’ouvre avec la demande pré-remplie : il ne reste qu’à l’envoyer.', 'ok');
     });
 </script>

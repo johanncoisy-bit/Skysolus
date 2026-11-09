@@ -17,10 +17,9 @@ export const SITE = {
     whatsapp: '33679695348', // numéro au format international, sans + ni espaces
   },
 
-  // Formulaire de devis :
-  // - laissez vide pour que le formulaire ouvre la messagerie du visiteur (mailto), sans service externe ;
-  // - ou collez l'URL d'un service de formulaire (ex. Formspree : https://formspree.io/f/xxxxxx).
-  formEndpoint: '',
+  // Formulaire de devis : adresse de la fonction qui envoie l'e-mail (fichier api/contact.js).
+  // Les réglages d'envoi (boîte, mot de passe, destinataires) sont dans les variables d'environnement Vercel.
+  formEndpoint: '/api/contact',
 
   // Informations légales (source : Registre national des entreprises / INSEE, consulté le 06/11/2026)
   legal: {
