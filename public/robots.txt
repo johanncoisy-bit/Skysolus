@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.skysolus.fr/sitemap-index.xml
+Sitemap: https://www.skysolus.com/sitemap-index.xml

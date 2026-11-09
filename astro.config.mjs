@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// À modifier si le nom de domaine définitif change (et dans src/config.ts)
+// Domaine principal : www.skysolus.com (skysolus.com et skysolus.fr y redirigent)
 export default defineConfig({
-  site: 'https://www.skysolus.fr',
+  site: 'https://www.skysolus.com',
   trailingSlash: 'never',
   build: { format: 'directory' },
   integrations: [

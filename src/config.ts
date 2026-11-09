@@ -4,7 +4,7 @@
 export const SITE = {
   name: 'Skysolus',
   baseline: 'Drone & aircraft services',
-  url: 'https://www.skysolus.fr', // À COMPLÉTER : nom de domaine définitif
+  url: 'https://www.skysolus.com',
   ville: 'Hyères',
   departement: 'Var (83)',
 
@@ -13,7 +13,7 @@ export const SITE = {
     telephone: '06 79 69 53 48', // affichage sur le site
     telephoneIntl: '+33 6 79 69 53 48', // format international (données pour Google)
     telHref: 'tel:+33679695348', // lien cliquable « appeler »
-    email: 'contact@skysolus.fr', // À COMPLÉTER
+    email: 'contact@skysolus.com', // À COMPLÉTER
     whatsapp: '33679695348', // numéro au format international, sans + ni espaces
   },
 
