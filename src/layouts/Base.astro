@@ -21,7 +21,7 @@ const business = {
   url: SITE.url,
   logo: new URL('/img/logo-dark.png', SITE.url).href,
   image: ogImage,
-  telephone: SITE.contact.telephone,
+  telephone: SITE.contact.telephoneIntl,
   email: SITE.contact.email,
   taxID: SITE.legal.siren.replace(/\s/g, ''),
   address: { '@type': 'PostalAddress', streetAddress: '112 chemin de Beauvallon Bas', addressLocality: 'Hyères', postalCode: '83400', addressRegion: 'Provence-Alpes-Côte d’Azur', addressCountry: 'FR' },
@@ -72,6 +72,7 @@ const year = new Date().getFullYear();
   <a class="skip" href="#contenu">Aller au contenu</a>
   <header class="nav" data-nav>
     <a class="nav-logo" href="/" aria-label="Skysolus, accueil"><img src="/img/logo-light.png" alt="Skysolus" width="600" height="165" /></a>
+    <a class="nav-call" href={SITE.contact.telHref} aria-label={`Appeler le ${SITE.contact.telephone}`}>Appeler</a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="menu" data-toggle>Menu</button>
     <nav id="menu" aria-label="Navigation principale">
       <a href="/prestations">Prestations</a>
@@ -79,6 +80,7 @@ const year = new Date().getFullYear();
       <a href="/zones">Zones</a>
       <a href="/realisations">Réalisations</a>
       <a href="/a-propos">À propos</a>
+      <a class="nav-tel" href={SITE.contact.telHref}>{SITE.contact.telephone}</a>
       <a class="btn btn-small" href="/contact">Demander un devis</a>
     </nav>
   </header>
@@ -103,7 +105,7 @@ const year = new Date().getFullYear();
         <a href="/mentions-legales">Mentions légales</a>
       </nav>
       <div>
-        <p><a href={`tel:${SITE.contact.telephone.replace(/\s/g, '')}`}>{SITE.contact.telephone}</a><br />
+        <p><a href={SITE.contact.telHref}>{SITE.contact.telephone}</a><br />
         <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a></p>
         <p>{SITE.legal.denomination} SAS<br />{SITE.legal.adresse}</p>
       </div>

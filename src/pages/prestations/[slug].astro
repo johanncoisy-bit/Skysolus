@@ -51,6 +51,7 @@ const autres = prestations.filter((x) => x.id !== id);
         <h2>Appareils utilisés</h2>
         <div class="tags">{p.avec.map((a) => <span class={`tag tag-${a}`}>{APPAREILS[a]}</span>)}</div>
         <a class="btn" href="/#contact">Demander un devis</a>
+        <a class="btn btn-ghost aside-tel" href={SITE.contact.telHref}>{SITE.contact.telephone}</a>
       </aside>
     </div>
     <div class="faq">

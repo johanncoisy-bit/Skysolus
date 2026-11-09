@@ -1,10 +1,14 @@
 ---
+import { SITE } from '../config';
 interface Props { title?: string; text?: string }
 const { title = 'Un projet, une question ?', text = 'Décrivez votre besoin : nous revenons vers vous avec une proposition adaptée au site et à la réglementation.' } = Astro.props;
 ---
 <section class="cta-band">
   <div class="wrap cta-inner">
     <div><h2>{title}</h2><p class="lead" style="margin-top:14px">{text}</p></div>
-    <a class="btn" href="/contact">Demander un devis</a>
+    <div class="cta-actions">
+      <a class="btn" href="/contact">Demander un devis</a>
+      <a class="btn btn-ghost" href={SITE.contact.telHref}>{SITE.contact.telephone}</a>
+    </div>
   </div>
 </section>

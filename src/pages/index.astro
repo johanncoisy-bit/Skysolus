@@ -9,7 +9,6 @@ import { pagesSeo } from '../seo';
 const faq = [["Intervenez-vous partout en France ?", "Oui. Skysolus est basé à Hyères (Var) et intervient dans toutes les régions de France métropolitaine, en Corse et, selon la faisabilité réglementaire, en outre-mer. Le déplacement est chiffré dans le devis."], ["Quelles prestations réalisez-vous par drone ?", "Photo et vidéo aériennes, inspection de toitures, de façades et d’ouvrages, thermographie infrarouge (photovoltaïque, bâtiment), suivi de chantier, orthophotos et modèles 3D, observation de cultures et du littoral."], ["À quoi sert l’ULM ?", "L’ULM Bristell XL8 couvre de grandes distances en une sortie : surveillance de grands sites, du littoral et des massifs forestiers, reconnaissance après sinistre, prises de vues longue distance."], ["Pouvez-vous voler en ville ?", "Le vol en agglomération dans l’espace public n’est pas permis en catégorie Ouverte. Ces missions relèvent de la catégorie Spécifique et sont étudiées au cas par cas avant tout devis."], ["Comment obtenir un devis ?", "Décrivez votre besoin via le formulaire de contact, par téléphone ou par e-mail : lieu, ce que vous voulez voir ou mesurer, livrable attendu. Nous revenons vers vous avec une proposition adaptée."]];
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
 
-const tel = SITE.contact.telephone.replace(/\s/g, '');
 const rings = [
   { r: 62, label: 'Var' },
   { r: 132, label: 'Région PACA' },
@@ -41,6 +40,7 @@ const rings = [
     <p class="lead">Skysolus réalise des prises de vues, des inspections et des missions de surveillance avec deux drones DJI et un avion ULM Bristell XL8. Particuliers, entreprises et collectivités : chaque mission est étudiée selon votre besoin, le site et la réglementation.</p>
     <div class="intro-actions">
       <a class="btn" href="#contact">Demander un devis</a>
+      <a class="btn btn-ghost" href={SITE.contact.telHref}>Appeler le {SITE.contact.telephone}</a>
       <a class="btn btn-ghost" href="/prestations">Voir les prestations</a>
     </div>
     <ul class="facts">

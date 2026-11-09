@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import CtaBand from '../components/CtaBand.astro';
+import { SITE } from '../config';
 import { realisations } from '../content';
 ---
 <Base title="Réalisations : missions par drone et ULM dans le Var · Skysolus" description="Les missions réalisées par Skysolus dans le Var et en PACA : prises de vues, inspections, thermographie, cartographie et surveillance aérienne.">
@@ -11,7 +12,7 @@ import { realisations } from '../content';
       <div class="empty">
         <p class="lead">Skysolus a démarré son activité en septembre 2026. Les premières missions seront présentées ici, avec l’accord des clients.</p>
         <p class="lead">Vous avez un projet ? Il pourrait être le prochain.</p>
-        <a class="btn" href="/contact" style="margin-top:20px">Demander un devis</a>
+        <div class="intro-actions" style="margin-top:20px"><a class="btn" href="/contact">Demander un devis</a><a class="btn btn-ghost" href={SITE.contact.telHref}>{SITE.contact.telephone}</a></div>
       </div>
     ) : (
       <div class="works">

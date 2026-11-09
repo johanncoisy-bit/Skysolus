@@ -69,8 +69,16 @@ p { margin: 0 0 1em; }
 .nav nav a:not(.btn) { color: var(--texte); text-decoration: none; font-weight: 500; }
 .nav nav a:not(.btn):hover { color: var(--ciel-clair); }
 .nav-toggle { display: none; }
+.nav nav a.nav-tel { color: var(--ciel-clair); font-weight: 600; white-space: nowrap; }
+.nav-call { display: none; }
+.cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.svc-aside .aside-tel { margin-top: 10px; }
 
 @media (max-width: 900px) {
+  .nav-call {
+    display: block; margin-left: auto; font-weight: 600; color: #06111f; background: var(--ciel-clair);
+    border-radius: 999px; padding: 6px 16px; text-decoration: none;
+  }
   .nav-toggle {
     display: block; font: inherit; font-weight: 600; color: var(--texte); background: none;
     border: 1.5px solid rgba(233, 239, 246, .45); border-radius: 999px; padding: 6px 16px;

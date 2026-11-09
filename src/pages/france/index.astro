@@ -23,6 +23,7 @@ const jsonld = [{
         <h2>Déjà sur place dans le Var</h2>
         <ul>{zones.map((z) => <li><a href={`/zones/${z.slug}`}>{z.ville}</a></li>)}</ul>
         <a class="btn" href="/contact">Demander un devis</a>
+        <a class="btn btn-ghost aside-tel" href={SITE.contact.telHref}>{SITE.contact.telephone}</a>
       </aside>
     </div>
   </section>
