@@ -64,15 +64,7 @@ import { typesMission } from '../data';
         form.reset();
         say('Merci, votre demande est bien envoyée. Nous vous répondons rapidement.', 'ok');
       } catch {
-        // Service d'envoi indisponible : on ouvre la messagerie du visiteur avec la demande pré-remplie
-        const lignes = [
-          `Nom : ${data.nom}`, `Société : ${data.societe || '-'}`, `E-mail : ${data.email}`,
-          `Téléphone : ${data.telephone || '-'}`, `Mission : ${data.mission}`, `Lieu : ${data.lieu || '-'}`,
-          `Date souhaitée : ${data.date || '-'}`, '', String(data.message),
-        ];
-        const sujet = `Demande de devis : ${data.mission}`;
-        window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(lignes.join('\n'))}`;
-        say(`L’envoi automatique n’a pas abouti : votre messagerie s’ouvre avec la demande pré-remplie. Vous pouvez aussi appeler le ${form.dataset.tel}.`, 'err');
+        say(`L’envoi n’a pas abouti. Réessayez dans un instant, ou appelez le ${form.dataset.tel}.`, 'err');
       } finally {
         if (bouton) { bouton.disabled = false; bouton.textContent = 'Envoyer la demande'; }
       }
