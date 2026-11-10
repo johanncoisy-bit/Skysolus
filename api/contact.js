@@ -1,7 +1,7 @@
 // Réception du formulaire de devis et envoi par e-mail (fonction Vercel).
 //
 // Variables d'environnement à définir dans Vercel (Settings › Environment Variables) :
-//   SMTP_USER  adresse de la boîte qui envoie, ex. contact@skysolus.fr   (obligatoire)
+//   SMTP_USER  adresse de la boîte qui envoie, ex. contact@skysolus.com   (obligatoire)
 //   SMTP_PASS  mot de passe de cette boîte                               (obligatoire)
 //   SMTP_HOST  serveur SMTP, ssl0.ovh.net par défaut (offre MX Plan OVH)
 //   SMTP_PORT  465 par défaut (SSL)

@@ -13,7 +13,7 @@ export const SITE = {
     telephone: '06 79 69 53 48', // affichage sur le site
     telephoneIntl: '+33 6 79 69 53 48', // format international (données pour Google)
     telHref: 'tel:+33679695348', // lien cliquable « appeler »
-    email: 'contact@skysolus.fr',
+    email: 'contact@skysolus.com',
     whatsapp: '33679695348', // numéro au format international, sans + ni espaces
   },
 
