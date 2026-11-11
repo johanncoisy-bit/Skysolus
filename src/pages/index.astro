@@ -10,7 +10,7 @@ import { secteurs } from '../secteurs';
 import { esprit } from '../content';
 const faq = [
   ['Quelles prestations proposez-vous ?', 'Photo et vidéo aériennes pour l’immobilier, inspection visuelle et technique (toitures, ouvrages, éoliennes, pylônes, sites industriels, panneaux solaires), suivi de chantier et thermographie aérienne. Une offre pour l’agriculture et l’environnement est en préparation.'],
-  ['Intervenez-vous partout en France ?', 'Oui. Skysolus est basé à Hyères (Var) et peut intervenir dans toutes les régions de France métropolitaine et en Corse, sur devis. Le déplacement est indiqué dans le devis.'],
+  ['Intervenez-vous partout en France ?', 'Oui. Skysolus est basé à Hyères (Var) et peut intervenir partout en France, en Corse et en Outre-mer, sur devis. Le déplacement est indiqué dans le devis.'],
   ['Une inspection par drone remplace-t-elle un diagnostic ?', 'Non. Le drone fournit des images et des informations utiles, mais ne remplace pas systématiquement un diagnostic réglementaire ou spécialisé. Une anomalie non visible sur les images ne peut pas être exclue.'],
   ['À quoi sert l’ULM ?', 'L’ULM Bristell XL8 permet d’observer de grandes étendues en une sortie : littoral, massifs forestiers, grands sites. Ces missions sont étudiées au cas par cas.'],
   ['Pouvez-vous voler en ville ?', 'Le vol en agglomération demande une démarche particulière et n’est pas toujours possible. Chaque adresse est vérifiée avant de vous proposer un devis.'],
@@ -21,7 +21,7 @@ const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity
 const rings = [
   { r: 62, label: 'Var' },
   { r: 132, label: 'Région PACA' },
-  { r: 202, label: 'France entière' },
+  { r: 202, label: 'France et Outre-mer' },
   { r: 272, label: 'Au-delà, selon faisabilité' },
 ];
 ---
@@ -148,12 +148,12 @@ const rings = [
         <ul>
           <li><b>Var</b><span>Toulon, Hyères, Saint-Tropez, la Provence verte et l’arrière-pays.</span></li>
           <li><b>PACA</b><span>Bouches-du-Rhône, Alpes-Maritimes, Vaucluse, Alpes.</span></li>
-          <li><b>France</b><span>Toutes les régions, la Corse, sur devis. <a href="/france">Voir les régions</a></span></li>
-          <li><b>Au-delà</b><span>Outre-mer et international, à étudier selon la faisabilité réglementaire.</span></li>
+          <li><b>France</b><span>Toutes les régions, la Corse et l’Outre-mer, sur devis. <a href="/france">Voir les régions</a></span></li>
+          <li><b>Au-delà</b><span>International, à étudier selon la faisabilité réglementaire.</span></li>
         </ul>
         <a class="btn btn-ghost" href="/zones" style="margin-top:28px">Voir les zones d’intervention</a>
       </div>
-      <svg class="rings" viewBox="0 0 600 600" role="img" aria-label="Zone d'intervention en cercles autour d'Hyères : Var, région PACA, France entière, et au-delà selon faisabilité">
+      <svg class="rings" viewBox="0 0 600 600" role="img" aria-label="Zone d'intervention en cercles autour d'Hyères : Var, région PACA, France et Outre-mer, et international selon faisabilité">
         <defs>
           <radialGradient id="zg" cx=".5" cy=".5" r=".5">
             <stop offset="0" stop-color="#4CA9D4" stop-opacity=".35" /><stop offset="1" stop-color="#4CA9D4" stop-opacity="0" />
