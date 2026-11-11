@@ -15,7 +15,7 @@ export const secteurs: Secteur[] = [
     id: 'particuliers-immobilier',
     titre: 'Particuliers et immobilier',
     texte: 'Vendre ou louer un bien, vérifier l’état d’une toiture, suivre la construction de sa maison, localiser un nid de frelons.',
-    besoins: ['Photos et vidéos d’une maison ou d’un terrain à vendre', 'Observation d’une toiture avant d’appeler un couvreur', 'Images de l’avancement d’une construction', 'Repérage d’un nid de frelons en hauteur'],
+    besoins: ['Photos et vidéos d’une maison ou d’un terrain à vendre', 'Observation d’une toiture avant d’appeler un couvreur', 'Images de l’avancement d’une construction'],
     prestations: ['audiovisuel', 'inspection', 'thermographie', 'chantier', 'specifiques'],
   },
   {
