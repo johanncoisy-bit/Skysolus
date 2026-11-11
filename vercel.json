@@ -1,6 +1,63 @@
 {
   "installCommand": "npm install",
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/flotte",
+      "destination": "/moyens-aeriens",
+      "permanent": true
+    },
+    {
+      "source": "/a-propos",
+      "destination": "/esprit-sky-solus",
+      "permanent": true
+    },
+    {
+      "source": "/prestations/photo-video-drone-hyeres-var",
+      "destination": "/prestations/photo-video-aerienne-immobilier",
+      "permanent": true
+    },
+    {
+      "source": "/prestations/inspection-toiture-drone-var",
+      "destination": "/prestations/inspection-visuelle-technique-drone",
+      "permanent": true
+    },
+    {
+      "source": "/prestations/inspection-industrielle-drone-paca",
+      "destination": "/prestations/inspection-visuelle-technique-drone",
+      "permanent": true
+    },
+    {
+      "source": "/prestations/thermographie-drone-var",
+      "destination": "/prestations/thermographie-aerienne-drone",
+      "permanent": true
+    },
+    {
+      "source": "/prestations/suivi-chantier-cartographie-drone-var",
+      "destination": "/prestations/suivi-chantier-drone",
+      "permanent": true
+    },
+    {
+      "source": "/prestations/drone-agriculture-viticulture-var",
+      "destination": "/prestations/agriculture-environnement-drone",
+      "permanent": true
+    },
+    {
+      "source": "/prestations/drone-littoral-environnement-var",
+      "destination": "/prestations/agriculture-environnement-drone",
+      "permanent": true
+    },
+    {
+      "source": "/prestations/surveillance-aerienne-ulm-var",
+      "destination": "/prestations#autres",
+      "permanent": true
+    },
+    {
+      "source": "/prestations/drone-port-nautisme-evenement-var",
+      "destination": "/prestations#autres",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",

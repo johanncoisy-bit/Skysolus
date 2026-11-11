@@ -2,7 +2,7 @@
 layout: ../../layouts/Article.astro
 title: "Suivi de chantier par drone : à quelle fréquence et pour quoi faire ?"
 short: "Suivi de chantier par drone"
-description: "Rapports d’avancement, communication, volumes, état des lieux : comment organiser un suivi de chantier par drone vraiment utile."
+description: "Rapports d’avancement, communication, historique, état des lieux : comment organiser un suivi de chantier par drone utile à toute l’équipe."
 date: 2026-10-30
 ---
 
@@ -20,7 +20,7 @@ Pour comparer d’une visite à l’autre, les prises de vues sont faites depuis
 
 ## Au-delà de la photo
 
-Avec la [photogrammétrie](/actualites/photogrammetrie-drone-precision), chaque passage peut aussi produire une orthophoto et un modèle 3D : surfaces, volumes de déblais et de remblais, comparaison avec le plan.
+Si le projet le demande, la [photogrammétrie](/actualites/photogrammetrie-drone-precision) peut aussi être étudiée au cas par cas : elle permet de produire une orthophoto ou un modèle 3D à partir des images.
 
 ## Pour qui ?
 
@@ -30,4 +30,4 @@ Maîtres d’ouvrage, promoteurs, entreprises du BTP, architectes et bureaux d�
 
 Un chantier en ville relève souvent de la catégorie Spécifique. La faisabilité est vérifiée avant de lancer le suivi, puis le même protocole est répété à chaque passage.
 
-Voir notre page [suivi de chantier, cartographie et 3D](/prestations/suivi-chantier-cartographie-drone-var).
+Voir notre page [suivi de chantier](/prestations/suivi-chantier-drone). La cartographie et la modélisation 3D font partie des [applications étudiées au cas par cas](/prestations#autres).

@@ -27,4 +27,4 @@ Pour l’observation et la prise de vues, un ULM moderne comme le Bristell XL8 o
 
 Les vols ont lieu dans l’espace aérien autorisé, et la captation d’images respecte la vie privée et le droit à l’image.
 
-Voir notre page [surveillance et reconnaissance aériennes](/prestations/surveillance-aerienne-ulm-var).
+L’observation en ULM fait partie des [applications étudiées au cas par cas](/prestations#autres) : [parlez-nous de votre projet](/contact).

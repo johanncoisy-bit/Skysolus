@@ -3,12 +3,11 @@ import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { zones } from '../../content';
-import { prestations } from '../../data';
-import { pagesSeo } from '../../seo';
+import { prestationParId, urlPrestation } from '../../prestations';
 import { SITE } from '../../config';
 export function getStaticPaths() { return zones.map((z) => ({ params: { slug: z.slug }, props: { z } })); }
 const { z } = Astro.props;
-const focus = z.focus.map((id) => prestations.find((p) => p.id === id)!);
+const focus = z.focus.map(prestationParId);
 const jsonld = [{
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
@@ -29,8 +28,8 @@ const jsonld = [{
         <ul class="presta" style="margin-top:10px">
           {focus.map((p) => (
             <li style="grid-template-columns:1fr 1.4fr">
-              <h3><a class="presta-link" href={`/prestations/${pagesSeo[p.id].slug}`}>{p.titre}</a></h3>
-              <p>{p.texte}</p>
+              <h3><a class="presta-link" href={urlPrestation(p.id)}>{p.court}</a>{p.statut === 'preparation' && <span class="badge badge-inline">En développement</span>}</h3>
+              <p>{p.resume}</p>
             </li>
           ))}
         </ul>

@@ -3,17 +3,16 @@ import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { regions } from '../../regions';
-import { prestations } from '../../data';
-import { pagesSeo } from '../../seo';
+import { prestationParId, urlPrestation } from '../../prestations';
 import { SITE } from '../../config';
 export function getStaticPaths() { return regions.map((r) => ({ params: { slug: r.slug }, props: { r } })); }
 const { r } = Astro.props;
-const focus = r.focus.map((id) => prestations.find((p) => p.id === id)!);
+const focus = r.focus.map(prestationParId);
 const url = `${SITE.url}/france/${r.slug}`;
 const jsonld = [
   {
     '@context': 'https://schema.org', '@type': 'Service', name: `Drone et ULM en ${r.nom}`,
-    serviceType: 'Inspection, thermographie, cartographie et prises de vues aériennes', url,
+    serviceType: 'Photo et vidéo aériennes, inspection, suivi de chantier, thermographie', url,
     provider: { '@id': `${SITE.url}/#entreprise` },
     areaServed: { '@type': 'AdministrativeArea', name: r.nom },
   },
@@ -27,7 +26,7 @@ const jsonld = [
   },
 ];
 ---
-<Base title={`Drone et ULM en ${r.nom} : inspection, thermographie, prises de vues · Skysolus`} description={`Drone et ULM en ${r.nom} (${r.villes.slice(0, 2).join(', ')}…) : inspection, thermographie, cartographie 3D, prises de vues et surveillance aérienne.`} jsonld={jsonld}>
+<Base title={`Drone en ${r.nom} : inspection, thermographie, immobilier · Sky Solus`} description={`Missions par drone en ${r.nom} (${r.villes.slice(0, 2).join(', ')}…) : photo et vidéo pour l’immobilier, inspection, suivi de chantier et thermographie aérienne.`} jsonld={jsonld}>
   <PageHead crumbs={[['Accueil', '/'], ['Partout en France', '/france'], [r.nom]]} title={`Drone et ULM en ${r.nom}`} lead={r.intro} />
   <section class="wrap" style="padding-bottom:110px">
     <div class="svc-grid">
@@ -40,8 +39,8 @@ const jsonld = [
         <ul class="presta" style="margin-top:10px">
           {focus.map((p) => (
             <li style="grid-template-columns:1fr 1.4fr">
-              <h3><a class="presta-link" href={`/prestations/${pagesSeo[p.id].slug}`}>{p.titre}</a></h3>
-              <p>{p.texte}</p>
+              <h3><a class="presta-link" href={urlPrestation(p.id)}>{p.court}</a>{p.statut === 'preparation' && <span class="badge badge-inline">En développement</span>}</h3>
+              <p>{p.resume}</p>
             </li>
           ))}
         </ul>

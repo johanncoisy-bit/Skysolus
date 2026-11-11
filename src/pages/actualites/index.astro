@@ -4,7 +4,7 @@ import PageHead from '../../components/PageHead.astro';
 const posts = Object.values(import.meta.glob('./*.md', { eager: true })) as any[];
 posts.sort((a, b) => +new Date(b.frontmatter.date) - +new Date(a.frontmatter.date));
 ---
-<Base title="Actualités et conseils : drone, ULM, inspection · Skysolus" description="Conseils et actualités sur l’inspection par drone, la thermographie, la surveillance aérienne en ULM et la réglementation, par Skysolus (Hyères, Var).">
+<Base title="Actualités et conseils : drone, ULM, inspection · Sky Solus" description="Conseils et actualités sur l’inspection par drone, la thermographie, la surveillance aérienne en ULM et la réglementation, par Sky Solus (Hyères, Var).">
   <PageHead crumbs={[['Accueil', '/'], ['Actualités']]} title="Actualités et conseils" />
   <section class="wrap" style="padding-bottom:120px">
     <ul class="posts">

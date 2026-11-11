@@ -32,4 +32,4 @@ Les photos servent l’annonce ; une courte vidéo, de 30 à 60 secondes, fait l
 
 En ville, le vol relève souvent d’un cadre spécifique ; près d’un aéroport ou d’une zone protégée, il peut être restreint. Un professionnel vérifie la faisabilité avant de vous proposer un devis.
 
-Voir notre page [photo et vidéo par drone](/prestations/photo-video-drone-hyeres-var).
+Voir notre page [immobilier : photo et vidéo aériennes](/prestations/photo-video-aerienne-immobilier).

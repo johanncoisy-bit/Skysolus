@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Plane from '../components/Plane.astro';
+import Drone from '../components/Drone.astro';
+import { moyens } from '../content';
+import { prestationParId, urlPrestation } from '../prestations';
+---
+<Base title="Moyens aériens : DJI Mini 5 Pro, DJI Matrice 4T, ULM Bristell XL8 · Sky Solus" description="Les appareils de Sky Solus : drone photo DJI Mini 5 Pro, drone d’inspection à caméra thermique DJI Matrice 4T et avion ULM Bristell XL8, avec leurs capacités et leurs limites.">
+  <PageHead crumbs={[['Accueil', '/'], ['Moyens aériens']]} title="Moyens aériens" lead="Deux drones et un avion ULM. Pour chaque mission, nous choisissons l’appareil adapté au besoin, au site et au cadre réglementaire." />
+  <section class="wrap" style="padding-bottom:110px">
+    {moyens.map((a) => (
+      <article class="fleet-row" id={a.code.toLowerCase()}>
+        <div class="fleet-visual">
+          {a.code === 'XL8' ? <Plane /> : <Drone model={a.code === 'M4T' ? 'M4T' : 'Mini'} />}
+        </div>
+        <div class="appareil">
+          <p class="type">{a.type}</p>
+          <h2 style="font-size:clamp(2rem,3.6vw,2.8rem);margin-bottom:16px">{a.nom}</h2>
+          <p class="lead">{a.resume}</p>
+          {a.capteurs.length > 0 && (
+            <>
+              <h3 class="sous">Capteurs</h3>
+              <ul class="pills">{a.capteurs.map((x) => <li>{x}</li>)}</ul>
+            </>
+          )}
+          <h3 class="sous">{a.prestations.length ? 'Ce qu’il permet' : 'Usages envisagés'}</h3>
+          <ul>{a.usages.map((x) => <li>{x}</li>)}</ul>
+          <h3 class="sous">Limites</h3>
+          <ul>{a.limites.map((x) => <li>{x}</li>)}</ul>
+          <h3 class="sous">Prestations associées</h3>
+          <div class="other" style="margin-top:0">
+            <ul style="margin-top:0">
+              {a.prestations.length
+                ? a.prestations.map((m) => <li><a href={urlPrestation(m)}>{prestationParId(m).court}</a></li>)
+                : <li><a href="/prestations#autres">Autres applications, étudiées au cas par cas</a></li>}
+            </ul>
+          </div>
+        </div>
+      </article>
+    ))}
+    <div class="cadre-note">
+      <h2 style="font-size:1.6rem;margin-bottom:12px">Préparer chaque vol</h2>
+      <p class="lead">Quel que soit l’appareil, chaque mission commence par la vérification de l’espace aérien, des autorisations nécessaires, de la météo et des mesures de sécurité.</p>
+    </div>
+    <p class="muted" style="margin-top:40px">Les illustrations des appareils sont des dessins stylisés.</p>
+  </section>
+  <CtaBand />
+</Base>

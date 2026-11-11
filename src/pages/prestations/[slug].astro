@@ -1,71 +1,128 @@
 ---
 import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
 import { SITE } from '../../config';
-import { prestations, APPAREILS } from '../../data';
-import { pagesSeo } from '../../seo';
+import { APPAREILS } from '../../data';
+import { prestations, urlPrestation } from '../../prestations';
+import { secteurParId } from '../../secteurs';
 import { regions } from '../../regions';
 
 export function getStaticPaths() {
-  return prestations.map((p) => ({ params: { slug: pagesSeo[p.id].slug }, props: { id: p.id } }));
+  return prestations.map((p) => ({ params: { slug: p.slug }, props: { p } }));
 }
-const { id } = Astro.props;
-const p = prestations.find((x) => x.id === id)!;
-const seo = pagesSeo[id];
-const url = new URL(`/prestations/${seo.slug}`, SITE.url).href;
-const jsonld = [
-  {
-    '@context': 'https://schema.org', '@type': 'Service', name: p.titre, serviceType: p.titre, description: seo.description, url,
-    provider: { '@id': `${SITE.url}/#entreprise` },
-    areaServed: [{ '@type': 'AdministrativeArea', name: 'Var' }, { '@type': 'AdministrativeArea', name: 'Provence-Alpes-Côte d’Azur' }],
-  },
-  {
-    '@context': 'https://schema.org', '@type': 'FAQPage',
-    mainEntity: seo.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
-  },
+const { p } = Astro.props;
+const enPrep = p.statut === 'preparation';
+const url = new URL(`/prestations/${p.slug}`, SITE.url).href;
+const jsonld: object[] = [
   {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE.url },
-      { '@type': 'ListItem', position: 2, name: 'Prestations', item: `${SITE.url}/#prestations` },
+      { '@type': 'ListItem', position: 2, name: 'Prestations', item: `${SITE.url}/prestations` },
       { '@type': 'ListItem', position: 3, name: p.titre, item: url },
     ],
   },
 ];
-const autres = prestations.filter((x) => x.id !== id);
+if (!enPrep) {
+  jsonld.push({
+    '@context': 'https://schema.org', '@type': 'Service', name: p.titre, serviceType: p.titre, description: p.seoDescription, url,
+    provider: { '@id': `${SITE.url}/#entreprise` },
+    areaServed: [{ '@type': 'AdministrativeArea', name: 'Var' }, { '@type': 'Country', name: 'France' }],
+  });
+}
+if (p.faq.length) {
+  jsonld.push({
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: p.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  });
+}
+const autres = prestations.filter((x) => x.id !== p.id);
+const secteursLies = p.secteurs.map(secteurParId);
 ---
-<Base title={seo.title} description={seo.description} jsonld={jsonld}>
-  <section class="wrap svc-hero">
-    <nav class="crumbs" aria-label="Fil d’Ariane"><a href="/">Accueil</a> / <a href="/#prestations">Prestations</a> / {p.titre}</nav>
-    <h1>{seo.h1}</h1>
-  </section>
-  <section class="wrap" style="padding-bottom:120px">
+<Base title={p.seoTitle} description={p.seoDescription} jsonld={jsonld}>
+  <PageHead crumbs={[['Accueil', '/'], ['Prestations', '/prestations'], [p.court]]} title={p.titre} badge={enPrep ? 'En développement' : undefined} lead={p.accroche} />
+
+  <section class="wrap" style="padding-bottom:110px">
     <div class="svc-grid">
-      <div>
-        {seo.intro.map((t) => <p class="lead">{t}</p>)}
-        <h2 style="font-size:1.6rem;margin:44px 0 14px">Exemples de missions</h2>
-        <ul style="color:#cfdbe9;padding-left:1.1em">{p.exemples.map((e) => <li>{e}</li>)}</ul>
+      <div class="trame">
+        <h2>{enPrep ? 'Une nouvelle expertise en préparation' : 'Qu’est-ce que c’est ?'}</h2>
+        {p.quoi.map((t) => <p>{t}</p>)}
+
+        {!enPrep && (
+          <>
+            <h2>À quoi ça sert ?</h2>
+            <ul class="puces">{p.aQuoi.map((t) => <li>{t}</li>)}</ul>
+
+            <h2>Pour qui ?</h2>
+            <ul class="pills">{p.pourQui.map((t) => <li>{t}</li>)}</ul>
+
+            <h2>Exemples d’applications</h2>
+            <dl class="exemples">
+              {p.exemples.map(([t, d]) => <div><dt>{t}</dt><dd>{d}</dd></div>)}
+            </dl>
+
+            <h2>L’intervention de Sky Solus</h2>
+            <ol class="etapes">{p.intervention.map((t) => <li>{t}</li>)}</ol>
+
+            <div class="limites">
+              <h2>Limites et précautions</h2>
+              <ul>{p.limites.map((t) => <li>{t}</li>)}</ul>
+            </div>
+          </>
+        )}
+
+        {enPrep && (
+          <div class="limites">
+            <h2>Vous avez un besoin dans ce domaine ?</h2>
+            <p>Agriculteur, viticulteur, gestionnaire d’espaces naturels ou collectivité : décrivez votre projet. Vos besoins nous aident à construire cette offre, et nous vous tiendrons informé de son ouverture.</p>
+          </div>
+        )}
       </div>
+
       <aside class="svc-aside">
-        <h2>Ce que vous recevez</h2>
-        <ul>{seo.livrables.map((l) => <li>{l}</li>)}</ul>
-        <h2>Appareils utilisés</h2>
-        <div class="tags">{p.avec.map((a) => <span class={`tag tag-${a}`}>{APPAREILS[a]}</span>)}</div>
-        <a class="btn" href="/#contact">Demander un devis</a>
+        {!enPrep && (
+          <>
+            <h2>Ce que vous recevez</h2>
+            <ul>{p.livrables.map((l) => <li>{l}</li>)}</ul>
+            <h2>Appareils utilisés</h2>
+            <div class="tags">{p.avec.map((a) => <a class={`tag tag-${a}`} href={`/moyens-aeriens#${a.toLowerCase()}`}>{APPAREILS[a]}</a>)}</div>
+          </>
+        )}
+        <h2>Secteurs concernés</h2>
+        <ul>{secteursLies.map((s) => <li><a href={`/secteurs#${s.id}`}>{s.titre}</a></li>)}</ul>
+        <a class="btn" href={`/contact?besoin=${p.id}`}>{p.cta.texte}</a>
+        {p.cta.secondaire && <a class="btn btn-ghost aside-tel" href={p.cta.secondaire[1]}>{p.cta.secondaire[0]}</a>}
         <a class="btn btn-ghost aside-tel" href={SITE.contact.telHref}>{SITE.contact.telephone}</a>
       </aside>
     </div>
-    <div class="faq">
-      <h2 style="font-size:2rem;margin-bottom:20px">Questions fréquentes</h2>
-      {seo.faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
-    </div>
-    <div class="other">
-      <h2 style="font-size:1.5rem">{p.titre} partout en France</h2>
-      <p class="lead" style="margin-top:12px">Basé à Hyères, Skysolus réalise cette prestation dans le Var, en région PACA et dans toute la France, sur devis.</p>
-      <ul>{regions.map((r) => <li><a href={`/france/${r.slug}`}>{r.nom}</a></li>)}</ul>
-    </div>
+
+    {p.faq.length > 0 && (
+      <div class="faq">
+        <h2 style="font-size:2rem;margin-bottom:20px">Questions fréquentes</h2>
+        {p.faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
+      </div>
+    )}
+
+    {!enPrep && (
+      <div class="other">
+        <h2 style="font-size:1.5rem">Partout en France</h2>
+        <p class="lead" style="margin-top:12px">Basé à Hyères, Sky Solus intervient dans le Var, en région PACA et dans toute la France, sur devis.</p>
+        <ul>{regions.map((r) => <li><a href={`/france/${r.slug}`}>{r.nom}</a></li>)}</ul>
+      </div>
+    )}
     <div class="other">
       <h2 style="font-size:1.5rem">Autres prestations</h2>
-      <ul>{autres.map((x) => <li><a href={`/prestations/${pagesSeo[x.id].slug}`}>{x.titre}</a></li>)}</ul>
+      <ul>{autres.map((x) => <li><a href={urlPrestation(x.id)}>{x.court}{x.statut === 'preparation' && ' (en développement)'}</a></li>)}</ul>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap cta-inner">
+      <div><h2>{enPrep ? 'Parlons de votre projet' : 'Un projet, une question ?'}</h2><p class="lead" style="margin-top:14px">Décrivez votre besoin : nous revenons vers vous avec une proposition adaptée au site et à la réglementation.</p></div>
+      <div class="cta-actions">
+        <a class="btn" href={`/contact?besoin=${p.id}`}>{p.cta.texte}</a>
+        <a class="btn btn-ghost" href={SITE.contact.telHref}>{SITE.contact.telephone}</a>
+      </div>
     </div>
   </section>
 </Base>

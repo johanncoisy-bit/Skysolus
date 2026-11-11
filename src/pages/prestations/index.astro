@@ -2,21 +2,27 @@
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { prestations, APPAREILS } from '../../data';
-import { pagesSeo } from '../../seo';
+import PrestationCards from '../../components/PrestationCards.astro';
+import { autresApplications } from '../../prestations';
 ---
-<Base title="Prestations par drone et ULM dans le Var · Skysolus" description="Photo et vidéo aériennes, inspection de toitures, thermographie, cartographie 3D, surveillance en ULM, littoral, agriculture, nautisme : toutes nos prestations.">
-  <PageHead crumbs={[['Accueil', '/'], ['Prestations']]} title="Nos prestations" lead="Chaque prestation indique les appareils utilisés. Si votre besoin n’apparaît pas ici, décrivez-le : nous étudions sa faisabilité." />
-  <section class="wrap" style="padding-bottom:110px">
-    <ul class="presta" style="margin-top:20px">
-      {prestations.map((p) => (
-        <li>
-          <h2 style="font-size:clamp(1.35rem,2.2vw,1.7rem)"><a class="presta-link" href={`/prestations/${pagesSeo[p.id].slug}`}>{p.titre}</a></h2>
-          <div><p>{p.texte}</p><p class="ex">{p.exemples.join(' ; ')}.</p></div>
-          <div class="tags">{p.avec.map((a) => <span class={`tag tag-${a}`}>{APPAREILS[a]}</span>)}</div>
-        </li>
-      ))}
-    </ul>
+<Base title="Prestations par drone et ULM : immobilier, inspection, chantier, thermographie · Sky Solus" description="Photo et vidéo aériennes pour l’immobilier, inspection visuelle et technique, suivi de chantier et thermographie aérienne par drone, depuis Hyères (Var).">
+  <PageHead crumbs={[['Accueil', '/'], ['Prestations']]} title="Nos prestations" lead="Pour chaque prestation : ce que c’est, à quoi elle sert, pour qui, des exemples concrets et ce que les images permettent — ou ne permettent pas — de conclure." />
+  <section class="wrap" style="padding-bottom:40px">
+    <PrestationCards titre="h2" />
+    <p class="muted" style="margin-top:22px">Vous cherchez par métier ? <a href="/secteurs">Voir les secteurs d’activité</a></p>
+  </section>
+
+  <section class="wrap" id="autres" style="padding:60px 0 110px">
+    <div class="autres">
+      <div>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.3rem)">Autres applications</h2>
+        <p class="lead" style="margin-top:16px">D’autres missions peuvent être étudiées au cas par cas, selon les compétences et les moyens disponibles. Parlez-nous de votre projet : nous vous dirons ce qu’il est possible de faire.</p>
+        <a class="btn btn-ghost" href="/contact" style="margin-top:12px">Parler de votre projet</a>
+      </div>
+      <dl>
+        {autresApplications.map(([t, d]) => <div><dt>{t}</dt><dd>{d}</dd></div>)}
+      </dl>
+    </div>
   </section>
   <CtaBand />
 </Base>

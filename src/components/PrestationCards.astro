@@ -1,0 +1,20 @@
+---
+// Cartes d'accès rapide aux prestations (accueil, page Prestations, secteurs)
+import { prestations, urlPrestation } from '../prestations';
+interface Props { ids?: string[]; titre?: 'h2' | 'h3' }
+const { ids, titre = 'h3' } = Astro.props;
+const liste = ids ? ids.map((id) => prestations.find((p) => p.id === id)!) : prestations;
+const H = titre;
+---
+<ul class="cards">
+  {liste.map((p) => (
+    <li class={p.statut === 'preparation' ? 'card card-prep' : 'card'}>
+      <a href={urlPrestation(p.id)}>
+        {p.statut === 'preparation' && <span class="badge">En développement</span>}
+        <H class="card-title">{p.court}</H>
+        <span class="card-text">{p.resume}</span>
+        <span class="card-more" aria-hidden="true">{p.statut === 'preparation' ? 'En savoir plus' : 'Découvrir'} →</span>
+      </a>
+    </li>
+  ))}
+</ul>

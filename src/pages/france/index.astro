@@ -6,18 +6,18 @@ import { regions, outreMer } from '../../regions';
 import { zones } from '../../content';
 import { SITE } from '../../config';
 const jsonld = [{
-  '@context': 'https://schema.org', '@type': 'ItemList', name: 'Régions d’intervention Skysolus',
+  '@context': 'https://schema.org', '@type': 'ItemList', name: 'Régions d’intervention Sky Solus',
   itemListElement: regions.map((r, i) => ({ '@type': 'ListItem', position: i + 1, name: r.nom, url: `${SITE.url}/france/${r.slug}` })),
 }];
 ---
-<Base title="Drone et ULM partout en France : inspection, thermographie, prises de vues · Skysolus" description="Skysolus intervient dans toute la France, en Corse et en outre-mer : inspection et thermographie par drone, cartographie 3D, surveillance en ULM." jsonld={jsonld}>
-  <PageHead crumbs={[['Accueil', '/'], ['Partout en France']]} title="Drone et ULM, partout en France" lead="Basé à Hyères, Skysolus se déplace dans toutes les régions pour des missions planifiées : thermographie de centrales solaires, inspection de sites industriels, cartographie, prises de vues, surveillance aérienne." />
+<Base title="Drone partout en France : inspection, thermographie, immobilier · Sky Solus" description="Depuis Hyères, Sky Solus intervient dans toute la France et en Corse : photo et vidéo pour l’immobilier, inspection, suivi de chantier et thermographie par drone." jsonld={jsonld}>
+  <PageHead crumbs={[['Accueil', '/'], ['Partout en France']]} title="Drone et ULM, partout en France" lead="Basé à Hyères, Sky Solus peut se déplacer dans toutes les régions pour des missions planifiées : thermographie de centrales solaires, inspection d’ouvrages et de sites industriels, suivi de chantier, prises de vues immobilières." />
   <section class="wrap" style="padding-bottom:40px">
     <div class="svc-grid">
       <div>
         <h2 style="font-size:1.7rem;margin-bottom:14px">Comment se passe une mission hors du Var</h2>
         <p class="lead">Nous étudions la faisabilité à distance : adresse, espace aérien, autorisations, livrables attendus. Le déplacement est chiffré dans le devis, et les interventions d’une même région sont regroupées quand c’est possible pour en réduire le coût.</p>
-        <p class="lead" style="margin-top:18px">Sur place, le déroulé est le même que dans le Var : préparation, vol dans le cadre autorisé, puis livraison des images ou des données traitées.</p>
+        <p class="lead" style="margin-top:18px">Sur place, le déroulé est le même que dans le Var : préparation, vol dans le cadre autorisé, puis livraison des images traitées.</p>
       </div>
       <aside class="svc-aside">
         <h2>Déjà sur place dans le Var</h2>

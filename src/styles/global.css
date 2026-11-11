@@ -67,14 +67,16 @@ p { margin: 0 0 1em; }
 .nav-logo img { height: 40px; width: auto; }
 .nav nav { display: flex; align-items: center; gap: clamp(16px, 2.4vw, 34px); }
 .nav nav a:not(.btn) { color: var(--texte); text-decoration: none; font-weight: 500; }
-.nav nav a:not(.btn):hover { color: var(--ciel-clair); }
+.nav nav a:not(.btn):hover, .nav nav a[aria-current="page"] { color: var(--ciel-clair); }
 .nav-toggle { display: none; }
-.nav nav a.nav-tel { color: var(--ciel-clair); font-weight: 600; white-space: nowrap; }
+.nav nav a { white-space: nowrap; }
+.nav nav a.nav-tel { color: var(--ciel-clair); font-weight: 600; }
+@media (max-width: 1440px) and (min-width: 1241px) { .nav nav a.nav-tel { display: none; } }
 .nav-call { display: none; }
 .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .svc-aside .aside-tel { margin-top: 10px; }
 
-@media (max-width: 900px) {
+@media (max-width: 1240px) {
   .nav-call {
     display: block; margin-left: auto; font-weight: 600; color: #06111f; background: var(--ciel-clair);
     border-radius: 999px; padding: 6px 16px; text-decoration: none;
@@ -316,3 +318,106 @@ p { margin: 0 0 1em; }
 .footer-links { display: grid; grid-template-columns: repeat(2, auto); gap: 8px 36px; align-content: start; }
 .footer-links a { color: var(--gris); text-decoration: none; }
 .footer-links a:hover { color: #fff; }
+
+/* ---------- refonte (cahier des charges, novembre 2026) ---------- */
+.badge {
+  display: inline-block; margin: 0 0 14px; padding: 4px 12px; border-radius: 999px;
+  font-size: .85rem; font-weight: 700; letter-spacing: .02em; color: var(--nuit); background: var(--balise);
+}
+.badge-inline { margin: 0 0 0 10px; vertical-align: middle; font-family: var(--body); font-stretch: 100%; }
+.intro .intro-titre { font-size: clamp(2.1rem, 4.6vw, 3.9rem); max-width: 24ch; line-height: 1.08; }
+
+/* cartes d'accès aux prestations */
+.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 16px; }
+.card a {
+  display: flex; flex-direction: column; gap: 10px; height: 100%; padding: 26px 24px; border-radius: 18px;
+  background: var(--coque); border: 1px solid var(--trait); text-decoration: none; color: #cfdbe9; transition: border-color .2s, transform .2s;
+}
+.card a:hover, .card a:focus-visible { border-color: var(--ciel); color: #fff; transform: translateY(-2px); }
+.card .badge { align-self: flex-start; margin: 0; }
+.card-title { font-family: var(--display); font-stretch: 110%; font-weight: 650; font-size: 1.45rem; line-height: 1.15; color: #fff; margin: 0; }
+.card-text { flex: 1; font-size: 1.02rem; }
+.card-more { font-weight: 600; color: var(--ciel-clair); }
+.card-prep a { background: transparent; border-style: dashed; }
+
+/* trame d'une prestation */
+.trame h2 { font-size: clamp(1.45rem, 2.4vw, 1.85rem); margin: 52px 0 16px; }
+.trame > h2:first-child { margin-top: 0; }
+.trame p { color: #d4dfeb; font-size: 1.15rem; max-width: 64ch; }
+.puces { margin: 0; padding-left: 1.1em; color: #d4dfeb; }
+.puces li { margin: 6px 0; }
+.pills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.pills li { padding: 6px 14px; border-radius: 999px; border: 1px solid var(--trait); background: rgba(17, 29, 51, .6); color: #dbe5f0; font-size: 1rem; }
+.exemples { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 0; }
+.exemples > div { padding: 20px 22px; border-radius: 14px; background: var(--coque); border: 1px solid var(--trait); }
+.exemples dt { font-family: var(--display); font-stretch: 108%; font-weight: 600; font-size: 1.15rem; color: #fff; }
+.exemples dd { margin: 6px 0 0; color: var(--gris); font-size: 1rem; }
+.etapes { margin: 0; padding: 0; list-style: none; counter-reset: e; }
+.etapes li { counter-increment: e; position: relative; padding: 12px 0 12px 46px; border-top: 1px solid var(--trait); color: #d4dfeb; }
+.etapes li::before { content: counter(e); position: absolute; left: 0; top: 10px; font-family: var(--display); font-weight: 700; font-size: 1.4rem; color: var(--ciel); }
+.limites { margin-top: 52px; padding: 26px 28px; border-radius: 16px; border: 1px solid rgba(242, 182, 109, .45); background: rgba(242, 182, 109, .07); }
+.limites h2 { margin-top: 0 !important; color: var(--balise); }
+.limites ul { margin: 0; padding-left: 1.1em; color: #e3e9f1; }
+.limites li { margin: 8px 0; }
+.limites p:last-child { margin-bottom: 0; }
+.svc-aside a.tag { text-decoration: none; }
+.svc-aside ul a { color: var(--ciel-clair); }
+@media (max-width: 640px) { .exemples { grid-template-columns: 1fr; } }
+
+/* autres applications */
+.autres { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(30px, 6vw, 90px); padding: clamp(28px, 4vw, 48px); border-radius: 20px; border: 1px dashed var(--trait); }
+.autres dl { margin: 0; }
+.autres dl > div { padding: 16px 0; border-top: 1px solid var(--trait); }
+.autres dl > div:first-child { border-top: 0; padding-top: 0; }
+.autres dt { font-family: var(--display); font-stretch: 108%; font-weight: 600; font-size: 1.15rem; color: #fff; }
+.autres dd { margin: 4px 0 0; color: var(--gris); }
+@media (max-width: 860px) { .autres { grid-template-columns: 1fr; } }
+
+/* secteurs */
+.secteurs { margin-top: 50px; }
+.secteur { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 70px); padding: 44px 0; border-top: 1px solid var(--trait); scroll-margin-top: 90px; }
+.secteur h2 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); margin-bottom: 14px; }
+.secteur h3 { font-size: 1.1rem; margin: 0 0 10px; color: var(--ciel-clair); }
+.secteur .puces { margin-bottom: 24px; }
+.liens { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.liens a { display: inline-block; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--ciel); text-decoration: none; color: #fff; font-weight: 600; }
+.liens a:hover { background: rgba(76, 169, 212, .15); }
+.clients dt .presta-link { color: #fff; }
+@media (max-width: 860px) { .secteur { grid-template-columns: 1fr; } }
+
+/* moyens aériens */
+.appareil .sous { font-size: 1.15rem; margin: 26px 0 10px; color: var(--ciel-clair); }
+.appareil .pills { margin-top: 0; }
+.appareil .pills li { margin: 0; }
+.fleet-row { scroll-margin-top: 90px; }
+.cadre-note { margin-top: 30px; padding-top: 50px; border-top: 1px solid var(--trait); }
+
+/* l'esprit Sky Solus */
+.esprit .lead + .lead { margin-top: 18px; }
+.citation { margin: 36px 0; padding: 4px 0 4px 26px; border-left: 3px solid var(--balise); }
+.citation p { font-family: var(--display); font-stretch: 105%; font-weight: 500; font-size: clamp(1.25rem, 2.2vw, 1.6rem); line-height: 1.4; color: #fff; margin: 0 0 12px; }
+.citation footer { color: var(--gris); font-size: 1rem; }
+.esprit-teaser { max-width: 860px; }
+.esprit-teaser .type { color: var(--ciel-clair); font-weight: 600; margin: 0; }
+
+/* galerie */
+.galerie-cat { padding: 40px 0 10px; border-top: 1px solid var(--trait); margin-top: 30px; scroll-margin-top: 90px; }
+.galerie-cat h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); margin-bottom: 16px; }
+.galerie { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 18px; }
+.galerie figure { margin: 0; border-radius: 16px; overflow: hidden; background: var(--coque); border: 1px solid var(--trait); }
+.galerie img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.galerie figcaption { display: grid; gap: 4px; padding: 14px 16px 18px; font-size: 1rem; color: #cfdbe9; }
+.galerie figcaption strong { color: #fff; }
+
+/* formulaire */
+.field .opt { font-weight: 400; color: var(--gris); }
+.field input[type="file"] { padding: 10px; cursor: pointer; }
+.field input[type="file"]::file-selector-button {
+  font: inherit; font-weight: 600; margin-right: 12px; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--ciel); background: transparent; color: var(--texte); cursor: pointer;
+}
+.aide { margin: 2px 0 0; font-size: .92rem; color: var(--gris); }
+.fichiers { list-style: none; margin: 4px 0 0; padding: 0; font-size: .95rem; color: #cfdbe9; }
+.fichiers li::before { content: "– "; }
+.check a { color: var(--ciel-clair); }
+.btn:disabled { opacity: .6; cursor: progress; }

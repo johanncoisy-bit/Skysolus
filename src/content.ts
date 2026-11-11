@@ -1,122 +1,170 @@
-// Contenus des pages Flotte, À propos, Zones et Réalisations.
+// Contenus des pages Moyens aériens, L'esprit Sky Solus, Zones et Réalisations.
+import type { Appareil } from './data';
 
-export const flotte = [
+// Moyens aériens réellement disponibles (confirmé par Johann, novembre 2026).
+// N'ajouter un appareil ou un capteur qu'une fois acquis et opérationnel.
+export const moyens: {
+  id: string;
+  code: Appareil;
+  nom: string;
+  type: string;
+  resume: string;
+  capteurs: string[];
+  usages: string[];
+  limites: string[];
+  prestations: string[]; // ids de prestations.ts ; vide = « autres applications »
+}[] = [
   {
-    id: 'xl8',
-    nom: 'Bristell XL8',
-    type: 'Avion ultraléger (ULM), biplace',
-    resume: 'Un avion biplace à aile basse construit par BRM Aero. Sa grande verrière offre au pilote et à l’observateur une vue dégagée, idéale pour l’observation et la prise de vues.',
-    pourquoi: [
-      'Couvrir en une sortie de grandes distances : littoral, massifs forestiers, grandes emprises',
-      'Observer depuis une hauteur où le drone ne peut pas voler',
-      'Embarquer un observateur et du matériel de prise de vues',
+    id: 'mini',
+    code: 'Mini',
+    nom: 'DJI Mini 5 Pro',
+    type: 'Drone compact photo et vidéo',
+    resume: 'Un drone léger et discret, équipé d’une caméra à grand capteur, conçu pour la photo et la vidéo.',
+    capteurs: ['Caméra photo et vidéo à grand capteur'],
+    usages: [
+      'Photographier et filmer des biens, des terrains et leur environnement',
+      'Intervenir discrètement, avec un encombrement réduit',
+      'Produire des images pour les annonces, le web et les réseaux sociaux',
     ],
-    missions: ['surveillance', 'environnement'],
+    limites: [
+      'Pas de caméra thermique',
+      'Drone léger, plus sensible au vent qu’un drone professionnel',
+      'Zoom limité : pour un détail, il faut s’approcher davantage',
+    ],
+    prestations: ['immobilier', 'chantier', 'inspection'],
   },
   {
     id: 'm4t',
+    code: 'M4T',
     nom: 'DJI Matrice 4T',
     type: 'Drone professionnel d’inspection',
-    resume: 'Un drone de la gamme entreprise de DJI. Il réunit dans une même nacelle une caméra grand-angle, des caméras zoom, une caméra thermique et un télémètre laser.',
-    pourquoi: [
-      'Repérer les anomalies thermiques : photovoltaïque, toitures, équipements',
-      'Inspecter de loin, au zoom, ce qui est difficile d’accès',
-      'Mesurer des distances et localiser précisément un point',
+    resume: 'Un drone de la gamme professionnelle de DJI. Il réunit dans une même nacelle une caméra grand-angle, des caméras zoom, une caméra thermique et un télémètre laser.',
+    capteurs: ['Caméra grand-angle', 'Caméras zoom', 'Caméra thermique', 'Télémètre laser (mesure de distance)'],
+    usages: [
+      'Observer de loin, au zoom, des zones difficiles d’accès',
+      'Repérer des écarts de température : bâtiments, panneaux solaires, équipements',
+      'Mesurer une distance et localiser un point observé',
     ],
-    missions: ['thermo', 'batiment', 'industrie', 'chantier'],
+    limites: [
+      'La caméra thermique a une résolution plus faible que les caméras visibles : pour un détail, il faut s’approcher',
+      'Les mesures thermiques dépendent de la météo, de l’heure et des matériaux',
+      'Près d’installations sensibles ou en agglomération, le vol dépend des autorisations applicables',
+    ],
+    prestations: ['inspection', 'thermographie', 'chantier', 'immobilier'],
   },
   {
-    id: 'mini',
-    nom: 'DJI Mini 5 Pro',
-    type: 'Drone compact photo et vidéo',
-    resume: 'Un drone léger et discret, doté d’un capteur grand format, pensé pour des photos et des vidéos de grande qualité.',
-    pourquoi: [
-      'Photographier et filmer des biens, des sites et des paysages',
-      'Intervenir discrètement, avec un encombrement minimal',
-      'Produire des images pour le web et les réseaux sociaux',
+    id: 'xl8',
+    code: 'XL8',
+    nom: 'ULM Bristell XL8',
+    type: 'Avion ultraléger (ULM), biplace',
+    resume: 'Un avion biplace à aile basse construit par BRM Aero. Sa grande verrière offre au pilote et à l’observateur une vue dégagée pour l’observation et la prise de vues.',
+    capteurs: [],
+    usages: [
+      'Observer de grandes étendues en une sortie : littoral, massifs forestiers, grands sites',
+      'Observer depuis une hauteur où le drone ne peut pas voler',
+      'Embarquer un observateur',
     ],
-    missions: ['image', 'agri', 'mer'],
+    limites: [
+      'Vol de jour, dans des conditions météo compatibles avec le vol à vue',
+      'Hauteurs minimales de survol à respecter, notamment au-dessus des agglomérations : l’ULM ne remplace pas le drone pour l’observation rapprochée',
+      'Missions étudiées au cas par cas',
+    ],
+    prestations: [],
   },
 ];
 
-export const aPropos = {
-  // À COMPLÉTER par Johann : parcours, brevets et certificats, années de vol
+// L'esprit Sky Solus — texte du cahier des charges.
+// À compléter avant publication par Johann : parcours aéronautique, expérience, qualifications.
+// Ne rien ajouter qui ne soit pas confirmé (diplôme, certification, expérience).
+export const esprit = {
   paragraphes: [
-    'Skysolus a été fondée en 2026 à Hyères par Johann Coisy, pilote d’ULM et télépilote de drone.',
-    'L’idée est simple : réunir sous un même toit l’avion ultraléger, qui voit grand, et le drone, qui voit de près. Une même entreprise peut ainsi survoler un littoral entier puis inspecter un toit au centimètre près.',
-    'Chaque mission est préparée sérieusement : vérification de l’espace aérien, autorisations, météo, sécurité. Le client reçoit des images et des données exploitables, avec leurs limites clairement expliquées.',
+    'L’aéronautique fait partie de mon univers depuis mon plus jeune âge. Passionné par le monde aérien et l’aéromodélisme, j’ai naturellement souhaité concrétiser cette passion en obtenant ma licence de pilote avion en 2014.',
+    'C’est dans cette continuité qu’est né Sky Solus, avec l’ambition de mettre les possibilités offertes par les technologies aériennes au service des particuliers, des entreprises et des collectivités.',
   ],
+  citation: 'Pour moi, un drone est d’abord un aéronef. Je l’aborde avec la même culture de sécurité, de rigueur et de respect de la réglementation que lorsque je pilote un avion. C’est cette approche qui guide chacune de mes interventions.',
+  conclusion: 'Au-delà des technologies et des équipements, Sky Solus repose sur une passion pour l’aérien, une volonté d’innover et le souci d’apporter des solutions adaptées aux besoins de chaque client.',
   engagements: [
     ['Un interlocuteur unique', 'Le même pilote prépare, réalise et livre votre mission.'],
     ['La réglementation d’abord', 'Aucun vol sans vérification de l’espace aérien et des autorisations nécessaires.'],
-    ['Des livrables honnêtes', 'Ce que les images permettent de conclure, et ce qu’elles ne permettent pas, est écrit noir sur blanc.'],
-    ['Un ancrage local', 'Basé à Hyères, Skysolus connaît le littoral varois et ses contraintes.'],
-  ],
+    ['Des limites expliquées', 'Ce que les images permettent de conclure, et ce qu’elles ne permettent pas, est écrit clairement.'],
+    ['Un ancrage local', 'Basé à Hyères, Sky Solus connaît le littoral varois et ses contraintes.'],
+  ] as [string, string][],
 };
 
-export const zones = [
+export const zones: { slug: string; ville: string; title: string; description: string; intro: string; local: string; focus: string[] }[] = [
   {
     slug: 'hyeres',
     ville: 'Hyères',
-    title: 'Drone et ULM à Hyères : prises de vues, inspection · Skysolus',
-    description: 'Skysolus est basé à Hyères : photo et vidéo par drone, inspection de toitures, thermographie et surveillance aérienne, de Giens aux îles d’Or.',
-    intro: 'Hyères est la base de Skysolus. De la presqu’île de Giens aux Salins, du port Saint-Pierre aux collines de Costebelle, nous intervenons rapidement sur toute la commune.',
+    title: 'Drone et ULM à Hyères : immobilier, inspection · Sky Solus',
+    description: 'Sky Solus est basé à Hyères : photo et vidéo aériennes pour l’immobilier, inspection et thermographie par drone, de Giens aux Salins.',
+    intro: 'Hyères est la base de Sky Solus. De la presqu’île de Giens aux Salins, du port Saint-Pierre aux collines de Costebelle, nous intervenons sur toute la commune.',
     local: 'La présence de l’aéroport de Toulon-Hyères impose des restrictions de vol pour les drones sur une partie de la commune, et les îles d’Or sont en grande partie en cœur de parc national. Chaque demande est vérifiée avant de vous proposer un devis.',
-    focus: ['image', 'batiment', 'mer', 'environnement'],
+    focus: ['immobilier', 'inspection', 'thermographie'],
   },
   {
     slug: 'toulon',
     ville: 'Toulon',
-    title: 'Drone à Toulon : inspection, suivi de chantier, photo · Skysolus',
-    description: 'Inspection de toitures et d’ouvrages, suivi de chantier, thermographie et prises de vues par drone à Toulon et dans la métropole Toulon Provence Méditerranée.',
-    intro: 'Dans la métropole toulonnaise, Skysolus accompagne les syndics, les entreprises du BTP, les industriels et les acteurs portuaires, de La Seyne à La Valette.',
+    title: 'Drone à Toulon : inspection, suivi de chantier · Sky Solus',
+    description: 'Inspection de toitures et d’ouvrages, suivi de chantier et thermographie par drone à Toulon et dans la métropole Toulon Provence Méditerranée.',
+    intro: 'Dans la métropole toulonnaise, Sky Solus accompagne les syndics, les entreprises du BTP, les industriels et les collectivités, de La Seyne à La Valette.',
     local: 'Toulon compte de nombreuses zones où le vol de drone est restreint, notamment autour des installations militaires et en agglomération. Ces missions relèvent souvent de la catégorie Spécifique : nous nous occupons des démarches.',
-    focus: ['batiment', 'chantier', 'industrie', 'thermo'],
+    focus: ['inspection', 'chantier', 'thermographie'],
   },
   {
     slug: 'saint-tropez',
     ville: 'Saint-Tropez',
-    title: 'Drone à Saint-Tropez et dans le golfe : photo, vidéo, nautisme',
-    description: 'Photos et films aériens par drone à Saint-Tropez et dans le golfe : villas, domaines, hôtels, yachts et événements, avec un pilote basé dans le Var.',
-    intro: 'Villas, domaines viticoles, hôtels, plages et yachts : dans le golfe de Saint-Tropez, l’image aérienne est souvent la meilleure façon de montrer un lieu d’exception.',
-    local: 'En saison, la fréquentation et les événements nautiques demandent une préparation rigoureuse : pas de survol du public sans cadre autorisé, et des créneaux choisis pour la lumière comme pour la sécurité.',
-    focus: ['image', 'mer', 'agri', 'batiment'],
+    title: 'Drone à Saint-Tropez et dans le golfe : immobilier, inspection',
+    description: 'Photos et vidéos aériennes de biens immobiliers, inspection de toitures et suivi de chantier par drone à Saint-Tropez et dans le golfe, depuis Hyères.',
+    intro: 'Villas, domaines, terrains et locaux professionnels : dans le golfe de Saint-Tropez, la vue aérienne montre un bien dans son cadre, entre mer et collines.',
+    local: 'En saison, la fréquentation demande une préparation rigoureuse : pas de survol du public sans cadre autorisé, et des créneaux choisis pour la lumière comme pour la sécurité.',
+    focus: ['immobilier', 'inspection', 'chantier'],
   },
   {
     slug: 'frejus-saint-raphael',
     ville: 'Fréjus et Saint-Raphaël',
-    title: 'Drone à Fréjus et Saint-Raphaël : littoral, chantier, photo',
-    description: 'Prises de vues, inspection et suivi du littoral par drone et ULM à Fréjus, Saint-Raphaël et dans l’Estérel. Devis sur demande.',
+    title: 'Drone à Fréjus et Saint-Raphaël : immobilier, chantier, inspection',
+    description: 'Photos aériennes de biens immobiliers, suivi de chantier et inspection par drone à Fréjus, Saint-Raphaël et dans l’Estérel. Devis sur demande.',
     intro: 'Entre la mer et le massif de l’Estérel, Fréjus et Saint-Raphaël réunissent ports, plages, chantiers et espaces naturels sensibles.',
-    local: 'L’ULM permet d’observer de grandes surfaces du massif et du littoral en une sortie ; le drone prend le relais pour le détail d’un bâtiment ou d’un chantier.',
-    focus: ['environnement', 'surveillance', 'chantier', 'image'],
+    local: 'Entre ports, plages et massif, certaines zones sont réglementées pour le vol de drone : chaque adresse est vérifiée sur les cartes officielles avant le devis.',
+    focus: ['immobilier', 'chantier', 'inspection'],
   },
   {
     slug: 'le-lavandou-bormes',
     ville: 'Le Lavandou et Bormes-les-Mimosas',
-    title: 'Drone au Lavandou et à Bormes-les-Mimosas · Skysolus',
-    description: 'Photo et vidéo aériennes, inspection de toitures et suivi du littoral par drone au Lavandou, à Bormes-les-Mimosas et sur la côte des Maures.',
-    intro: 'Villages perchés, plages, ports de plaisance et collines des Maures : la côte entre Bormes et Le Lavandou se prête aux images aériennes comme au suivi du littoral.',
+    title: 'Drone au Lavandou et à Bormes-les-Mimosas · Sky Solus',
+    description: 'Photo et vidéo aériennes de biens, inspection et thermographie de toitures par drone au Lavandou, à Bormes-les-Mimosas et sur la côte des Maures.',
+    intro: 'Villages perchés, plages, ports de plaisance et collines des Maures : entre Bormes et Le Lavandou, la vue aérienne montre un bien dans son environnement.',
     local: 'Une zone interdite au survol entoure le fort de Brégançon, et d’autres secteurs sont réglementés : nous vérifions systématiquement les cartes officielles avant chaque vol.',
-    focus: ['image', 'environnement', 'mer', 'batiment'],
+    focus: ['immobilier', 'inspection', 'thermographie'],
   },
   {
     slug: 'provence-verte',
     ville: 'Brignoles et la Provence verte',
-    title: 'Drone en Provence verte : vignes, carrières, chantiers',
-    description: 'Observation de vignes et de cultures, suivi de carrières et de chantiers, photos de domaines par drone à Brignoles et en Provence verte.',
-    intro: 'Dans le centre Var, vignobles, carrières, exploitations agricoles et chantiers trouvent dans le drone un outil de suivi simple et rapide.',
-    local: 'Les grandes parcelles et les carrières se prêtent bien à la cartographie et au calcul de volumes, avec une précision définie avant la mission.',
-    focus: ['agri', 'chantier', 'thermo', 'image'],
+    title: 'Drone en Provence verte : chantiers, domaines, inspection',
+    description: 'Suivi de chantier, photos aériennes de domaines et inspection par drone à Brignoles et en Provence verte, depuis Hyères (Var).',
+    intro: 'Dans le centre Var, domaines, exploitations et chantiers : le drone apporte une vue d’ensemble et des images de suivi.',
+    local: 'Les grandes propriétés et les chantiers étendus se prêtent aux vues d’ensemble et au suivi régulier. L’observation des cultures fait partie d’une offre en préparation.',
+    focus: ['chantier', 'immobilier', 'inspection', 'agriculture'],
   },
 ];
 
-// Réalisations : ajouter une entrée par mission terminée, avec ses images dans public/realisations/
+// Réalisations / galerie.
+// N'utiliser que des images dont Sky Solus détient les droits ou dont la publication est autorisée.
+// Ne pas divulguer d'informations sensibles sur les sites inspectés.
+// Pour ajouter une réalisation : déposer l'image dans public/realisations/ puis ajouter une entrée ici.
+export const categoriesGalerie: [string, string][] = [
+  ['immobilier', 'Immobilier'],
+  ['inspection', 'Inspection technique'],
+  ['chantier', 'Suivi de chantier'],
+  ['thermographie', 'Thermographie'],
+  ['autres', 'Autres réalisations'],
+];
+
 export const realisations: {
-  titre: string;
-  lieu: string;
-  date: string;
-  prestation: string;
-  texte: string;
-  image: string;
+  categorie: 'immobilier' | 'inspection' | 'chantier' | 'thermographie' | 'autres';
+  image: string; // ex. '/realisations/villa-hyeres.jpg'
+  alt: string; // description de l'image pour les personnes qui ne la voient pas
+  mission: string; // type de mission, ex. 'Photo aérienne d’une villa'
+  objectif: string; // objectif des prises de vues
+  lieu?: string; // seulement si publiable
 }[] = [];
