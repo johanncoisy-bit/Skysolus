@@ -69,6 +69,8 @@ p { margin: 0 0 1em; }
 .nav nav { --nav-gap: clamp(16px, 2.4vw, 34px); display: flex; align-items: center; gap: var(--nav-gap); }
 /* séparateurs bleus entre les pages du menu (bleu du logo) */
 .nav nav a.nav-page { position: relative; }
+/* page en cours : soulignée d'un trait blanc */
+.nav nav a.nav-page[aria-current="page"] { color: #fff; text-decoration: underline 2px #fff; text-underline-offset: 7px; }
 .nav nav a.nav-page + a.nav-page::before {
   content: ""; position: absolute; left: calc(var(--nav-gap) / -2 - 1px); top: 50%;
   width: 2px; height: 1.1em; transform: translateY(-50%); border-radius: 2px; background: var(--logo);
