@@ -16,7 +16,7 @@ const business = {
   '@id': `${SITE.url}/#entreprise`,
   name: SITE.name,
   legalName: `${SITE.legal.denomination} SAS`,
-  description: 'Missions aériennes par drone et ULM : photo et vidéo pour l’immobilier, inspection visuelle et technique, suivi de chantier, thermographie aérienne. Depuis Hyères (Var).',
+  description: 'Missions aériennes par drone et ULM : inspection technique, thermographie, cartographie et 3D, suivi de chantier, agriculture, audiovisuel, surveillance. Depuis Hyères (Var).',
   url: SITE.url,
   logo: new URL('/img/logo-dark.png', SITE.url).href,
   image: ogImage,
@@ -30,7 +30,7 @@ const business = {
     ...regions.map((r) => ({ '@type': 'AdministrativeArea', name: r.nom })),
     { '@type': 'Country', name: 'France' },
   ],
-  knowsAbout: ['Photo et vidéo aériennes', 'Inspection visuelle par drone', 'Suivi de chantier par drone', 'Thermographie aérienne'],
+  knowsAbout: ['Inspection technique par drone', 'Thermographie aérienne', 'Photogrammétrie et modélisation 3D', 'Suivi de chantier par drone', 'Photo et vidéo aériennes', 'Surveillance aérienne en ULM'],
   hasOfferCatalog: {
     '@type': 'OfferCatalog', name: 'Prestations Sky Solus',
     itemListElement: disponibles.map((p) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: p.titre, url: `${SITE.url}/prestations/${p.slug}` } })),

@@ -27,4 +27,4 @@ Avant la mission, la bonne question n’est pas « quelle précision est possibl
 
 Suivi de chantier, calcul de cubatures (déblais, remblais, stocks), relevés de carrières, documentation de falaises et de zones d’érosion, état des lieux avant travaux.
 
-Voir notre page [suivi de chantier](/prestations/suivi-chantier-drone). La cartographie et la modélisation 3D font partie des [applications étudiées au cas par cas](/prestations#autres).
+Voir nos pages [cartographie et modélisation 3D](/prestations/cartographie-modelisation-3d-drone) et [suivi de chantiers et BTP](/prestations/suivi-chantier-drone).

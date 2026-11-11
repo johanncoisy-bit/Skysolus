@@ -31,7 +31,7 @@ export const moyens: {
       'Drone léger, plus sensible au vent qu’un drone professionnel',
       'Zoom limité : pour un détail, il faut s’approcher davantage',
     ],
-    prestations: ['immobilier', 'chantier', 'inspection'],
+    prestations: ['audiovisuel', 'chantier', 'inspection', 'specifiques'],
   },
   {
     id: 'm4t',
@@ -44,13 +44,14 @@ export const moyens: {
       'Observer de loin, au zoom, des zones difficiles d’accès',
       'Repérer des écarts de température : bâtiments, panneaux solaires, équipements',
       'Mesurer une distance et localiser un point observé',
+      'Réaliser des vols de cartographie et de modélisation 3D',
     ],
     limites: [
       'La caméra thermique a une résolution plus faible que les caméras visibles : pour un détail, il faut s’approcher',
       'Les mesures thermiques dépendent de la météo, de l’heure et des matériaux',
       'Près d’installations sensibles ou en agglomération, le vol dépend des autorisations applicables',
     ],
-    prestations: ['inspection', 'thermographie', 'chantier', 'immobilier'],
+    prestations: ['inspection', 'thermographie', 'cartographie', 'chantier', 'surveillance', 'agriculture', 'audiovisuel', 'specifiques'],
   },
   {
     id: 'xl8',
@@ -67,9 +68,9 @@ export const moyens: {
     limites: [
       'Vol de jour, dans des conditions météo compatibles avec le vol à vue',
       'Hauteurs minimales de survol à respecter, notamment au-dessus des agglomérations : l’ULM ne remplace pas le drone pour l’observation rapprochée',
-      'Missions étudiées au cas par cas',
+      'Missions préparées au cas par cas, selon l’espace aérien survolé',
     ],
-    prestations: [],
+    prestations: ['surveillance', 'agriculture'],
   },
 ];
 
@@ -99,7 +100,7 @@ export const zones: { slug: string; ville: string; title: string; description: s
     description: 'Sky Solus est basé à Hyères : photo et vidéo aériennes pour l’immobilier, inspection et thermographie par drone, de Giens aux Salins.',
     intro: 'Hyères est la base de Sky Solus. De la presqu’île de Giens aux Salins, du port Saint-Pierre aux collines de Costebelle, nous intervenons sur toute la commune.',
     local: 'La présence de l’aéroport de Toulon-Hyères impose des restrictions de vol pour les drones sur une partie de la commune, et les îles d’Or sont en grande partie en cœur de parc national. Chaque demande est vérifiée avant de vous proposer un devis.',
-    focus: ['immobilier', 'inspection', 'thermographie'],
+    focus: ['audiovisuel', 'inspection', 'thermographie'],
   },
   {
     slug: 'toulon',
@@ -117,7 +118,7 @@ export const zones: { slug: string; ville: string; title: string; description: s
     description: 'Photos et vidéos aériennes de biens immobiliers, inspection de toitures et suivi de chantier par drone à Saint-Tropez et dans le golfe, depuis Hyères.',
     intro: 'Villas, domaines, terrains et locaux professionnels : dans le golfe de Saint-Tropez, la vue aérienne montre un bien dans son cadre, entre mer et collines.',
     local: 'En saison, la fréquentation demande une préparation rigoureuse : pas de survol du public sans cadre autorisé, et des créneaux choisis pour la lumière comme pour la sécurité.',
-    focus: ['immobilier', 'inspection', 'chantier'],
+    focus: ['audiovisuel', 'inspection', 'chantier'],
   },
   {
     slug: 'frejus-saint-raphael',
@@ -126,7 +127,7 @@ export const zones: { slug: string; ville: string; title: string; description: s
     description: 'Photos aériennes de biens immobiliers, suivi de chantier et inspection par drone à Fréjus, Saint-Raphaël et dans l’Estérel. Devis sur demande.',
     intro: 'Entre la mer et le massif de l’Estérel, Fréjus et Saint-Raphaël réunissent ports, plages, chantiers et espaces naturels sensibles.',
     local: 'Entre ports, plages et massif, certaines zones sont réglementées pour le vol de drone : chaque adresse est vérifiée sur les cartes officielles avant le devis.',
-    focus: ['immobilier', 'chantier', 'inspection'],
+    focus: ['audiovisuel', 'chantier', 'inspection', 'surveillance'],
   },
   {
     slug: 'le-lavandou-bormes',
@@ -135,16 +136,16 @@ export const zones: { slug: string; ville: string; title: string; description: s
     description: 'Photo et vidéo aériennes de biens, inspection et thermographie de toitures par drone au Lavandou, à Bormes-les-Mimosas et sur la côte des Maures.',
     intro: 'Villages perchés, plages, ports de plaisance et collines des Maures : entre Bormes et Le Lavandou, la vue aérienne montre un bien dans son environnement.',
     local: 'Une zone interdite au survol entoure le fort de Brégançon, et d’autres secteurs sont réglementés : nous vérifions systématiquement les cartes officielles avant chaque vol.',
-    focus: ['immobilier', 'inspection', 'thermographie'],
+    focus: ['audiovisuel', 'inspection', 'thermographie'],
   },
   {
     slug: 'provence-verte',
     ville: 'Brignoles et la Provence verte',
-    title: 'Drone en Provence verte : chantiers, domaines, inspection',
-    description: 'Suivi de chantier, photos aériennes de domaines et inspection par drone à Brignoles et en Provence verte, depuis Hyères (Var).',
+    title: 'Drone en Provence verte : chantiers, cartographie, vignes',
+    description: 'Suivi de chantier, cartographie et volumes, observation de vignes et de cultures, photos de domaines par drone à Brignoles et en Provence verte.',
     intro: 'Dans le centre Var, domaines, exploitations et chantiers : le drone apporte une vue d’ensemble et des images de suivi.',
-    local: 'Les grandes propriétés et les chantiers étendus se prêtent aux vues d’ensemble et au suivi régulier. L’observation des cultures fait partie d’une offre en préparation.',
-    focus: ['chantier', 'immobilier', 'inspection', 'agriculture'],
+    local: 'Les grandes propriétés, les carrières et les chantiers étendus se prêtent aux vues d’ensemble, à la cartographie et au calcul de volumes, avec une précision définie avant la mission.',
+    focus: ['chantier', 'cartographie', 'agriculture', 'audiovisuel'],
   },
 ];
 

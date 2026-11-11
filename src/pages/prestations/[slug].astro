@@ -45,6 +45,9 @@ const secteursLies = p.secteurs.map(secteurParId);
   <section class="wrap" style="padding-bottom:110px">
     <div class="svc-grid">
       <div class="trame">
+        <h2>Nos interventions</h2>
+        <ul class="puces">{p.liste.map((t) => <li>{t}.</li>)}</ul>
+
         <h2>{enPrep ? 'Une nouvelle expertise en préparation' : 'Qu’est-ce que c’est ?'}</h2>
         {p.quoi.map((t) => <p>{t}</p>)}
 
@@ -61,7 +64,7 @@ const secteursLies = p.secteurs.map(secteurParId);
               {p.exemples.map(([t, d]) => <div><dt>{t}</dt><dd>{d}</dd></div>)}
             </dl>
 
-            <h2>L’intervention de Sky Solus</h2>
+            <h2>L’intervention de Skysolus</h2>
             <ol class="etapes">{p.intervention.map((t) => <li>{t}</li>)}</ol>
 
             <div class="limites">
@@ -106,7 +109,7 @@ const secteursLies = p.secteurs.map(secteurParId);
     {!enPrep && (
       <div class="other">
         <h2 style="font-size:1.5rem">Partout en France</h2>
-        <p class="lead" style="margin-top:12px">Basé à Hyères, Sky Solus intervient dans le Var, en région PACA et dans toute la France, sur devis.</p>
+        <p class="lead" style="margin-top:12px">Basé à Hyères, Skysolus intervient dans le Var, en région PACA, partout en France et Outre-mer, sur devis.</p>
         <ul>{regions.map((r) => <li><a href={`/france/${r.slug}`}>{r.nom}</a></li>)}</ul>
       </div>
     )}
