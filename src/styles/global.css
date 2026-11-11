@@ -80,12 +80,12 @@ p { margin: 0 0 1em; }
 .nav-toggle { display: none; }
 .nav nav a { white-space: nowrap; }
 .nav nav a.nav-tel { color: var(--ciel-clair); font-weight: 600; }
-@media (max-width: 1440px) and (min-width: 1241px) { .nav nav a.nav-tel { display: none; } }
+@media (max-width: 1520px) and (min-width: 1301px) { .nav nav a.nav-tel { display: none; } }
 .nav-call { display: none; }
 .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .svc-aside .aside-tel { margin-top: 10px; }
 
-@media (max-width: 1240px) {
+@media (max-width: 1300px) {
   .nav-call {
     display: block; margin-left: auto; font-weight: 600; color: #06111f; background: var(--ciel-clair);
     border-radius: 999px; padding: 6px 16px; text-decoration: none;

@@ -75,6 +75,7 @@ const courant = (href: string) => (Astro.url.pathname === href || Astro.url.path
     <a class="nav-call" href={SITE.contact.telHref} aria-label={`Appeler le ${SITE.contact.telephone}`}>Appeler</a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="menu" data-toggle>Menu</button>
     <nav id="menu" aria-label="Navigation principale">
+      <a class="nav-page" href="/" aria-current={courant('/')}>Accueil</a>
       <a class="nav-page" href="/prestations" aria-current={courant('/prestations')}>Prestations</a>
       <a class="nav-page" href="/secteurs" aria-current={courant('/secteurs')}>Secteurs</a>
       <a class="nav-page" href="/moyens-aeriens" aria-current={courant('/moyens-aeriens')}>Moyens aériens</a>
