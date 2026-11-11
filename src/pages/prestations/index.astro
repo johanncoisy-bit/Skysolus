@@ -2,26 +2,27 @@
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import PrestationCards from '../../components/PrestationCards.astro';
-import { autresApplications } from '../../prestations';
+import { prestations, urlPrestation, introPrestations as intro } from '../../prestations';
 ---
-<Base title="Prestations par drone et ULM : immobilier, inspection, chantier, thermographie · Sky Solus" description="Photo et vidéo aériennes pour l’immobilier, inspection visuelle et technique, suivi de chantier et thermographie aérienne par drone, depuis Hyères (Var).">
-  <PageHead crumbs={[['Accueil', '/'], ['Prestations']]} title="Nos prestations" />
-  <section class="wrap" style="padding-bottom:40px">
-    <PrestationCards titre="h2" />
-    <p class="muted" style="margin-top:22px">Vous cherchez par métier ? <a href="/secteurs">Voir les secteurs d’activité</a></p>
-  </section>
+<Base title="Nos prestations par drone : inspection, thermographie, 3D, chantier, audiovisuel · Skysolus" description="Inspection technique, thermographie, cartographie et 3D, suivi de chantier, agriculture, audiovisuel, surveillance et missions spécifiques par drone et ULM, depuis Hyères (Var).">
+  <PageHead crumbs={[['Accueil', '/'], ['Prestations']]} title={intro.titre} lead={intro.sousTitre} />
+  <section class="wrap" style="padding-bottom:110px">
+    <div class="presta-intro">{intro.texte.map((t) => <p>{t}</p>)}</div>
 
-  <section class="wrap" id="autres" style="padding:60px 0 110px">
-    <div class="autres">
-      <div>
-        <h2 style="font-size:clamp(1.7rem,3vw,2.3rem)">Autres applications</h2>
-        <p class="lead" style="margin-top:16px">D’autres missions peuvent être étudiées au cas par cas, selon les compétences et les moyens disponibles. Parlez-nous de votre projet : nous vous dirons ce qu’il est possible de faire.</p>
-        <a class="btn btn-ghost" href="/contact" style="margin-top:12px">Parler de votre projet</a>
-      </div>
-      <dl>
-        {autresApplications.map(([t, d]) => <div><dt>{t}</dt><dd>{d}</dd></div>)}
-      </dl>
+    <ol class="presta-liste">
+      {prestations.map((p, i) => (
+        <li id={p.id}>
+          <h2><span class="num">{i + 1}.</span> <a href={urlPrestation(p.id)}>{p.titre}</a>{p.statut === 'preparation' && <span class="badge badge-inline">En développement</span>}</h2>
+          <ul class="puces">{p.liste.map((t) => <li>{t}.</li>)}</ul>
+          <a class="card-more" href={urlPrestation(p.id)}>En savoir plus<span class="visually-hidden"> : {p.titre}</span> →</a>
+        </li>
+      ))}
+    </ol>
+
+    <div class="presta-signature">
+      <p class="sig">{intro.signature}</p>
+      <p class="lead">{intro.zone}</p>
+      <p class="muted" style="margin-top:14px">Vous cherchez par métier ? <a href="/secteurs">Voir les secteurs d’activité</a></p>
     </div>
   </section>
   <CtaBand />

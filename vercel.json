@@ -13,8 +13,13 @@
       "permanent": true
     },
     {
+      "source": "/prestations/photo-video-aerienne-immobilier",
+      "destination": "/prestations/photo-video-aerienne-drone",
+      "permanent": true
+    },
+    {
       "source": "/prestations/photo-video-drone-hyeres-var",
-      "destination": "/prestations/photo-video-aerienne-immobilier",
+      "destination": "/prestations/photo-video-aerienne-drone",
       "permanent": true
     },
     {
@@ -49,12 +54,12 @@
     },
     {
       "source": "/prestations/surveillance-aerienne-ulm-var",
-      "destination": "/prestations#autres",
+      "destination": "/prestations/surveillance-observation-aerienne",
       "permanent": true
     },
     {
       "source": "/prestations/drone-port-nautisme-evenement-var",
-      "destination": "/prestations#autres",
+      "destination": "/prestations/photo-video-aerienne-drone",
       "permanent": true
     }
   ],

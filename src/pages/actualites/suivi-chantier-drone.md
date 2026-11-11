@@ -20,7 +20,7 @@ Pour comparer d’une visite à l’autre, les prises de vues sont faites depuis
 
 ## Au-delà de la photo
 
-Si le projet le demande, la [photogrammétrie](/actualites/photogrammetrie-drone-precision) peut aussi être étudiée au cas par cas : elle permet de produire une orthophoto ou un modèle 3D à partir des images.
+Avec la [photogrammétrie](/actualites/photogrammetrie-drone-precision), chaque passage peut aussi produire une orthophoto et un modèle 3D : surfaces, volumes de déblais et de remblais, comparaison avec le plan.
 
 ## Pour qui ?
 
@@ -30,4 +30,4 @@ Maîtres d’ouvrage, promoteurs, entreprises du BTP, architectes et bureaux d�
 
 Un chantier en ville relève souvent de la catégorie Spécifique. La faisabilité est vérifiée avant de lancer le suivi, puis le même protocole est répété à chaque passage.
 
-Voir notre page [suivi de chantier](/prestations/suivi-chantier-drone). La cartographie et la modélisation 3D font partie des [applications étudiées au cas par cas](/prestations#autres).
+Voir nos pages [suivi de chantiers et BTP](/prestations/suivi-chantier-drone) et [cartographie et modélisation 3D](/prestations/cartographie-modelisation-3d-drone).

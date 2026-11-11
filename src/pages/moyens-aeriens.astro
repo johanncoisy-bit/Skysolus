@@ -34,7 +34,7 @@ import { prestationParId, urlPrestation } from '../prestations';
             <ul style="margin-top:0">
               {a.prestations.length
                 ? a.prestations.map((m) => <li><a href={urlPrestation(m)}>{prestationParId(m).court}</a></li>)
-                : <li><a href="/prestations#autres">Autres applications, étudiées au cas par cas</a></li>}
+                : <li><a href="/prestations">Voir les prestations</a></li>}
             </ul>
           </div>
         </div>

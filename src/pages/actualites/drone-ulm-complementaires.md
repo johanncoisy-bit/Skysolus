@@ -20,4 +20,4 @@ L’ULM Bristell XL8 parcourt de grandes distances en une seule sortie. Il emmè
 
 Exemple : après une tempête, l’ULM survole la côte pour repérer les secteurs touchés. Le drone intervient ensuite sur les points identifiés pour documenter les dégâts en détail. Un seul prestataire, un seul interlocuteur, et des images cohérentes du général au particulier.
 
-Découvrir [les moyens aériens de Sky Solus](/moyens-aeriens) et les [autres applications](/prestations#autres), dont l’observation en ULM, étudiées au cas par cas.
+Découvrir [les moyens aériens de Skysolus](/moyens-aeriens) et la [surveillance et observation aérienne](/prestations/surveillance-observation-aerienne).

@@ -21,10 +21,13 @@ export const methode: [string, string][] = [
 // Liste « Type de besoin » du formulaire de contact : [identifiant, libellé].
 // L'identifiant permet de présélectionner le besoin via un lien /contact?besoin=<identifiant>.
 export const typesBesoin: [string, string][] = [
-  ['immobilier', 'Immobilier : photo et vidéo aériennes'],
-  ['inspection', 'Inspection visuelle et technique'],
-  ['chantier', 'Suivi de chantier'],
+  ['inspection', 'Inspection technique et industrielle'],
   ['thermographie', 'Thermographie aérienne'],
+  ['cartographie', 'Cartographie et modélisation 3D'],
+  ['chantier', 'Suivi de chantier et BTP'],
   ['agriculture', 'Agriculture et environnement'],
+  ['audiovisuel', 'Audiovisuel, communication, immobilier'],
+  ['surveillance', 'Surveillance et observation aérienne'],
+  ['specifiques', 'Nid de frelons ou mission spécifique'],
   ['autre', 'Autre projet'],
 ];
