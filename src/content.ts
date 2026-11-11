@@ -150,7 +150,7 @@ export const zones: { slug: string; ville: string; title: string; description: s
 ];
 
 // Réalisations / galerie.
-// N'utiliser que des images dont Sky Solus détient les droits ou dont la publication est autorisée.
+// N'utiliser que des images dont Skysolus détient les droits ou dont la publication est autorisée.
 // Ne pas divulguer d'informations sensibles sur les sites inspectés.
 // Pour ajouter une réalisation : déposer l'image dans public/realisations/ puis ajouter une entrée ici.
 export const categoriesGalerie: [string, string][] = [

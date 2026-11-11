@@ -6,7 +6,7 @@ import { SITE } from '../config';
 import { realisations, categoriesGalerie } from '../content';
 const total = realisations.length;
 ---
-<Base title="Réalisations : galerie des missions par drone · Sky Solus" description="Galerie des missions réalisées par Sky Solus : immobilier, inspection technique, suivi de chantier, thermographie et autres réalisations.">
+<Base title="Réalisations : galerie des missions par drone · Skysolus" description="Galerie des missions réalisées par Skysolus : immobilier, inspection technique, suivi de chantier, thermographie et autres réalisations.">
   <PageHead crumbs={[['Accueil', '/'], ['Réalisations']]} title="Réalisations" lead={total ? 'Une sélection de missions, classées par type. Les images sont publiées avec l’accord des clients.' : undefined} />
   <section class="wrap" style="padding-bottom:110px">
     <nav class="other" style="margin-top:0" aria-label="Types de mission">
@@ -15,7 +15,7 @@ const total = realisations.length;
 
     {total === 0 && (
       <div class="empty">
-        <p class="lead">Sky Solus a démarré son activité en septembre 2026. Les premières missions seront présentées ici, classées par type, avec l’accord des clients.</p>
+        <p class="lead">Skysolus a démarré son activité en septembre 2026. Les premières missions seront présentées ici, classées par type, avec l’accord des clients.</p>
         <p class="lead">Vous avez un projet ? Il pourrait être le prochain.</p>
         <div class="intro-actions" style="margin-top:20px"><a class="btn" href="/contact">Demander un devis</a><a class="btn btn-ghost" href={SITE.contact.telHref}>{SITE.contact.telephone}</a></div>
       </div>
