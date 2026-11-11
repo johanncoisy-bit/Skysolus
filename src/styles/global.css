@@ -448,3 +448,6 @@ p { margin: 0 0 1em; }
 .presta-signature { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--trait); }
 .presta-signature .sig { font-family: var(--display); font-stretch: 108%; font-weight: 650; font-size: clamp(1.4rem, 2.6vw, 2rem); color: #fff; margin: 0 0 10px; }
 @media (max-width: 760px) { .presta-liste { grid-template-columns: 1fr; } }
+
+/* photo du XL8 */
+.ulm .plane-photo, .fleet-visual .plane-photo { filter: none; border-radius: 18px; box-shadow: 0 24px 50px rgba(0, 0, 0, .35); }
