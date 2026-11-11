@@ -28,4 +28,4 @@ Un rapport photo annoté qui localise les zones à surveiller : tuiles cassées 
 
 Le drone montre ce qui est visible. Il ne remplace pas le diagnostic d’un couvreur, qui reste nécessaire pour décider des travaux. En revanche, il lui permet d’arriver en sachant où regarder.
 
-Pour une suspicion d’infiltration ou un défaut d’isolation, une [thermographie](/prestations/thermographie-drone-var) peut compléter l’inspection, à condition que la météo s’y prête.
+Pour une suspicion d’infiltration ou un défaut d’isolation, une [thermographie](/prestations/thermographie-aerienne-drone) peut compléter l’inspection, à condition que la météo s’y prête.

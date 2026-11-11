@@ -3,27 +3,50 @@ import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { SITE } from '../config';
-import { realisations } from '../content';
+import { realisations, categoriesGalerie } from '../content';
+const total = realisations.length;
 ---
-<Base title="Réalisations : missions par drone et ULM dans le Var · Skysolus" description="Les missions réalisées par Skysolus dans le Var et en PACA : prises de vues, inspections, thermographie, cartographie et surveillance aérienne.">
-  <PageHead crumbs={[['Accueil', '/'], ['Réalisations']]} title="Réalisations" />
+<Base title="Réalisations : galerie des missions par drone · Sky Solus" description="Galerie des missions réalisées par Sky Solus : immobilier, inspection technique, suivi de chantier, thermographie et autres réalisations.">
+  <PageHead crumbs={[['Accueil', '/'], ['Réalisations']]} title="Réalisations" lead={total ? 'Une sélection de missions, classées par type. Les images sont publiées avec l’accord des clients.' : undefined} />
   <section class="wrap" style="padding-bottom:110px">
-    {realisations.length === 0 ? (
+    <nav class="other" style="margin-top:0" aria-label="Types de mission">
+      <ul style="margin-top:0">{categoriesGalerie.map(([id, nom]) => <li><a href={`#${id}`}>{nom}</a></li>)}</ul>
+    </nav>
+
+    {total === 0 && (
       <div class="empty">
-        <p class="lead">Skysolus a démarré son activité en septembre 2026. Les premières missions seront présentées ici, avec l’accord des clients.</p>
+        <p class="lead">Sky Solus a démarré son activité en septembre 2026. Les premières missions seront présentées ici, classées par type, avec l’accord des clients.</p>
         <p class="lead">Vous avez un projet ? Il pourrait être le prochain.</p>
         <div class="intro-actions" style="margin-top:20px"><a class="btn" href="/contact">Demander un devis</a><a class="btn btn-ghost" href={SITE.contact.telHref}>{SITE.contact.telephone}</a></div>
       </div>
-    ) : (
-      <div class="works">
-        {realisations.map((r) => (
-          <article class="work">
-            <img src={r.image} alt={r.titre} loading="lazy" width="800" height="500" />
-            <div><p class="type">{r.prestation} · {r.lieu} · {r.date}</p><h2>{r.titre}</h2><p>{r.texte}</p></div>
-          </article>
-        ))}
-      </div>
     )}
+
+    {categoriesGalerie.map(([id, nom]) => {
+      const items = realisations.filter((r) => r.categorie === id);
+      return (
+        <section class="galerie-cat" id={id}>
+          <h2>{nom}</h2>
+          {items.length === 0 ? (
+            <p class="muted">Réalisations à venir.</p>
+          ) : (
+            <ul class="galerie">
+              {items.map((r) => (
+                <li>
+                  <figure>
+                    <img src={r.image} alt={r.alt} loading="lazy" decoding="async" width="800" height="533" />
+                    <figcaption>
+                      <strong>{r.mission}</strong>
+                      <span>{r.objectif}</span>
+                      {r.lieu && <span class="muted">{r.lieu}</span>}
+                    </figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      );
+    })}
   </section>
   <CtaBand />
 </Base>

@@ -3,22 +3,31 @@ import Base from '../layouts/Base.astro';
 import Plane from '../components/Plane.astro';
 import Drone from '../components/Drone.astro';
 import ContactForm from '../components/ContactForm.astro';
+import PrestationCards from '../components/PrestationCards.astro';
 import { SITE } from '../config';
-import { prestations, clients, methode, typesMission, APPAREILS } from '../data';
-import { pagesSeo } from '../seo';
-const faq = [["Intervenez-vous partout en France ?", "Oui. Skysolus est basé à Hyères (Var) et intervient dans toutes les régions de France métropolitaine, en Corse et, selon la faisabilité réglementaire, en outre-mer. Le déplacement est chiffré dans le devis."], ["Quelles prestations réalisez-vous par drone ?", "Photo et vidéo aériennes, inspection de toitures, de façades et d’ouvrages, thermographie infrarouge (photovoltaïque, bâtiment), suivi de chantier, orthophotos et modèles 3D, observation de cultures et du littoral."], ["À quoi sert l’ULM ?", "L’ULM Bristell XL8 couvre de grandes distances en une sortie : surveillance de grands sites, du littoral et des massifs forestiers, reconnaissance après sinistre, prises de vues longue distance."], ["Pouvez-vous voler en ville ?", "Le vol en agglomération dans l’espace public n’est pas permis en catégorie Ouverte. Ces missions relèvent de la catégorie Spécifique et sont étudiées au cas par cas avant tout devis."], ["Comment obtenir un devis ?", "Décrivez votre besoin via le formulaire de contact, par téléphone ou par e-mail : lieu, ce que vous voulez voir ou mesurer, livrable attendu. Nous revenons vers vous avec une proposition adaptée."]];
+import { methode } from '../data';
+import { secteurs } from '../secteurs';
+import { esprit } from '../content';
+const faq = [
+  ['Quelles prestations proposez-vous ?', 'Photo et vidéo aériennes pour l’immobilier, inspection visuelle et technique (toitures, ouvrages, éoliennes, pylônes, sites industriels, panneaux solaires), suivi de chantier et thermographie aérienne. Une offre pour l’agriculture et l’environnement est en préparation.'],
+  ['Intervenez-vous partout en France ?', 'Oui. Sky Solus est basé à Hyères (Var) et peut intervenir dans toutes les régions de France métropolitaine et en Corse, sur devis. Le déplacement est indiqué dans le devis.'],
+  ['Une inspection par drone remplace-t-elle un diagnostic ?', 'Non. Le drone fournit des images et des informations utiles, mais ne remplace pas systématiquement un diagnostic réglementaire ou spécialisé. Une anomalie non visible sur les images ne peut pas être exclue.'],
+  ['À quoi sert l’ULM ?', 'L’ULM Bristell XL8 permet d’observer de grandes étendues en une sortie : littoral, massifs forestiers, grands sites. Ces missions sont étudiées au cas par cas.'],
+  ['Pouvez-vous voler en ville ?', 'Le vol en agglomération demande une démarche particulière et n’est pas toujours possible. Chaque adresse est vérifiée avant de vous proposer un devis.'],
+  ['Comment obtenir un devis ?', 'Décrivez votre projet via le formulaire, par téléphone ou par e-mail : le lieu, ce que vous voulez voir, suivre ou montrer. Vous pouvez joindre des photos. Nous revenons vers vous avec une proposition adaptée.'],
+];
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
 
 const rings = [
   { r: 62, label: 'Var' },
   { r: 132, label: 'Région PACA' },
   { r: 202, label: 'France entière' },
-  { r: 272, label: 'Outre-mer et international' },
+  { r: 272, label: 'Au-delà, selon faisabilité' },
 ];
 ---
 <Base
-  title="Skysolus · Drone et ULM à Hyères (Var) et partout en France"
-  description="Inspection, thermographie, cartographie 3D, photo et vidéo par drone, surveillance en ULM. Basé à Hyères (Var), Skysolus intervient partout en France."
+  title="Sky Solus · Missions aériennes par drone et ULM, depuis Hyères (Var)"
+  description="Sky Solus réalise vos missions aériennes par drone et ULM : photo et vidéo pour l’immobilier, suivi de chantier, inspection technique, thermographie. Basé à Hyères (Var)."
   jsonld={[faqLd]}
 >
   <section class="hero" aria-label="Film de présentation">
@@ -36,25 +45,47 @@ const rings = [
   </section>
 
   <section class="intro wrap" id="intro">
-    <h1>Images, inspections et surveillance depuis le ciel du Var</h1>
-    <p class="lead">Skysolus réalise des prises de vues, des inspections et des missions de surveillance avec deux drones DJI et un avion ULM Bristell XL8. Particuliers, entreprises et collectivités : chaque mission est étudiée selon votre besoin, le site et la réglementation.</p>
+    <h1 class="intro-titre">Sky Solus, vos missions aériennes par drone et ULM pour l’immobilier, le suivi de chantier, l’inspection technique, et plus encore.</h1>
+    <p class="lead">Particuliers, professionnels et collectivités : chaque mission est préparée selon votre besoin, le site et la réglementation, depuis notre base de Hyères, dans le Var.</p>
     <div class="intro-actions">
-      <a class="btn" href="#contact">Demander un devis</a>
+      <a class="btn" href="/prestations">Découvrir nos prestations</a>
+      <a class="btn btn-ghost" href="/contact">Demander un devis</a>
       <a class="btn btn-ghost" href={SITE.contact.telHref}>Appeler le {SITE.contact.telephone}</a>
-      <a class="btn btn-ghost" href="/prestations">Voir les prestations</a>
     </div>
     <ul class="facts">
       <li><strong>Basé à Hyères</strong>Interventions dans le Var, en région PACA et partout en France.</li>
-      <li><strong>Drone et ULM</strong>Le détail au plus près avec le drone, les grandes distances avec l’avion.</li>
-      <li><strong>Des livrables exploitables</strong>Photos, films, rapports thermiques, orthophotos et modèles 3D.</li>
+      <li><strong>Drone et ULM</strong>Le détail au plus près avec le drone, les grandes étendues avec l’avion.</li>
+      <li><strong>Des limites expliquées</strong>Ce que les images permettent de conclure, et ce qu’elles ne permettent pas.</li>
     </ul>
+  </section>
+
+  <section class="section wrap" id="prestations">
+    <div class="presta-head">
+      <div>
+        <h2>Nos prestations</h2>
+        <p class="lead">Des explications simples, des exemples concrets et des limites clairement indiquées.</p>
+      </div>
+      <a class="btn btn-ghost" href="/prestations">Toutes les prestations</a>
+    </div>
+    <div style="margin-top:44px"><PrestationCards /></div>
+    <p class="muted" style="margin-top:22px">D’autres applications peuvent être étudiées au cas par cas. <a href="/prestations#autres">En savoir plus</a></p>
+  </section>
+
+  <section class="section clients">
+    <div class="wrap">
+      <h2>Pour qui</h2>
+      <p class="lead" style="margin-top:18px">Particuliers, entreprises et collectivités : trouvez les prestations qui correspondent à votre activité.</p>
+      <dl>
+        {secteurs.map((s) => <div><dt><a class="presta-link" href={`/secteurs#${s.id}`}>{s.titre}</a>{s.enDeveloppement && <span class="badge badge-inline">En développement</span>}</dt><dd>{s.texte}</dd></div>)}
+      </dl>
+    </div>
   </section>
 
   <section class="section flotte" id="flotte">
     <div class="wrap">
       <div class="flotte-head">
-        <h2>Trois appareils, chacun à sa hauteur</h2>
-        <p class="lead">Les drones travaillent au plus près des bâtiments et des sites. Au-dessus, l’ULM couvre en une sortie ce qu’un drone mettrait des jours à parcourir.</p>
+        <h2>Nos moyens aériens</h2>
+        <p class="lead">Les drones travaillent au plus près des bâtiments et des sites. Au-dessus, l’ULM observe de grandes étendues en une sortie.</p>
       </div>
 
       <div class="ulm appareil">
@@ -62,11 +93,11 @@ const rings = [
         <div>
           <p class="type">Avion ultraléger (ULM)</p>
           <h3>Bristell XL8</h3>
-          <p>Un biplace à aile basse et grande verrière, pensé pour la visibilité. Il emmène l’observateur et la caméra au-dessus de vastes territoires.</p>
+          <p>Un biplace à aile basse et grande verrière, pensé pour la visibilité. Il emmène l’observateur au-dessus de vastes territoires.</p>
           <ul>
-            <li>Surveillance aérienne de grands sites</li>
-            <li>Reconnaissance du littoral et des massifs forestiers</li>
-            <li>Prises de vues sur de longues distances</li>
+            <li>Observation de grandes étendues</li>
+            <li>Littoral et massifs forestiers</li>
+            <li>Missions étudiées au cas par cas</li>
           </ul>
         </div>
       </div>
@@ -78,60 +109,34 @@ const rings = [
           <Drone model="M4T" />
           <p class="type">Drone d’inspection</p>
           <h3>DJI Matrice 4T</h3>
-          <p>Un drone professionnel équipé d’une caméra thermique, d’un zoom et d’un télémètre laser, pour examiner à distance ce qui est difficile d’accès.</p>
+          <p>Un drone professionnel équipé d’une caméra thermique, de caméras zoom et d’un télémètre laser, pour observer à distance ce qui est difficile d’accès.</p>
           <ul>
-            <li>Thermographie de toitures et de centrales photovoltaïques</li>
-            <li>Inspection d’ouvrages et d’installations</li>
-            <li>Suivi de chantier et relevés</li>
+            <li>Inspection visuelle et technique</li>
+            <li>Thermographie de bâtiments et de panneaux solaires</li>
+            <li>Suivi de chantier</li>
           </ul>
         </div>
         <div class="appareil">
           <Drone model="Mini" />
           <p class="type">Drone photo et vidéo</p>
           <h3>DJI Mini 5 Pro</h3>
-          <p>Compact et discret, il produit des images de grande qualité pour présenter un bien, un lieu ou une activité.</p>
+          <p>Compact et discret, il est conçu pour la photo et la vidéo : présenter un bien, un terrain ou un lieu dans son environnement.</p>
           <ul>
-            <li>Immobilier, domaines et terrains</li>
-            <li>Tourisme, hôtellerie, communication</li>
-            <li>Événements et nautisme</li>
+            <li>Immobilier : maisons, terrains, locaux</li>
+            <li>Suivi de chantier</li>
+            <li>Images pour le web et les réseaux sociaux</li>
           </ul>
         </div>
       </div>
+      <a class="btn btn-ghost" href="/moyens-aeriens" style="margin-top:56px">Capacités et limites de chaque appareil</a>
     </div>
   </section>
 
-  <section class="section wrap" id="prestations">
-    <div class="presta-head">
-      <div>
-        <h2>Ce que nous faisons pour vous</h2>
-        <p class="lead">Chaque prestation indique les appareils utilisés. Si votre besoin n’apparaît pas ici, décrivez-le : nous étudions sa faisabilité.</p>
-      </div>
-      <div class="legend" aria-hidden="true">
-        {Object.entries(APPAREILS).map(([k, v]) => <span class={`tag tag-${k}`}>{v}</span>)}
-      </div>
-    </div>
-    <ul class="presta">
-      {prestations.map((p) => (
-        <li id={p.id}>
-          <h3><a class="presta-link" href={`/prestations/${pagesSeo[p.id].slug}`}>{p.titre}</a></h3>
-          <div>
-            <p>{p.texte}</p>
-            <p class="ex">{p.exemples.join(' ; ')}.</p>
-          </div>
-          <div class="tags" aria-label="Appareils utilisés">
-            {p.avec.map((a) => <span class={`tag tag-${a}`}>{APPAREILS[a]}</span>)}
-          </div>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <section class="section clients">
-    <div class="wrap">
-      <h2>Pour qui</h2>
-      <dl>
-        {clients.map(([qui, quoi]) => <div><dt>{qui}</dt><dd>{quoi}</dd></div>)}
-      </dl>
+  <section class="section wrap">
+    <div class="esprit-teaser">
+      <p class="type">L’esprit Sky Solus</p>
+      <blockquote class="citation"><p>« {esprit.citation} »</p><footer>{SITE.contact.nom}, fondateur</footer></blockquote>
+      <a class="btn btn-ghost" href="/esprit-sky-solus">Découvrir l’esprit Sky Solus</a>
     </div>
   </section>
 
@@ -144,11 +149,11 @@ const rings = [
           <li><b>Var</b><span>Toulon, Hyères, Saint-Tropez, la Provence verte et l’arrière-pays.</span></li>
           <li><b>PACA</b><span>Bouches-du-Rhône, Alpes-Maritimes, Vaucluse, Alpes.</span></li>
           <li><b>France</b><span>Toutes les régions, la Corse, sur devis. <a href="/france">Voir les régions</a></span></li>
-          <li><b>Au-delà</b><span>Outre-mer et international, selon la faisabilité réglementaire.</span></li>
+          <li><b>Au-delà</b><span>Outre-mer et international, à étudier selon la faisabilité réglementaire.</span></li>
         </ul>
         <a class="btn btn-ghost" href="/zones" style="margin-top:28px">Voir les zones d’intervention</a>
       </div>
-      <svg class="rings" viewBox="0 0 600 600" role="img" aria-label="Zone d'intervention en cercles autour d'Hyères : Var, région PACA, France entière, outre-mer et international">
+      <svg class="rings" viewBox="0 0 600 600" role="img" aria-label="Zone d'intervention en cercles autour d'Hyères : Var, région PACA, France entière, et au-delà selon faisabilité">
         <defs>
           <radialGradient id="zg" cx=".5" cy=".5" r=".5">
             <stop offset="0" stop-color="#4CA9D4" stop-opacity=".35" /><stop offset="1" stop-color="#4CA9D4" stop-opacity="0" />
@@ -187,7 +192,7 @@ const rings = [
         <li>Missions drone en catégorie Ouverte ou Spécifique selon le site et la nature du vol, avec les déclarations ou autorisations nécessaires.</li>
         <li>Vérification préalable de l’espace aérien, des zones réglementées et des restrictions de prise de vues.</li>
         <li>Respect de la vie privée, du droit à l’image et de la protection des données.</li>
-        <li>Pulvérisation, largage, vol de nuit ou hors vue : étudiés au cas par cas avant toute proposition.</li>
+        <li>Pulvérisation, largage, vol de nuit ou hors vue : non proposés à ce jour, étudiés au cas par cas avant toute proposition.</li>
       </ul>
     </div>
   </section>
@@ -201,8 +206,8 @@ const rings = [
 
   <section class="section contact" id="contact">
     <div class="wrap">
-      <h2>Parlons de votre projet</h2>
-      <p class="lead" style="margin-top:20px">Décrivez votre besoin : nous revenons vers vous avec une proposition adaptée au site, au matériel et à la réglementation.</p>
+      <h2>Parlez-nous de votre projet</h2>
+      <p class="lead" style="margin-top:20px">Décrivez votre besoin, joignez des photos si vous le souhaitez : nous revenons vers vous avec une proposition adaptée au site, au matériel et à la réglementation.</p>
       <ContactForm />
     </div>
   </section>

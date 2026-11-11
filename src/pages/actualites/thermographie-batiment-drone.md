@@ -2,7 +2,7 @@
 layout: ../../layouts/Article.astro
 title: "Thermographie de bâtiment par drone : quand la réaliser ?"
 short: "Thermographie de bâtiment"
-description: "Écart de température, saison, heure, météo : les conditions pour qu’une thermographie de bâtiment par drone soit fiable, et ce qu’elle permet de voir."
+description: "Écart de température, saison, heure, météo : les conditions pour qu’une thermographie de bâtiment par drone soit exploitable, et ce qu’elle permet de voir."
 date: 2026-11-01
 ---
 
@@ -28,4 +28,4 @@ Une image thermique montre un écart de température, pas sa cause. Le rapport l
 
 C’est l’inverse : on inspecte les panneaux en plein soleil, quand ils produisent. Nous détaillons ce cas dans notre article sur la [thermographie photovoltaïque](/actualites/thermographie-photovoltaique-drone).
 
-Voir notre page [thermographie par drone](/prestations/thermographie-drone-var).
+Voir notre page [thermographie aérienne](/prestations/thermographie-aerienne-drone).

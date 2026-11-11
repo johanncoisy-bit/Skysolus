@@ -24,4 +24,4 @@ Le rapport recense les anomalies thermiques repérées, les situe sur une vue d�
 
 Un contrôle à la mise en service, puis à intervalles réguliers ou après un événement (orage, grêle, baisse de production inexpliquée), permet de suivre l’état de l’installation dans le temps.
 
-Voir aussi notre page [thermographie par drone](/prestations/thermographie-drone-var).
+Voir aussi notre page [thermographie aérienne](/prestations/thermographie-aerienne-drone).

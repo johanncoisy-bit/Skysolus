@@ -2,7 +2,7 @@
 // Les valeurs marquées « À COMPLÉTER » sont des exemples à remplacer.
 
 export const SITE = {
-  name: 'Skysolus',
+  name: 'Sky Solus', // graphie commerciale (cahier des charges, nov. 2026)
   baseline: 'Drone & aircraft services',
   url: 'https://www.skysolus.com',
   ville: 'Hyères',

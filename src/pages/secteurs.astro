@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { secteurs } from '../secteurs';
+import { prestationParId, urlPrestation } from '../prestations';
+---
+<Base title="Secteurs d’activité : immobilier, BTP, industrie, énergie, collectivités · Sky Solus" description="Particuliers, BTP, industrie, énergie éolienne et photovoltaïque, télécommunications, collectivités : les prestations par drone de Sky Solus pour chaque secteur.">
+  <PageHead crumbs={[['Accueil', '/'], ['Secteurs d’activité']]} title="Secteurs d’activité" lead="Trouvez rapidement les prestations qui correspondent à votre activité." />
+  <section class="wrap" style="padding-bottom:110px">
+    <nav class="other" style="margin-top:0" aria-label="Secteurs">
+      <ul style="margin-top:0">{secteurs.map((s) => <li><a href={`#${s.id}`}>{s.titre}</a></li>)}</ul>
+    </nav>
+    <div class="secteurs">
+      {secteurs.map((s) => (
+        <article class="secteur" id={s.id}>
+          <div>
+            {s.enDeveloppement && <p class="badge">En développement</p>}
+            <h2>{s.titre}</h2>
+            <p class="lead">{s.texte}</p>
+          </div>
+          <div>
+            {s.besoins.length > 0 && (
+              <>
+                <h3>Besoins fréquents</h3>
+                <ul class="puces">{s.besoins.map((b) => <li>{b}</li>)}</ul>
+              </>
+            )}
+            <h3>{s.enDeveloppement ? 'En savoir plus' : 'Prestations adaptées'}</h3>
+            <ul class="liens">
+              {s.prestations.map((id) => {
+                const p = prestationParId(id);
+                return <li><a href={urlPrestation(id)}>{p.court}{p.statut === 'preparation' && ' (en développement)'}</a></li>;
+              })}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="lead" style="margin-top:60px">Votre activité n’apparaît pas ici ? <a href="/contact">Parlez-nous de votre projet</a> : nous étudions sa faisabilité.</p>
+  </section>
+  <CtaBand />
+</Base>

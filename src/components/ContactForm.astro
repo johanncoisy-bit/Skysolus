@@ -1,30 +1,35 @@
 ---
 import { SITE } from '../config';
-import { typesMission } from '../data';
+import { typesBesoin } from '../data';
 ---
 <div class="contact-grid">
         <div class="direct">
           <a href={SITE.contact.telHref}><small>Appeler</small><strong>{SITE.contact.telephone}</strong></a>
           <a href={`mailto:${SITE.contact.email}`}><small>Écrire</small><strong>{SITE.contact.email}</strong></a>
           <a href={`https://wa.me/${SITE.contact.whatsapp}`} target="_blank" rel="noopener"><small>WhatsApp</small><strong>Envoyer un message</strong></a>
-          <p class="muted" style="margin-top:10px">{SITE.contact.nom}, {SITE.ville}, {SITE.departement}</p>
+          <p class="muted" style="margin-top:10px">{SITE.contact.nom}, {SITE.ville}, {SITE.departement}<br />{SITE.legal.denomination} SAS · SIREN {SITE.legal.siren}</p>
         </div>
 
         <form class="form" id="devis" data-endpoint={SITE.formEndpoint} data-email={SITE.contact.email} data-tel={SITE.contact.telephone} novalidate>
-          <div class="field"><label for="f-nom">Nom</label><input id="f-nom" name="nom" autocomplete="name" required /></div>
-          <div class="field"><label for="f-societe">Société (facultatif)</label><input id="f-societe" name="societe" autocomplete="organization" /></div>
-          <div class="field"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required /></div>
-          <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" /></div>
-          <div class="field"><label for="f-type">Type de mission</label>
+          <div class="field"><label for="f-nom">Nom et prénom</label><input id="f-nom" name="nom" autocomplete="name" required /></div>
+          <div class="field"><label for="f-societe">Société <span class="opt">(facultatif)</span></label><input id="f-societe" name="societe" autocomplete="organization" /></div>
+          <div class="field"><label for="f-email">Adresse e-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required /></div>
+          <div class="field"><label for="f-tel">Téléphone <span class="opt">(facultatif)</span></label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" /></div>
+          <div class="field"><label for="f-type">Type de besoin</label>
             <select id="f-type" name="mission" required>
               <option value="">Choisir…</option>
-              {typesMission.map((t) => <option>{t}</option>)}
+              {typesBesoin.map(([id, t]) => <option value={t} data-id={id}>{t}</option>)}
             </select>
           </div>
-          <div class="field"><label for="f-lieu">Lieu de la mission</label><input id="f-lieu" name="lieu" placeholder="Commune ou adresse" /></div>
-          <div class="field full"><label for="f-date">Date souhaitée (facultatif)</label><input id="f-date" name="date" placeholder="Ex. : avant fin mars, un week-end…" /></div>
-          <div class="field full"><label for="f-msg">Votre besoin</label><textarea id="f-msg" name="message" required placeholder="Ce que vous voulez voir, mesurer ou montrer, et ce que vous attendez comme livrable."></textarea></div>
-          <label class="check"><input type="checkbox" name="consentement" required /> J’accepte que ces informations soient utilisées pour répondre à ma demande.</label>
+          <div class="field"><label for="f-lieu">Localisation de la mission</label><input id="f-lieu" name="lieu" placeholder="Commune ou secteur" /></div>
+          <div class="field full"><label for="f-msg">Description du projet</label><textarea id="f-msg" name="message" required placeholder="Ce que vous voulez voir, suivre ou montrer, et ce que vous attendez comme résultat."></textarea></div>
+          <div class="field full">
+            <label for="f-fichiers">Photos ou documents <span class="opt">(facultatif, 5 fichiers maximum)</span></label>
+            <input id="f-fichiers" name="fichiers" type="file" multiple accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf,.heic,.heif,.pdf" aria-describedby="f-fichiers-aide" />
+            <p class="aide" id="f-fichiers-aide">Photos (JPEG, PNG, HEIC) ou PDF. Les photos sont automatiquement allégées avant l’envoi ; 3 Mo au total après allègement.</p>
+            <ul class="fichiers" aria-live="polite"></ul>
+          </div>
+          <label class="check"><input type="checkbox" name="consentement" required /> J’accepte que ces informations soient utilisées pour répondre à ma demande (voir les <a href="/mentions-legales#donnees">mentions légales</a>).</label>
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
           <div class="form-foot">
             <button class="btn" type="submit">Envoyer la demande</button>
@@ -35,33 +40,109 @@ import { typesMission } from '../data';
 
 <script>
     // Formulaire de devis : envoi à la fonction /api/contact (voir api/contact.js)
+    const MAX_FICHIERS = 5;
+    const MAX_TOTAL = 3 * 1024 * 1024; // après allègement des photos (limite d'envoi Vercel : 4,5 Mo encodés)
+    const DIM_MAX = 2000; // côté le plus long des photos allégées, en pixels
+    const TYPES_OK = ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif', 'application/pdf'];
+
     const form = document.getElementById('devis') as HTMLFormElement | null;
     const status = form?.querySelector('.form-status') as HTMLElement | null;
     const bouton = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    const champFichiers = document.getElementById('f-fichiers') as HTMLInputElement | null;
+    const listeFichiers = form?.querySelector('.fichiers') as HTMLElement | null;
     const debut = Date.now();
     const say = (msg: string, kind: 'ok' | 'err' | '') => { if (status) { status.textContent = msg; status.className = `form-status ${kind}`; } };
+    const mo = (n: number) => `${(n / 1024 / 1024).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} Mo`;
+    const typeDe = (f: File) => f.type || (/\.hei[cf]$/i.test(f.name) ? 'image/heic' : /\.pdf$/i.test(f.name) ? 'application/pdf' : '');
+
+    // Présélection du type de besoin depuis un lien /contact?besoin=inspection
+    const besoin = new URLSearchParams(location.search).get('besoin');
+    const select = document.getElementById('f-type') as HTMLSelectElement | null;
+    const option = besoin && select?.querySelector(`option[data-id="${CSS.escape(besoin)}"]`) as HTMLOptionElement | null;
+    if (select && option) select.value = option.value;
+
+    function verifierFichiers(): string {
+      const fichiers = Array.from(champFichiers?.files || []);
+      if (listeFichiers) listeFichiers.innerHTML = '';
+      fichiers.forEach((f) => {
+        const li = document.createElement('li');
+        li.textContent = `${f.name} (${mo(f.size)})`;
+        listeFichiers?.appendChild(li);
+      });
+      if (fichiers.length > MAX_FICHIERS) return `${MAX_FICHIERS} fichiers maximum.`;
+      const refuse = fichiers.find((f) => !TYPES_OK.includes(typeDe(f)));
+      if (refuse) return `« ${refuse.name} » n’est pas accepté : envoyez des photos ou des PDF.`;
+      return '';
+    }
+    champFichiers?.addEventListener('change', () => { const err = verifierFichiers(); say(err, err ? 'err' : ''); });
+
+    // Allège une photo trop lourde (redimensionnement + JPEG). Les formats illisibles par le navigateur sont envoyés tels quels.
+    async function alleger(f: File): Promise<Blob> {
+      const t = typeDe(f);
+      if (!['image/jpeg', 'image/png', 'image/webp'].includes(t) || f.size < 900 * 1024) return f;
+      try {
+        const img = await createImageBitmap(f);
+        const k = Math.min(1, DIM_MAX / Math.max(img.width, img.height));
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.width * k); canvas.height = Math.round(img.height * k);
+        canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const blob = await new Promise<Blob | null>((ok) => canvas.toBlob(ok, 'image/jpeg', 0.82));
+        return blob && blob.size < f.size ? blob : f;
+      } catch { return f; }
+    }
+    const enBase64 = (b: Blob) => new Promise<string>((ok, ko) => {
+      const r = new FileReader();
+      r.onload = () => ok(String(r.result).split(',')[1] || '');
+      r.onerror = () => ko(r.error);
+      r.readAsDataURL(b);
+    });
+
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
         const first = form.querySelector(':invalid') as HTMLElement | null;
         first?.focus();
-        say('Remplissez le nom, l’e-mail, le type de mission et votre besoin, puis cochez l’accord.', 'err');
+        say('Remplissez le nom, l’e-mail, le type de besoin et la description, puis cochez l’accord.', 'err');
         return;
       }
-      const data = Object.fromEntries(new FormData(form));
+      const errFichiers = verifierFichiers();
+      if (errFichiers) { say(errFichiers, 'err'); champFichiers?.focus(); return; }
+
+      const brut = new FormData(form);
+      brut.delete('fichiers');
+      const data: Record<string, unknown> = Object.fromEntries(brut);
       if (data._gotcha) return;
-      if (bouton) { bouton.disabled = true; bouton.textContent = 'Envoi en cours…'; }
+
+      if (bouton) { bouton.disabled = true; bouton.textContent = 'Préparation…'; }
       say('', '');
       try {
+        const fichiers = Array.from(champFichiers?.files || []);
+        const prets = [];
+        let total = 0;
+        for (const f of fichiers) {
+          const blob = await alleger(f);
+          total += blob.size;
+          const allege = blob !== f;
+          prets.push({ nom: allege ? f.name.replace(/\.[^.]+$/, '') + '.jpg' : f.name, type: allege ? 'image/jpeg' : typeDe(f), data: await enBase64(blob) });
+        }
+        if (total > MAX_TOTAL) {
+          say(`Les fichiers font ${mo(total)} après allègement, pour 3 Mo maximum. Retirez-en un ou deux : vous pourrez nous envoyer le reste en réponse à notre e-mail.`, 'err');
+          return;
+        }
+        if (bouton) bouton.textContent = 'Envoi en cours…';
         const res = await fetch(form.dataset.endpoint || '/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ ...data, _t: debut }),
+          body: JSON.stringify({ ...data, fichiers: prets, _t: debut }),
         });
         const json = await res.json().catch(() => ({}));
-        if (res.status === 400 || res.status === 429) { say(json.error || 'Vérifiez le formulaire.', 'err'); return; }
+        if (res.status === 400 || res.status === 413 || res.status === 429) {
+          say(json.error || 'Les fichiers sont trop lourds : retirez-en un ou deux et réessayez.', 'err');
+          return;
+        }
         if (!res.ok || !json.ok) throw new Error(String(res.status));
         form.reset();
+        if (listeFichiers) listeFichiers.innerHTML = '';
         say('Merci, votre demande est bien envoyée. Nous vous répondons rapidement.', 'ok');
       } catch {
         say(`L’envoi n’a pas abouti. Réessayez dans un instant, ou appelez le ${form.dataset.tel}.`, 'err');

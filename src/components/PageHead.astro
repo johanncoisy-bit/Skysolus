@@ -1,6 +1,6 @@
 ---
-interface Props { crumbs: [string, string?][]; title: string; lead?: string }
-const { crumbs, title, lead } = Astro.props;
+interface Props { crumbs: [string, string?][]; title: string; lead?: string; badge?: string }
+const { crumbs, title, lead, badge } = Astro.props;
 ---
 <section class="wrap svc-hero">
   <nav class="crumbs" aria-label="Fil d’Ariane">
@@ -8,6 +8,7 @@ const { crumbs, title, lead } = Astro.props;
       <>{i > 0 && ' / '}{href ? <a href={href}>{label}</a> : <span>{label}</span>}</>
     ))}
   </nav>
+  {badge && <p class="badge">{badge}</p>}
   <h1>{title}</h1>
   {lead && <p class="lead" style="margin-top:24px">{lead}</p>}
 </section>
