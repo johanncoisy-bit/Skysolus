@@ -43,7 +43,7 @@ Fonction Vercel `api/contact.js` (envoi SMTP OVH). Pièces jointes : 5 fichiers,
 
 ## Remplacer le film d'ouverture
 
-Remplacer `public/video/skysolus-intro-v5.mp4` (MP4 H.264, 1280 à 1920 px de large, idéalement moins de 8 Mo), sa version mobile `skysolus-intro-mobile-v5.mp4` et `public/video/poster.jpg` (image affichée avant la lecture). **Changer le numéro de version du nom de fichier** (v6, v7…) à chaque nouveau film, et dans `src/pages/index.astro` : les navigateurs gardent les vidéos 7 jours en cache.
+Remplacer `public/video/skysolus-intro-v6.mp4` (MP4 H.264, 1280 à 1920 px de large, idéalement moins de 8 Mo), sa version mobile `skysolus-intro-mobile-v6.mp4` et `public/video/poster.jpg` (image affichée avant la lecture). **Changer le numéro de version du nom de fichier** (v7, v8…) à chaque nouveau film, et dans `src/pages/index.astro` : les navigateurs gardent les vidéos 7 jours en cache.
 
 ## Commandes
 
