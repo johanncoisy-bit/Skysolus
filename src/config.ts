@@ -25,7 +25,7 @@ export const SITE = {
   legal: {
     denomination: 'SKYSOLUS',
     forme: 'Société par actions simplifiée (SAS)',
-    capital: 'À COMPLÉTER', // montant du capital social indiqué dans les statuts
+    capital: '5 000 €', // capital social (statuts)
     siren: '130 316 011',
     siret: '130 316 011 00019',
     rcs: 'RCS Toulon 130 316 011', // greffe compétent pour Hyères : à vérifier sur le Kbis
@@ -34,7 +34,7 @@ export const SITE = {
     adresse: '112 chemin de Beauvallon Bas, 83400 Hyères',
     president: 'Johann Coisy',
     dateCreation: '15 septembre 2026',
-    exploitantUAS: 'À COMPLÉTER', // n° d’enregistrement exploitant UAS (AlphaTango)
+    exploitantUAS: 'FRA-RP-000000136222', // n° d’enregistrement exploitant UAS (AlphaTango)
     mediateur: 'À COMPLÉTER', // médiateur de la consommation (obligatoire pour la clientèle de particuliers)
     hebergeur: 'Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis : vercel.com',
   },
