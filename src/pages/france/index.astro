@@ -6,12 +6,12 @@ import { regions, outreMer } from '../../regions';
 import { zones } from '../../content';
 import { SITE } from '../../config';
 const jsonld = [{
-  '@context': 'https://schema.org', '@type': 'ItemList', name: 'Régions d’intervention Sky Solus',
+  '@context': 'https://schema.org', '@type': 'ItemList', name: 'Régions d’intervention Skysolus',
   itemListElement: regions.map((r, i) => ({ '@type': 'ListItem', position: i + 1, name: r.nom, url: `${SITE.url}/france/${r.slug}` })),
 }];
 ---
-<Base title="Drone partout en France : inspection, thermographie, immobilier · Sky Solus" description="Depuis Hyères, Sky Solus intervient dans toute la France et en Corse : photo et vidéo pour l’immobilier, inspection, suivi de chantier et thermographie par drone." jsonld={jsonld}>
-  <PageHead crumbs={[['Accueil', '/'], ['Partout en France']]} title="Drone et ULM, partout en France" lead="Basé à Hyères, Sky Solus peut se déplacer dans toutes les régions pour des missions planifiées : thermographie de centrales solaires, inspection d’ouvrages et de sites industriels, suivi de chantier, prises de vues immobilières." />
+<Base title="Drone partout en France : inspection, thermographie, immobilier · Skysolus" description="Depuis Hyères, Skysolus intervient dans toute la France et en Corse : photo et vidéo pour l’immobilier, inspection, suivi de chantier et thermographie par drone." jsonld={jsonld}>
+  <PageHead crumbs={[['Accueil', '/'], ['Partout en France']]} title="Drone et ULM, partout en France" lead="Basé à Hyères, Skysolus peut se déplacer dans toutes les régions pour des missions planifiées : thermographie de centrales solaires, inspection d’ouvrages et de sites industriels, suivi de chantier, prises de vues immobilières." />
   <section class="wrap" style="padding-bottom:40px">
     <div class="svc-grid">
       <div>

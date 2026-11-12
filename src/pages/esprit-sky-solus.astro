@@ -5,20 +5,20 @@ import CtaBand from '../components/CtaBand.astro';
 import { esprit } from '../content';
 import { SITE } from '../config';
 ---
-<Base title="L’esprit Sky Solus : une passion pour l’aérien, une culture de la sécurité" description="Sky Solus est né de la passion de Johann Coisy pour l’aéronautique : un drone est d’abord un aéronef, abordé avec la culture de sécurité et de rigueur d’un pilote avion.">
-  <PageHead crumbs={[['Accueil', '/'], ['L’esprit Sky Solus']]} title="L’esprit Sky Solus" />
+<Base title="L’esprit Skysolus : une passion pour l’aérien, une culture de la sécurité" description="Skysolus est né de la passion de Johann Coisy pour l’aéronautique : un drone est d’abord un aéronef, abordé avec la culture de sécurité et de rigueur d’un pilote avion.">
+  <PageHead crumbs={[['Accueil', '/'], ['L’esprit Skysolus']]} title="L’esprit Skysolus" />
   <section class="wrap" style="padding-bottom:100px">
     <div class="svc-grid">
       <div class="esprit">
         {esprit.paragraphes.map((t) => <p class="lead">{t}</p>)}
         <blockquote class="citation">
           <p>« {esprit.citation} »</p>
-          <footer>{SITE.contact.nom}, fondateur de Sky Solus</footer>
+          <footer>{SITE.contact.nom}, fondateur de Skysolus</footer>
         </blockquote>
         <p class="lead">{esprit.conclusion}</p>
       </div>
       <aside class="svc-aside">
-        <h2>Sky Solus en bref</h2>
+        <h2>Skysolus en bref</h2>
         <ul>
           <li>{SITE.legal.forme}, créée le {SITE.legal.dateCreation}</li>
           <li>Siège à {SITE.ville} ({SITE.departement})</li>

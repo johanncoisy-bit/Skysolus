@@ -12,7 +12,7 @@ const jsonld = [{
 }];
 const date = new Date(frontmatter.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
-<Base title={`${frontmatter.title} · Sky Solus`} description={frontmatter.description} jsonld={jsonld}>
+<Base title={`${frontmatter.title} · Skysolus`} description={frontmatter.description} jsonld={jsonld}>
   <PageHead crumbs={[['Accueil', '/'], ['Actualités', '/actualites'], [frontmatter.short ?? frontmatter.title]]} title={frontmatter.title} />
   <article class="wrap prose">
     <p class="muted">Publié le {date}, par {SITE.legal.president}</p>

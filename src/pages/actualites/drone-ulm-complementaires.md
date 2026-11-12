@@ -2,7 +2,7 @@
 layout: ../../layouts/Article.astro
 title: "Drone ou ULM : deux outils complémentaires pour observer d’en haut"
 short: "Drone ou ULM"
-description: "Pourquoi Sky Solus réunit un avion ULM et des drones : ce que chacun fait le mieux, et comment ils se complètent sur une même mission."
+description: "Pourquoi Skysolus réunit un avion ULM et des drones : ce que chacun fait le mieux, et comment ils se complètent sur une même mission."
 date: 2026-11-04
 ---
 

@@ -1,4 +1,4 @@
-// Contenus des pages Moyens aériens, L'esprit Sky Solus, Zones et Réalisations.
+// Contenus des pages Moyens aériens, L'esprit Skysolus, Zones et Réalisations.
 import type { Appareil } from './data';
 
 // Moyens aériens réellement disponibles (confirmé par Johann, novembre 2026).
@@ -74,21 +74,21 @@ export const moyens: {
   },
 ];
 
-// L'esprit Sky Solus — texte du cahier des charges.
+// L'esprit Skysolus — texte du cahier des charges.
 // À compléter avant publication par Johann : parcours aéronautique, expérience, qualifications.
 // Ne rien ajouter qui ne soit pas confirmé (diplôme, certification, expérience).
 export const esprit = {
   paragraphes: [
     'L’aéronautique fait partie de mon univers depuis mon plus jeune âge. Passionné par le monde aérien et l’aéromodélisme, j’ai naturellement souhaité concrétiser cette passion en obtenant ma licence de pilote avion en 2014.',
-    'C’est dans cette continuité qu’est né Sky Solus, avec l’ambition de mettre les possibilités offertes par les technologies aériennes au service des particuliers, des entreprises et des collectivités.',
+    'C’est dans cette continuité qu’est né Skysolus, avec l’ambition de mettre les possibilités offertes par les technologies aériennes au service des particuliers, des entreprises et des collectivités.',
   ],
   citation: 'Pour moi, un drone est d’abord un aéronef. Je l’aborde avec la même culture de sécurité, de rigueur et de respect de la réglementation que lorsque je pilote un avion. C’est cette approche qui guide chacune de mes interventions.',
-  conclusion: 'Au-delà des technologies et des équipements, Sky Solus repose sur une passion pour l’aérien, une volonté d’innover et le souci d’apporter des solutions adaptées aux besoins de chaque client.',
+  conclusion: 'Au-delà des technologies et des équipements, Skysolus repose sur une passion pour l’aérien, une volonté d’innover et le souci d’apporter des solutions adaptées aux besoins de chaque client.',
   engagements: [
     ['Un interlocuteur unique', 'Le même pilote prépare, réalise et livre votre mission.'],
     ['La réglementation d’abord', 'Aucun vol sans vérification de l’espace aérien et des autorisations nécessaires.'],
     ['Des limites expliquées', 'Ce que les images permettent de conclure, et ce qu’elles ne permettent pas, est écrit clairement.'],
-    ['Un ancrage local', 'Basé à Hyères, Sky Solus connaît le littoral varois et ses contraintes.'],
+    ['Un ancrage local', 'Basé à Hyères, Skysolus connaît le littoral varois et ses contraintes.'],
   ] as [string, string][],
 };
 
@@ -96,18 +96,18 @@ export const zones: { slug: string; ville: string; title: string; description: s
   {
     slug: 'hyeres',
     ville: 'Hyères',
-    title: 'Drone et ULM à Hyères : immobilier, inspection · Sky Solus',
-    description: 'Sky Solus est basé à Hyères : photo et vidéo aériennes pour l’immobilier, inspection et thermographie par drone, de Giens aux Salins.',
-    intro: 'Hyères est la base de Sky Solus. De la presqu’île de Giens aux Salins, du port Saint-Pierre aux collines de Costebelle, nous intervenons sur toute la commune.',
+    title: 'Drone et ULM à Hyères : immobilier, inspection · Skysolus',
+    description: 'Skysolus est basé à Hyères : photo et vidéo aériennes pour l’immobilier, inspection et thermographie par drone, de Giens aux Salins.',
+    intro: 'Hyères est la base de Skysolus. De la presqu’île de Giens aux Salins, du port Saint-Pierre aux collines de Costebelle, nous intervenons sur toute la commune.',
     local: 'La présence de l’aéroport de Toulon-Hyères impose des restrictions de vol pour les drones sur une partie de la commune, et les îles d’Or sont en grande partie en cœur de parc national. Chaque demande est vérifiée avant de vous proposer un devis.',
     focus: ['audiovisuel', 'inspection', 'thermographie'],
   },
   {
     slug: 'toulon',
     ville: 'Toulon',
-    title: 'Drone à Toulon : inspection, suivi de chantier · Sky Solus',
+    title: 'Drone à Toulon : inspection, suivi de chantier · Skysolus',
     description: 'Inspection de toitures et d’ouvrages, suivi de chantier et thermographie par drone à Toulon et dans la métropole Toulon Provence Méditerranée.',
-    intro: 'Dans la métropole toulonnaise, Sky Solus accompagne les syndics, les entreprises du BTP, les industriels et les collectivités, de La Seyne à La Valette.',
+    intro: 'Dans la métropole toulonnaise, Skysolus accompagne les syndics, les entreprises du BTP, les industriels et les collectivités, de La Seyne à La Valette.',
     local: 'Toulon compte de nombreuses zones où le vol de drone est restreint, notamment autour des installations militaires et en agglomération. Ces missions relèvent souvent de la catégorie Spécifique : nous nous occupons des démarches.',
     focus: ['inspection', 'chantier', 'thermographie'],
   },
@@ -132,7 +132,7 @@ export const zones: { slug: string; ville: string; title: string; description: s
   {
     slug: 'le-lavandou-bormes',
     ville: 'Le Lavandou et Bormes-les-Mimosas',
-    title: 'Drone au Lavandou et à Bormes-les-Mimosas · Sky Solus',
+    title: 'Drone au Lavandou et à Bormes-les-Mimosas · Skysolus',
     description: 'Photo et vidéo aériennes de biens, inspection et thermographie de toitures par drone au Lavandou, à Bormes-les-Mimosas et sur la côte des Maures.',
     intro: 'Villages perchés, plages, ports de plaisance et collines des Maures : entre Bormes et Le Lavandou, la vue aérienne montre un bien dans son environnement.',
     local: 'Une zone interdite au survol entoure le fort de Brégançon, et d’autres secteurs sont réglementés : nous vérifions systématiquement les cartes officielles avant chaque vol.',

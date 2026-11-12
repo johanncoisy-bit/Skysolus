@@ -403,7 +403,7 @@ p { margin: 0 0 1em; }
 .fleet-row { scroll-margin-top: 90px; }
 .cadre-note { margin-top: 30px; padding-top: 50px; border-top: 1px solid var(--trait); }
 
-/* l'esprit Sky Solus */
+/* l'esprit Skysolus */
 .esprit .lead + .lead { margin-top: 18px; }
 .citation { margin: 36px 0; padding: 4px 0 4px 26px; border-left: 3px solid var(--balise); }
 .citation p { font-family: var(--display); font-stretch: 105%; font-weight: 500; font-size: clamp(1.25rem, 2.2vw, 1.6rem); line-height: 1.4; color: #fff; margin: 0 0 12px; }

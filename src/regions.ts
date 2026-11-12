@@ -16,7 +16,7 @@ export const regions: Region[] = [
     slug: 'provence-alpes-cote-d-azur',
     nom: 'Provence-Alpes-Côte d’Azur',
     villes: ['Marseille', 'Nice', 'Toulon', 'Avignon', 'Aix-en-Provence', 'Hyères'],
-    intro: 'La région PACA est la région de base de Sky Solus : depuis Hyères, nous intervenons rapidement des Bouches-du-Rhône aux Alpes-Maritimes, du littoral aux Alpes du Sud.',
+    intro: 'La région PACA est la région de base de Skysolus : depuis Hyères, nous intervenons rapidement des Bouches-du-Rhône aux Alpes-Maritimes, du littoral aux Alpes du Sud.',
     besoins: 'Toitures et copropriétés des grandes villes, centrales photovoltaïques de l’arrière-pays, biens immobiliers du littoral, chantiers des métropoles.',
     contraintes: 'Le littoral concentre aéroports, zones militaires et espaces protégés : chaque adresse est vérifiée sur les cartes officielles avant de proposer un devis.',
     focus: ['audiovisuel', 'inspection', 'thermographie', 'chantier'],
@@ -132,6 +132,6 @@ export const regions: Region[] = [
 ];
 
 export const outreMer = {
-  intro: 'Sky Solus peut intervenir en outre-mer et à l’international pour des missions planifiées, sous réserve de la faisabilité réglementaire locale.',
+  intro: 'Skysolus peut intervenir en outre-mer et à l’international pour des missions planifiées, sous réserve de la faisabilité réglementaire locale.',
   texte: 'Chaque territoire a ses propres règles d’espace aérien et d’autorisation. Nous étudions la mission en amont : matériel à transporter, autorisations, durée sur place et regroupement des interventions pour en maîtriser le coût.',
 };

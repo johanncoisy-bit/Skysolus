@@ -1,6 +1,6 @@
-# Sky Solus
+# Skysolus
 
-Site de **SKY SOLUS** : missions aériennes par drone (DJI Mini 5 Pro, DJI Matrice 4T) et ULM (Bristell XL8) pour l’immobilier, l’inspection technique, le suivi de chantier et la thermographie, depuis Hyères (Var).
+Site de **Skysolus** : missions aériennes par drone (DJI Mini 5 Pro, DJI Matrice 4T) et ULM (Bristell XL8) pour l’immobilier, l’inspection technique, le suivi de chantier et la thermographie, depuis Hyères (Var).
 
 Structure et ton définis par le **cahier des charges du 11 novembre 2026**.
 
@@ -13,7 +13,7 @@ Structure et ton définis par le **cahier des charges du 11 novembre 2026**.
 | Secteurs d’activité | `/secteurs` | `src/secteurs.ts` |
 | Moyens aériens | `/moyens-aeriens` | `moyens` dans `src/content.ts` |
 | Réalisations / galerie | `/realisations` | `realisations` dans `src/content.ts` |
-| L’esprit Sky Solus | `/esprit-sky-solus` | `esprit` dans `src/content.ts` |
+| L’esprit Skysolus | `/esprit-sky-solus` | `esprit` dans `src/content.ts` |
 | Contact / devis | `/contact` | `src/components/ContactForm.astro`, `api/contact.js` |
 
 Hors menu (référencement, liens en pied de page) : zones du Var (`/zones`), régions (`/france`, `src/regions.ts`), actualités (`/actualites`).
@@ -65,7 +65,7 @@ Sur vercel.com : *Add New → Project*, importer le dépôt `johanncoisy-bit/sky
 
 Après la mise en ligne :
 1. Google Search Console : ajouter le domaine et soumettre `https://<domaine>/sitemap-index.xml`.
-2. Créer la fiche Google Business Profile « Sky Solus » (Hyères), catégorie « Service de photographie aérienne » ou équivalent, avec le lien du site.
+2. Créer la fiche Google Business Profile « Skysolus » (Hyères), catégorie « Service de photographie aérienne » ou équivalent, avec le lien du site.
 3. Inscrire la société sur Pages Jaunes et les annuaires de télépilotes, avec exactement le même nom, la même adresse et le même téléphone.
 4. Ajouter des photos de missions réelles au fil de l'eau : c'est ce qui fera la différence.
 
