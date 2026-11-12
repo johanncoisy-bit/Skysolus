@@ -535,5 +535,5 @@ export const introPrestations = {
     'Grâce aux technologies embarquées et à la précision des prises de vues aériennes, nous réalisons des missions d’inspection, d’analyse, de cartographie et de valorisation visuelle.',
   ],
   signature: 'Skysolus – L’expertise aérienne au service de vos projets.',
-  zone: 'Interventions dans le Var, en région PACA, partout en France et Outre-mer, et, selon les missions, à l’international.',
+  zone: 'Interventions dans le Var mais aussi partout en France et en Outre-mer.',
 };
