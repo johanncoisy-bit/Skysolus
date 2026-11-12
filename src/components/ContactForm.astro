@@ -7,7 +7,7 @@ import { typesBesoin } from '../data';
           <a href={SITE.contact.telHref}><small>Appeler</small><strong>{SITE.contact.telephone}</strong></a>
           <a href={`mailto:${SITE.contact.email}`}><small>Écrire</small><strong>{SITE.contact.email}</strong></a>
           <a href={`https://wa.me/${SITE.contact.whatsapp}`} target="_blank" rel="noopener"><small>WhatsApp</small><strong>Envoyer un message</strong></a>
-          <p class="muted" style="margin-top:10px">{SITE.contact.nom}, {SITE.ville}, {SITE.departement}<br />{SITE.legal.denomination} SAS · SIREN {SITE.legal.siren}</p>
+          <p class="muted" style="margin-top:10px">{SITE.contact.nom}, {SITE.ville}, {SITE.departement}<br />{SITE.legal.denomination} SAS · SIRET {SITE.legal.siret}</p>
         </div>
 
         <form class="form" id="devis" data-endpoint={SITE.formEndpoint} data-email={SITE.contact.email} data-tel={SITE.contact.telephone} novalidate>
