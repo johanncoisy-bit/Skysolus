@@ -456,3 +456,15 @@ p { margin: 0 0 1em; }
 .hero-play.attention { border-color: var(--logo); color: #fff; background: rgba(87, 185, 231, .28); animation: son-pulse 1.8s ease-in-out infinite; }
 @keyframes son-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(87, 185, 231, .55); } 50% { box-shadow: 0 0 0 8px rgba(87, 185, 231, 0); } }
 @media (prefers-reduced-motion: reduce) { .hero-play.attention { animation: none; } }
+
+/* réseaux sociaux (pied de page, bloc contact) */
+.reseaux { margin-top: 14px; }
+.reseaux-titre { margin: 0 0 8px; font-size: .9rem; color: var(--gris); }
+.reseaux ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.reseaux a {
+  display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px;
+  border: 1px solid var(--trait); color: var(--texte); text-decoration: none; font-weight: 600; font-size: .95rem;
+}
+.reseaux a:hover, .reseaux a:focus-visible { border-color: var(--logo); color: #fff; }
+.reseaux svg { flex: none; color: var(--logo); }
+.direct .reseaux a { display: inline-flex; padding: 7px 14px; border-radius: 999px; background: transparent; }

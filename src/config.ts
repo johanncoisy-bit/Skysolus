@@ -17,6 +17,13 @@ export const SITE = {
     whatsapp: '33679695348', // numéro au format international, sans + ni espaces
   },
 
+  // Réseaux sociaux : laisser '' pour un réseau sans compte (il n'est alors pas affiché).
+  reseaux: [
+    { nom: 'YouTube', url: 'https://www.youtube.com/@Skysolus' },
+    { nom: 'Instagram', url: '' },
+    { nom: 'Facebook', url: '' },
+  ],
+
   // Formulaire de devis : adresse de la fonction qui envoie l'e-mail (fichier api/contact.js).
   // Les réglages d'envoi (boîte, mot de passe, destinataires) sont dans les variables d'environnement Vercel.
   formEndpoint: '/api/contact',

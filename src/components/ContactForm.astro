@@ -1,12 +1,14 @@
 ---
 import { SITE } from '../config';
 import { typesBesoin } from '../data';
+import Reseaux from './Reseaux.astro';
 ---
 <div class="contact-grid">
         <div class="direct">
           <a href={SITE.contact.telHref}><small>Appeler</small><strong>{SITE.contact.telephone}</strong></a>
           <a href={`mailto:${SITE.contact.email}`}><small>Écrire</small><strong>{SITE.contact.email}</strong></a>
           <a href={`https://wa.me/${SITE.contact.whatsapp}`} target="_blank" rel="noopener"><small>WhatsApp</small><strong>Envoyer un message</strong></a>
+          <Reseaux titre="Suivez nos missions" />
           <p class="muted" style="margin-top:10px">{SITE.contact.nom}, {SITE.ville}, {SITE.departement}<br />{SITE.legal.denomination} SAS · SIRET {SITE.legal.siret}</p>
         </div>
 
