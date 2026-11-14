@@ -437,6 +437,7 @@ p { margin: 0 0 1em; }
 
 /* page Prestations : texte d'introduction et liste numérotée */
 .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.presta-intro { margin-top: -44px; } /* une seule interligne après le sous-titre */
 .presta-intro p { font-size: 1.2rem; color: #d4dfeb; max-width: 70ch; }
 .presta-intro p + p { margin-top: 12px; }
 .presta-liste { list-style: none; margin: 50px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
