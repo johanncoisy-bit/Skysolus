@@ -44,7 +44,9 @@ const mail = SITE.contact.email;
     <p>Ce site ne dépose aucun cookie publicitaire ni de mesure d’audience nécessitant votre consentement. Le formulaire de contact n’utilise pas de cookie : les informations et les fichiers joints sont transmis par e-mail à Skysolus, sans être enregistrés sur le site.</p>
 
     <h2>Médiation de la consommation</h2>
-    <p>Conformément aux articles L.612-1 et suivants du Code de la consommation, le client particulier peut recourir gratuitement au médiateur de la consommation suivant : {L.mediateur}.</p>
+    <p>Conformément aux articles L.612-1 et suivants du Code de la consommation, le client particulier peut recourir gratuitement au médiateur de la consommation suivant :</p>
+    <p>{L.mediateur.nom}<br />{L.mediateur.adresse}<br /><a href={L.mediateur.site} target="_blank" rel="noopener">{L.mediateur.site.replace('https://', '')}</a></p>
+    <p>Avant de saisir le médiateur, le client doit avoir adressé une réclamation écrite à {SITE.legal.denomination}, par courrier ou par e-mail à <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a>.</p>
 
     <p style="margin-top:40px"><a href="/">Retour à l’accueil</a></p>
   </section>

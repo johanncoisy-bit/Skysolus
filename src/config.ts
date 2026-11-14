@@ -42,7 +42,12 @@ export const SITE = {
     president: 'Johann Coisy',
     dateCreation: '15 septembre 2026',
     exploitantUAS: 'FRA-RP-000000136222', // n° d’enregistrement exploitant UAS (AlphaTango)
-    mediateur: 'À COMPLÉTER', // médiateur de la consommation (obligatoire pour la clientèle de particuliers)
+    // médiateur de la consommation (obligatoire pour la clientèle de particuliers)
+    mediateur: {
+      nom: 'CM2C, Centre de la médiation de la consommation de conciliateurs de justice',
+      adresse: '49 rue de Ponthieu, 75008 Paris',
+      site: 'https://www.cm2c.net',
+    },
     hebergeur: 'Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis : vercel.com',
   },
 };
