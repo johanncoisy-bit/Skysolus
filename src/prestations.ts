@@ -529,7 +529,7 @@ export const urlPrestation = (id: string) => `/prestations/${prestationParId(id)
 // Texte d'introduction de la page Prestations (texte de Johann, 11 novembre 2026)
 export const introPrestations = {
   titre: 'Nos prestations par drones',
-  sousTitre: 'Des solutions aériennes au service des professionnels et des particuliers',
+  sousTitre: 'Des solutions aériennes au service des professionnels et des particuliers.',
   texte: [
     'Skysolus propose une gamme de prestations aériennes par drone adaptées aux besoins des entreprises, des collectivités, des industriels et des particuliers.',
     'Grâce aux technologies embarquées et à la précision des prises de vues aériennes, nous réalisons des missions d’inspection, d’analyse, de cartographie et de valorisation visuelle.',
