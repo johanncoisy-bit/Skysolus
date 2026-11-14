@@ -20,7 +20,7 @@ export const SITE = {
   // Réseaux sociaux : laisser '' pour un réseau sans compte (il n'est alors pas affiché).
   reseaux: [
     { nom: 'YouTube', url: 'https://www.youtube.com/@Skysolus' },
-    { nom: 'Instagram', url: '' },
+    { nom: 'Instagram', url: 'https://www.instagram.com/skysolus/' },
     { nom: 'Facebook', url: '' },
   ],
 
