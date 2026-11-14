@@ -47,7 +47,6 @@ export const moyens: {
       'Réaliser des vols de cartographie et de modélisation 3D',
     ],
     limites: [
-      'La caméra thermique a une résolution plus faible que les caméras visibles : pour un détail, il faut s’approcher',
       'Les mesures thermiques dépendent de la météo, de l’heure et des matériaux',
       'Près d’installations sensibles ou en agglomération, le vol dépend des autorisations applicables',
     ],
