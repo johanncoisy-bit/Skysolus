@@ -37,7 +37,6 @@ const rings = [
     </video>
     <div class="hero-bar">
       <div class="hero-ctrl">
-        <button class="hero-play" id="film-btn" type="button" aria-controls="film">Mettre en pause</button>
         <button class="hero-play" id="film-son" type="button" aria-controls="film" aria-pressed="false">Activer le son</button>
       </div>
       <a class="hero-down" href="#intro">Découvrir <span aria-hidden="true"></span></a>
@@ -212,13 +211,9 @@ const rings = [
   </section>
 
   <script>
-    // Film d'ouverture : pause / lecture, et respect de « réduire les animations »
+    // Film d'ouverture : respect de « réduire les animations » (le bouton son lance alors le film)
     const film = document.getElementById('film') as HTMLVideoElement | null;
-    const btn = document.getElementById('film-btn');
-    const setLabel = () => { if (btn && film) btn.textContent = film.paused ? 'Lire le film' : 'Mettre en pause'; };
     if (film && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { film.removeAttribute('autoplay'); film.pause(); }
-    film?.addEventListener('play', setLabel); film?.addEventListener('pause', setLabel); setLabel();
-    btn?.addEventListener('click', () => { if (!film) return; film.paused ? film.play() : film.pause(); });
     // Son du film : actif dès l'arrivée quand le navigateur l'autorise.
     // Les navigateurs bloquent le son automatique tant que le visiteur n'a pas interagi avec la page :
     // dans ce cas le film démarre en muet et le son s'active au premier clic, toucher ou touche du clavier.
