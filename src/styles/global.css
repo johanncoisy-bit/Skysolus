@@ -79,8 +79,10 @@ p { margin: 0 0 1em; }
 .nav nav a:not(.btn):hover, .nav nav a[aria-current="page"] { color: var(--ciel-clair); }
 .nav-toggle { display: none; }
 .nav nav a { white-space: nowrap; }
-.nav nav a.nav-tel { color: var(--ciel-clair); font-weight: 600; }
-@media (max-width: 1520px) and (min-width: 1301px) { .nav nav a.nav-tel { display: none; } }
+.nav nav a.nav-tel { display: inline-flex; align-items: center; gap: 8px; border-color: var(--logo); }
+.nav nav a.nav-tel svg { color: var(--logo); }
+.btn-tel { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-tel .ico-tel { color: var(--logo); flex: none; }
 .nav-call { display: none; }
 .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .svc-aside .aside-tel { margin-top: 10px; }
