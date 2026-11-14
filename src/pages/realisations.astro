@@ -8,7 +8,7 @@ const total = realisations.length;
 ---
 <Base title="Réalisations : galerie des missions par drone · Skysolus" description="Galerie des missions réalisées par Skysolus : immobilier, inspection technique, suivi de chantier, thermographie et autres réalisations.">
   <PageHead crumbs={[['Accueil', '/'], ['Réalisations']]} title="Réalisations" lead={total ? 'Une sélection de missions, classées par type. Les images sont publiées avec l’accord des clients.' : undefined} />
-  <section class="wrap" style="padding-bottom:110px">
+  <section class="wrap" style="padding-bottom:76px">
     <nav class="other" style="margin-top:0" aria-label="Types de mission">
       <ul style="margin-top:0">{categoriesGalerie.map(([id, nom]) => <li><a href={`#${id}`}>{nom}</a></li>)}</ul>
     </nav>

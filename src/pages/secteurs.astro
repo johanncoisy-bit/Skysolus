@@ -7,7 +7,7 @@ import { prestationParId, urlPrestation } from '../prestations';
 ---
 <Base title="Secteurs d’activité : immobilier, BTP, industrie, énergie, collectivités · Skysolus" description="Particuliers, BTP, industrie, énergie éolienne et photovoltaïque, télécommunications, collectivités : les prestations par drone de Skysolus pour chaque secteur.">
   <PageHead crumbs={[['Accueil', '/'], ['Secteurs d’activité']]} title="Secteurs d’activité" lead="Trouvez rapidement les prestations qui correspondent à votre activité." />
-  <section class="wrap" style="padding-bottom:110px">
+  <section class="wrap" style="padding-bottom:76px">
     <nav class="other" style="margin-top:0" aria-label="Secteurs">
       <ul style="margin-top:0">{secteurs.map((s) => <li><a href={`#${s.id}`}>{s.titre}</a></li>)}</ul>
     </nav>
@@ -37,7 +37,7 @@ import { prestationParId, urlPrestation } from '../prestations';
         </article>
       ))}
     </div>
-    <p class="lead" style="margin-top:60px">Votre activité n’apparaît pas ici ? <a href="/contact">Parlez-nous de votre projet</a> : nous étudions sa faisabilité.</p>
+    <p class="lead" style="margin-top:44px">Votre activité n’apparaît pas ici ? <a href="/contact">Parlez-nous de votre projet</a> : nous étudions sa faisabilité.</p>
   </section>
   <CtaBand />
 </Base>

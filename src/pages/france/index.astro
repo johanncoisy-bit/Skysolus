@@ -27,13 +27,13 @@ const jsonld = [{
       </aside>
     </div>
   </section>
-  <section class="wrap" style="padding-bottom:110px">
+  <section class="wrap" style="padding-bottom:76px">
     <h2 style="margin:50px 0 24px">Régions</h2>
     <ul class="zone-list">
       {regions.map((r) => <li><a href={`/france/${r.slug}`}><strong>{r.nom}</strong><span>{r.villes.slice(0, 4).join(', ')}…</span></a></li>)}
       <li><a href="/france#outre-mer"><strong>Outre-mer et international</strong><span>Selon la faisabilité réglementaire locale</span></a></li>
     </ul>
-    <div id="outre-mer" style="margin-top:70px;max-width:760px">
+    <div id="outre-mer" style="margin-top:52px;max-width:760px">
       <h2 style="font-size:1.7rem;margin-bottom:14px">Outre-mer et international</h2>
       <p class="lead">{outreMer.intro}</p>
       <p class="lead" style="margin-top:16px">{outreMer.texte}</p>
