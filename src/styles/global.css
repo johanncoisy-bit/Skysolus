@@ -261,7 +261,7 @@ p { margin: 0 0 1em; }
 .footer-grid > div:first-child { max-width: 420px; }
 .footer-logo { height: 44px; width: auto; margin-bottom: 16px; }
 .footer-copy { margin-top: 30px; font-size: .9rem; }
-.footer .reseaux { margin-top: 30px; width: fit-content; } /* une interligne entre les mentions et les réseaux */
+.footer .reseaux { margin-top: 52px; width: fit-content; } /* une interligne entre les mentions et les réseaux */
 .footer .reseaux-titre { text-align: center; }
 
 /* ---------- pages simples ---------- */
