@@ -219,14 +219,44 @@ const rings = [
     if (film && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { film.removeAttribute('autoplay'); film.pause(); }
     film?.addEventListener('play', setLabel); film?.addEventListener('pause', setLabel); setLabel();
     btn?.addEventListener('click', () => { if (!film) return; film.paused ? film.play() : film.pause(); });
+    // Son du film : actif dès l'arrivée quand le navigateur l'autorise.
+    // Les navigateurs bloquent le son automatique tant que le visiteur n'a pas interagi avec la page :
+    // dans ce cas le film démarre en muet et le son s'active au premier clic, toucher ou touche du clavier.
     const son = document.getElementById('film-son');
+    let sonCoupeParVisiteur = false;
+    const majSon = () => {
+      if (!son || !film) return;
+      son.textContent = film.muted ? 'Activer le son' : 'Couper le son';
+      son.setAttribute('aria-pressed', String(!film.muted));
+      son.classList.toggle('attention', film.muted && !sonCoupeParVisiteur);
+    };
+    film?.addEventListener('volumechange', majSon);
+    const gestes = ['pointerdown', 'keydown', 'touchstart'] as const;
+    const retirerGestes = () => gestes.forEach((g) => document.removeEventListener(g, auPremierGeste, true));
+    function auPremierGeste(e: Event) {
+      if (!film || sonCoupeParVisiteur) return retirerGestes();
+      if (son && e.target instanceof Node && son.contains(e.target)) return; // le bouton gère lui-même
+      retirerGestes();
+      film.muted = false;
+      if (film.paused && !reduit) film.play().catch(() => {});
+    }
+    const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (film && !reduit) {
+      film.muted = false;
+      film.play().then(majSon).catch(() => {
+        film.muted = true;
+        film.play().catch(() => {});
+        majSon();
+        gestes.forEach((g) => document.addEventListener(g, auPremierGeste, { capture: true, passive: true }));
+      });
+    }
     son?.addEventListener('click', () => {
       if (!film) return;
       film.muted = !film.muted;
-      son.textContent = film.muted ? 'Activer le son' : 'Couper le son';
-      son.setAttribute('aria-pressed', String(!film.muted));
-      if (!film.muted && film.paused) film.play();
+      sonCoupeParVisiteur = film.muted;
+      if (!film.muted) { retirerGestes(); if (film.paused) film.play().catch(() => {}); }
+      majSon();
     });
-
+    majSon();
   </script>
 </Base>

@@ -451,3 +451,8 @@ p { margin: 0 0 1em; }
 
 /* photo du XL8 */
 .ulm .plane-photo, .fleet-visual .plane-photo { filter: none; border-radius: 18px; box-shadow: 0 24px 50px rgba(0, 0, 0, .35); }
+
+/* bouton « Activer le son » mis en évidence tant que le film est muet */
+.hero-play.attention { border-color: var(--logo); color: #fff; background: rgba(87, 185, 231, .28); animation: son-pulse 1.8s ease-in-out infinite; }
+@keyframes son-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(87, 185, 231, .55); } 50% { box-shadow: 0 0 0 8px rgba(87, 185, 231, 0); } }
+@media (prefers-reduced-motion: reduce) { .hero-play.attention { animation: none; } }
