@@ -21,7 +21,7 @@ export const SITE = {
   reseaux: [
     { nom: 'YouTube', url: 'https://www.youtube.com/@Skysolus' },
     { nom: 'Instagram', url: 'https://www.instagram.com/skysolus/' },
-    { nom: 'Facebook', url: '' },
+    { nom: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61594094457168' },
   ],
 
   // Formulaire de devis : adresse de la fonction qui envoie l'e-mail (fichier api/contact.js).
