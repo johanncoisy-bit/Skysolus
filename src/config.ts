@@ -19,9 +19,9 @@ export const SITE = {
 
   // Réseaux sociaux : laisser '' pour un réseau sans compte (il n'est alors pas affiché).
   reseaux: [
-    { nom: 'YouTube', url: 'https://www.youtube.com/@Skysolus' },
-    { nom: 'Instagram', url: 'https://www.instagram.com/skysolus/' },
     { nom: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61594094457168' },
+    { nom: 'Instagram', url: 'https://www.instagram.com/skysolus/' },
+    { nom: 'YouTube', url: 'https://www.youtube.com/@Skysolus' },
   ],
 
   // Formulaire de devis : adresse de la fonction qui envoie l'e-mail (fichier api/contact.js).
