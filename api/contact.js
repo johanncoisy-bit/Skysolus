@@ -5,7 +5,7 @@
 //   SMTP_PASS  mot de passe de cette boîte                               (obligatoire)
 //   SMTP_HOST  serveur SMTP, ssl0.ovh.net par défaut (offre MX Plan OVH)
 //   SMTP_PORT  465 par défaut (SSL)
-//   MAIL_TO    destinataire(s) des demandes, séparés par des virgules ; SMTP_USER par défaut
+//   MAIL_TO    destinataire(s) des demandes, séparés par des virgules ; contact.skysolus@gmail.com par défaut
 import nodemailer from 'nodemailer';
 
 const LIMITES = { nom: 120, societe: 160, email: 200, telephone: 40, mission: 80, lieu: 200, message: 5000 };
@@ -121,7 +121,7 @@ ${champs.map(([k, v]) => `<tr><td style="color:#555;vertical-align:top"><b>${k}<
   try {
     await transport.sendMail({
       from: { name: 'Site Skysolus', address: SMTP_USER },
-      to: (process.env.MAIL_TO || SMTP_USER).split(',').map((s) => s.trim()).filter(Boolean),
+      to: (process.env.MAIL_TO || 'contact.skysolus@gmail.com').split(',').map((s) => s.trim()).filter(Boolean),
       replyTo: { name: d.nom, address: d.email },
       subject: `Demande de devis : ${d.mission} · ${d.nom}`,
       text: texte,
