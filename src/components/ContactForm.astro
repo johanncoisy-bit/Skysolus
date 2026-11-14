@@ -145,7 +145,7 @@ import Reseaux from './Reseaux.astro';
         if (!res.ok || !json.ok) throw new Error(String(res.status));
         form.reset();
         if (listeFichiers) listeFichiers.innerHTML = '';
-        say('Merci, votre demande est bien envoyée. Nous vous répondons rapidement.', 'ok');
+        say('Merci, votre demande est bien envoyée. Nous allons traiter votre demande dans les meilleurs délais.', 'ok');
       } catch {
         say(`L’envoi n’a pas abouti. Réessayez dans un instant, ou appelez le ${form.dataset.tel}.`, 'err');
       } finally {
