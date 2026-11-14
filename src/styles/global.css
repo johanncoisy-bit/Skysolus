@@ -471,3 +471,25 @@ p { margin: 0 0 1em; }
 .reseaux a:hover, .reseaux a:focus-visible { border-color: var(--logo); color: #fff; }
 .reseaux svg { flex: none; color: var(--logo); }
 .direct .reseaux a { display: inline-flex; padding: 7px 14px; border-radius: 999px; background: transparent; }
+/* Réseaux : plus grands dans l'introduction de l'accueil */
+.reseaux-grand { margin-top: 30px; }
+.reseaux-grand .reseaux-titre { font-size: 1rem; color: #cfdbe9; font-weight: 600; }
+.reseaux-grand a { padding: 10px 20px; font-size: 1.02rem; border-color: rgba(87, 185, 231, .55); background: rgba(87, 185, 231, .08); }
+.reseaux-grand svg { width: 22px; height: 22px; }
+/* Réseaux : barre fixe sur le bord droit (grands écrans) */
+.reseaux-rail {
+  position: fixed; z-index: 40; right: 14px; top: 50%; transform: translateY(-50%); margin: 0;
+}
+.reseaux-rail ul { flex-direction: column; gap: 10px; }
+.reseaux-rail a { width: 44px; height: 44px; padding: 0; justify-content: center; background: rgba(10, 19, 34, .72); border-color: rgba(87, 185, 231, .6); backdrop-filter: blur(6px); }
+.reseaux-rail a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.reseaux-rail a:hover, .reseaux-rail a:focus-visible { background: var(--logo); color: #06111f; }
+.reseaux-rail a:hover svg, .reseaux-rail a:focus-visible svg { color: #06111f; }
+.reseaux-rail svg { width: 22px; height: 22px; }
+@media (max-width: 1300px) { .reseaux-rail { display: none; } }
+/* Réseaux : dans le menu déroulant (mobile et tablette) */
+.nav nav .reseaux-menu { display: none; }
+@media (max-width: 1300px) {
+  .nav nav .reseaux-menu { display: block; margin-top: 18px; }
+  .nav nav .reseaux-menu a { padding: 8px 16px; font-size: 1rem; }
+}

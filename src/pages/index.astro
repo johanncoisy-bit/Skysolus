@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Plane from '../components/Plane.astro';
 import Drone from '../components/Drone.astro';
+import Reseaux from '../components/Reseaux.astro';
 import ContactForm from '../components/ContactForm.astro';
 import PrestationCards from '../components/PrestationCards.astro';
 import { SITE } from '../config';
@@ -51,6 +52,7 @@ const rings = [
       <a class="btn btn-ghost" href="/contact">Demander un devis</a>
       <a class="btn btn-ghost btn-tel" href={SITE.contact.telHref} title={SITE.contact.telephone} aria-label={`Appeler le ${SITE.contact.telephone}`}><svg class="ico-tel" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6.6 3.5h2.6l1.3 4-2 1.4a12.5 12.5 0 0 0 6.6 6.6l1.4-2 4 1.3v2.6A2 2 0 0 1 18.5 19.5 15 15 0 0 1 4.5 5.5a2 2 0 0 1 2.1-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Appeler</a>
     </div>
+    <Reseaux titre="Suivez nos missions en images" variante="grand" />
     <ul class="facts">
       <li><strong>Basé à Hyères</strong>Interventions dans le Var mais aussi partout en France et Outre-mer.</li>
       <li><strong>Drone et ULM</strong>Le détail au plus près avec le drone, les grandes étendues avec l’avion.</li>

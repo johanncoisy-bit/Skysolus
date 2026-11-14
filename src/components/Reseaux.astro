@@ -2,8 +2,8 @@
 // Liens vers les réseaux sociaux de Skysolus (config.ts › reseaux).
 // Icônes génériques (bouton lecture, appareil photo, bulle), volontairement différentes des logos des marques.
 import { SITE } from '../config';
-interface Props { titre?: string }
-const { titre } = Astro.props;
+interface Props { titre?: string; variante?: 'rail' | 'menu' | 'grand' }
+const { titre, variante } = Astro.props;
 const liens = SITE.reseaux.filter((r) => r.url);
 const icone: Record<string, string> = {
   YouTube: '<circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 8.2v7.6l6-3.8z" fill="currentColor"/>',
@@ -12,12 +12,12 @@ const icone: Record<string, string> = {
 };
 ---
 {liens.length > 0 && (
-  <div class="reseaux">
+  <div class:list={['reseaux', variante && `reseaux-${variante}`]} role={variante === 'rail' ? 'complementary' : undefined} aria-label={variante === 'rail' ? 'Réseaux sociaux' : undefined}>
     {titre && <p class="reseaux-titre">{titre}</p>}
     <ul>
       {liens.map((r) => (
         <li>
-          <a href={r.url} target="_blank" rel="noopener me" aria-label={`Skysolus sur ${r.nom} (nouvelle fenêtre)`}>
+          <a href={r.url} target="_blank" rel="noopener me" title={variante === 'rail' ? r.nom : undefined} aria-label={`Skysolus sur ${r.nom} (nouvelle fenêtre)`}>
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" set:html={icone[r.nom] ?? ''}></svg>
             <span>{r.nom}</span>
           </a>
