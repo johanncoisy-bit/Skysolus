@@ -65,6 +65,7 @@ p { margin: 0 0 1em; }
   transition: background .3s;
 }
 .nav.solid { background: rgba(10, 19, 34, .92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--trait); }
+.nav-logo { flex: none; }
 .nav-logo img { height: 40px; width: auto; }
 .nav nav { --nav-gap: clamp(16px, 2.4vw, 34px); display: flex; align-items: center; gap: var(--nav-gap); }
 /* séparateurs bleus entre les pages du menu (bleu du logo) */
@@ -488,6 +489,36 @@ p { margin: 0 0 1em; }
 .reseaux-rail a:hover svg, .reseaux-rail a:focus-visible svg { color: #06111f; }
 .reseaux-rail svg { width: 22px; height: 22px; }
 @media (max-width: 1300px) { .reseaux-rail { display: none; } }
+/* Réseaux : dans la barre du haut (ordinateur), pastilles aux couleurs des réseaux */
+.rs-facebook { --rs: #1877F2; }
+.rs-instagram { --rs: #E1306C; }
+.rs-youtube { --rs: #FF0000; }
+.nav nav .reseaux-entete { margin: 0; }
+.nav nav .reseaux-entete ul { gap: 8px; flex-wrap: nowrap; }
+.nav nav .reseaux-entete a {
+  width: 34px; height: 34px; padding: 0; justify-content: center; border: 0; border-radius: 50%;
+  background: var(--rs); color: #fff; transition: transform .15s, filter .15s;
+}
+.nav nav .reseaux-entete a.rs-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.nav nav .reseaux-entete a:hover, .nav nav .reseaux-entete a:focus-visible { transform: scale(1.1); filter: brightness(1.1); color: #fff; }
+.nav nav .reseaux-entete a svg { width: 19px; height: 19px; color: #fff; }
+.nav nav .reseaux-entete a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 1300px) { .nav nav .reseaux-entete { display: none; } }
+@media (min-width: 1301px) and (max-width: 1380px) {
+  .nav nav { --nav-gap: 12px; }
+  .nav nav a:not(.btn) { font-size: .95rem; }
+  .nav nav .btn-small { padding: 9px 14px; }
+}
+/* écrans moyens : menu plus serré et bouton Appeler réduit à l'icône pour laisser la place aux réseaux */
+@media (min-width: 1301px) and (max-width: 1640px) {
+  .nav { gap: 16px; }
+  .nav nav { --nav-gap: 18px; }
+  .nav nav a.nav-tel { width: 40px; height: 40px; padding: 0; justify-content: center; font-size: 0; gap: 0; }
+  .nav nav a.nav-tel svg { width: 18px; height: 18px; }
+}
+/* Couleurs des réseaux aussi sur les autres boutons */
+.reseaux a[class^="rs-"] svg { color: var(--rs); }
+.reseaux a.rs-youtube svg { color: #FF3B3B; }
 /* Réseaux : dans le menu déroulant (mobile et tablette) */
 .nav nav .reseaux-menu { display: none; }
 @media (max-width: 1300px) {

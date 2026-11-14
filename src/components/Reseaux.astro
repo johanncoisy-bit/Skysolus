@@ -2,7 +2,7 @@
 // Liens vers les réseaux sociaux de Skysolus (config.ts › reseaux).
 // Icônes génériques (bouton lecture, appareil photo, bulle), volontairement différentes des logos des marques.
 import { SITE } from '../config';
-interface Props { titre?: string; variante?: 'rail' | 'menu' | 'grand' }
+interface Props { titre?: string; variante?: 'rail' | 'menu' | 'grand' | 'entete' }
 const { titre, variante } = Astro.props;
 const liens = SITE.reseaux.filter((r) => r.url);
 const icone: Record<string, string> = {
@@ -17,7 +17,7 @@ const icone: Record<string, string> = {
     <ul>
       {liens.map((r) => (
         <li>
-          <a href={r.url} target="_blank" rel="noopener me" title={variante === 'rail' ? r.nom : undefined} aria-label={`Skysolus sur ${r.nom} (nouvelle fenêtre)`}>
+          <a href={r.url} target="_blank" rel="noopener me" class={`rs-${r.nom.toLowerCase()}`} title={variante === 'rail' || variante === 'entete' ? r.nom : undefined} aria-label={`Skysolus sur ${r.nom} (nouvelle fenêtre)`}>
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" set:html={icone[r.nom] ?? ''}></svg>
             <span>{r.nom}</span>
           </a>
