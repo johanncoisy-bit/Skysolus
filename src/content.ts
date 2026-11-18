@@ -86,7 +86,7 @@ export const esprit = {
   engagements: [
     ['Un interlocuteur unique', 'Le même pilote prépare, réalise et livre votre mission.'],
     ['La réglementation d’abord', 'Aucun vol sans vérification de l’espace aérien et des autorisations nécessaires.'],
-    ['Des limites expliquées', 'Ce que les images permettent de conclure, et ce qu’elles ne permettent pas, est écrit clairement.'],
+    ['Des limites expliquées', 'Ce que les images permettent de conclure et ce qu’elles ne permettent pas est clairement écrit.'],
     ['Un ancrage local', 'Basé à Hyères, Skysolus connaît le littoral varois et ses contraintes.'],
   ] as [string, string][],
 };
